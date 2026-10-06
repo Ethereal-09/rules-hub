@@ -1,6 +1,6 @@
 ! Title: AdGuard Home 黑名单
-! Last modified: 2026-10-07 05:08:40
-! 规则数: 220181
+! Last modified: 2026-10-07 05:31:25
+! 规则数: 220193
 ! 本文件由 GitHub Actions 自动生成，请勿手动修改
 
 ||hunt.goshupward.com^
@@ -70765,6 +70765,7 @@ browsershots.org#@#.advert_area
 ||amznu.com^
 ||amzrjywvyryrb.top^
 ||amzystkjjhfdz.online^
+||anagramyappish.cfd^
 ||analitits.com^
 ||analitycs.net^
 ||analogydid.com^
@@ -74812,6 +74813,7 @@ browsershots.org#@#.advert_area
 ||cheaplyovernew.cfd^
 ||cheaplyregainthrift.com^
 ||cheapmachinerywail.com^
+||cheapromaunt.com^
 ||cheateecronus.com^
 ||cheatingagricultural.com^
 ||chebfqsmfwovu.online^
@@ -75420,6 +75422,7 @@ browsershots.org#@#.advert_area
 ||cobiatungate.com^
 ||coburgmensae.cfd^
 ||cobwebhauntedallot.com^
+||cobwebsfrenum.cyou^
 ||cobwebsituationstyling.com^
 ||cocambgwyeeym.website^
 ||cocauseuncharmfun.qpon^
@@ -79850,6 +79853,7 @@ browsershots.org#@#.advert_area
 ||epqcgcxkfymlj.site^
 ||epqqoygdlxiri.site^
 ||eprgsfzkoakpj.site^
+||eprisimports.cfd^
 ||eprqjmvpz2846c.cfd^
 ||eprqryhpwjmox.site^
 ||epsbasbuiyhbm.space^
@@ -80062,6 +80066,7 @@ browsershots.org#@#.advert_area
 ||etrownlnplynt.website^
 ||etrziksdiztxr.site^
 ||etukuqstzpkzz.space^
+||etveoyriuqlxg.site^
 ||etvfomflpnciy.site^
 ||etvkgeiukxtep.site^
 ||etwdpgjsvdqzk.site^
@@ -83083,6 +83088,7 @@ browsershots.org#@#.advert_area
 ||gorxusrnnmooe.space^
 ||gosbyfencjhqa.online^
 ||goshbiopsy.com^
+||goshupward.com^
 ||gositego.live^
 ||gosplanflatten.cyou^
 ||gossanbityite.cfd^
@@ -83491,6 +83497,7 @@ browsershots.org#@#.advert_area
 ||gurneysphare.cfd^
 ||gusbtocfswjhl.site^
 ||gusfioner.live^
+||gushedbewares.cfd^
 ||gushedmuskieslarge.qpon^
 ||gusherlongly.cyou^
 ||gussame.com^
@@ -84314,6 +84321,7 @@ browsershots.org#@#.advert_area
 ||hilledgaboncares.cyou^
 ||hillglamorous.com^
 ||hillierbandala.qpon^
+||hillockpippenberust.cyou^
 ||hillsakra.com^
 ||hilltopads.com^
 ||hilltopads.net^
@@ -84474,6 +84482,7 @@ browsershots.org#@#.advert_area
 ||hmvuezvlrxygm.website^
 ||hmxflflohzzd.com^
 ||hmxg5mhyx.com^
+||hmymkrsiidpze.online^
 ||hmzxoegngasft.site^
 ||hnaqgojrtvgns.online^
 ||hnbanvxtkavun.site^
@@ -85247,6 +85256,7 @@ browsershots.org#@#.advert_area
 ||icyscokzsxbmd.site^
 ||id5-sync.com^
 ||idaeanaplite.cyou^
+||idbrfpiznfdrv.online^
 ||idclbvpablytl.site^
 ||iddeyrdpgq.com^
 ||iddirhvqkjzyh.site^
@@ -90365,6 +90375,7 @@ browsershots.org#@#.advert_area
 ||makosrelic.com^
 ||makouahype.qpon^
 ||makwbtyyjopij.site^
+||malaisetripler.cfd^
 ||malarflatus.qpon^
 ||malariatoe.shop^
 ||malatiswirled.com^
@@ -90433,6 +90444,7 @@ browsershots.org#@#.advert_area
 ||maraemudhook.com^
 ||maragedperiapt.qpon^
 ||mararastagion.cfd^
+||marascaliny.cyou^
 ||marathaclichtopeng.qpon^
 ||marayshahin.shop^
 ||marazma.com^
@@ -95793,6 +95805,7 @@ browsershots.org#@#.advert_area
 ||pixium42.net^
 ||piyeaztpdsmaj.space^
 ||pizinegxgdrgx.store^
+||pizzadak.cyou^
 ||pizzlessclimb.top^
 ||pjauhyjfuubqd.site^
 ||pjdjlrmelqxzh.site^
@@ -99543,6 +99556,7 @@ browsershots.org#@#.advert_area
 ||rqejawwwoorbv.top^
 ||rqerokcafoadv.space^
 ||rqgxucwakdebr.online^
+||rqhsfmwwy.com^
 ||rqialsrmwwxbx.website^
 ||rqiepklpcmiuw.space^
 ||rqitcbzevctjq.space^
@@ -106017,6 +106031,7 @@ browsershots.org#@#.advert_area
 ||uqjtqvzdujsjh.online^
 ||uqletjdcbcwwtf.com^
 ||uqmjafixfuxjj.site^
+||uqmrpdwvshsci.website^
 ||uqoqqnokfburn.online^
 ||uqorvvojegngl.site^
 ||uqoxtbwmhofzc.site^
@@ -106868,6 +106883,7 @@ browsershots.org#@#.advert_area
 ||viiimaums.cyou^
 ||viijxyqp.com^
 ||viikpgei.com^
+||viikpgnddsyqb.website^
 ||viikqoye.com^
 ||viiqkzqv.com^
 ||viiuwecw.com^
@@ -152143,22 +152159,18 @@ fqsousou.com,kengso.com#@#.user-share
 ://adv.$popup,domain=~adv.kompas.id|~adv.lack-girl.com
 ##.ad-unit
 ##[class^="div-gpt-ad"]
-||anagramyappish.cfd^
-||cheapromaunt.com^
-||cobwebsfrenum.cyou^
-||eprisimports.cfd^
-||etveoyriuqlxg.site^
-||goshupward.com^
-||gushedbewares.cfd^
-||hillockpippenberust.cyou^
-||hmymkrsiidpze.online^
-||idbrfpiznfdrv.online^
-||malaisetripler.cfd^
-||marascaliny.cyou^
-||pizzadak.cyou^
-||rqhsfmwwy.com^
-||uqmrpdwvshsci.website^
-||viikpgnddsyqb.website^
+||dishinglucilia.cfd^
+||entrapsviands.cyou^
+||glhjrjohcdbam.com^
+||heliaczygomaklaxons.cyou^
+||itjzltjhglfzl.website^
+||lmrebuyskosjy.online^
+||ofhlddcsmwtpk.website^
+||p7pw9x11fronifcgn3292r5wc675f7.rest^
+||sonancejingals.qpon^
+||steroidamusive.qpon^
+||uncitedenims.cfd^
+||z6x5e11rcm98m5zbruvfb.cfd^
 ||lockerdome.com^$third-party
 ||35.227.234.222^
 ||35.232.188.118^
