@@ -1,14 +1,14 @@
 # 合并统计
 
-- 生成时间：2026-10-07 04:38:50
-- 黑名单规则：**220177** 条
+- 生成时间：2026-10-07 05:04:42
+- 黑名单规则：**220181** 条
 - 白名单规则：**15223** 条
 
 | 上游源 | 读取 | 新增黑 | 新增白 | 状态 |
 |---|---|---|---|---|
 | https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_2_Base/filter.txt | 163765 | 132273 | 10172 | OK |
 | https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_224_Chinese/filter.txt | 23296 | 21206 | 1182 | OK |
-| https://easylist-downloads.adblockplus.org/easylist.txt | 80075 | 79079 | 756 | OK |
+| https://easylist-downloads.adblockplus.org/easylist.txt | 80079 | 79083 | 756 | OK |
 | https://easylist-downloads.adblockplus.org/easylistchina.txt | 19254 | 18161 | 985 | OK |
 | https://easylist-downloads.adblockplus.org/easyprivacy.txt | 54266 | 52740 | 847 | OK |
 | https://raw.githubusercontent.com/xinggsf/Adblock-Plus-Rule/master/rule.txt | 1201 | 1143 | 26 | OK |
