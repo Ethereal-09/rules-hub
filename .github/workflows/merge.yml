@@ -93,3 +93,19 @@ jobs:
             git commit -m "chore(${{ matrix.dir }}): 自动合并规则 $(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M')"
             sleep 3
           done
+
+      - name: Notify success (email)
+        if: success()
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          SMTP_TO: ${{ secrets.SMTP_TO }}
+        run: python3 .github/notify.py "${{ matrix.dir }}" success
+
+      - name: Notify failure (email)
+        if: failure()
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          SMTP_TO: ${{ secrets.SMTP_TO }}
+        run: python3 .github/notify.py "${{ matrix.dir }}" failure
