@@ -1,0 +1,5 @@
+# 我的黑名单 —— 一行一个裸域名（不要加 || @@ ^ 等符号）
+# 示例：
+# ads.example.com
+# track.example.com
+

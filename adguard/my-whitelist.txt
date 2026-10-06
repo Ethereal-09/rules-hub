@@ -1,0 +1,5 @@
+# 我的白名单 —— 一行一个裸域名（不要加 || @@ ^ 等符号）
+# 示例：
+# good.example.com
+# login.example.com
+

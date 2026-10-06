@@ -1,0 +1,95 @@
+name: Merge Rules
+
+on:
+  schedule:
+    # 每 8 小时一次：UTC 00:00 / 08:00 / 16:00 = 北京 08:00 / 16:00 / 00:00
+    - cron: "0 */8 * * *"
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "要合并的平台目录（留空 = 全部）"
+        required: false
+        default: ""
+  push:
+    paths:
+      - "**/black-sources.txt"
+      - "**/white-sources.txt"
+      - "**/my-blacklist.txt"
+      - "**/my-whitelist.txt"
+      - "**/merge.py"
+      - ".github/workflows/merge.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: merge-rules
+  cancel-in-progress: false
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    outputs:
+      dirs: ${{ steps.scan.outputs.dirs }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: scan
+        shell: bash
+        run: |
+          # 找出所有含 merge.py 的目录作为"平台项目"
+          mapfile -t DIRS < <(find . -mindepth 2 -name merge.py -not -path "./.github/*" \
+            -printf '%h\n' | sed 's|^\./||' | sort)
+          if [ -n "${{ github.event.inputs.target }}" ]; then
+            DIRS=("${{ github.event.inputs.target }}")
+          fi
+          JSON=$(printf '%s\n' "${DIRS[@]}" | jq -R . | jq -sc .)
+          echo "dirs=$JSON" >> "$GITHUB_OUTPUT"
+          echo "发现平台目录: $JSON"
+
+  merge:
+    needs: detect
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      # 串行执行：避免多个平台同时改 README 导致冲突
+      max-parallel: 1
+      matrix:
+        dir: ${{ fromJson(needs.detect.outputs.dirs) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run merge (${{ matrix.dir }})
+        working-directory: ${{ matrix.dir }}
+        run: python3 merge.py
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "${{ matrix.dir }}/dist/" README.md
+          if git diff --cached --quiet; then
+            echo "无变化，跳过提交"
+            exit 0
+          fi
+          git commit -m "chore(${{ matrix.dir }}): 自动合并规则 $(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M')"
+          # push 撞 ref 时：丢弃本地提交 -> 拉最新 -> 重新生成 -> 重新提交
+          for i in 1 2 3 4 5; do
+            if git push; then
+              echo "推送成功"
+              break
+            fi
+            echo "::warning::push 失败（第 $i 次），重新生成后重试..."
+            git reset --hard HEAD~1
+            git pull --ff-only origin main || git pull --rebase --autostash origin main
+            ( cd "${{ matrix.dir }}" && python3 merge.py )
+            git add "${{ matrix.dir }}/dist/" README.md
+            git diff --cached --quiet && { echo "无变化，结束重试"; break; }
+            git commit -m "chore(${{ matrix.dir }}): 自动合并规则 $(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M')"
+            sleep 3
+          done
