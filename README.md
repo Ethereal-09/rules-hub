@@ -1,67 +1,90 @@
 <h1 align="center">Rules Hub</h1>
 
-<p align="center"><a href="https://github.com/Ethereal-09/rules-hub/actions/workflows/merge.yml"><img src="https://img.shields.io/badge/Actions-手动触发合并-blue?style=for-the-badge&logo=github"></a></p>
+<p align="center">
+  <a href="https://github.com/Ethereal-09/rules-hub/actions/workflows/merge.yml"><img src="https://img.shields.io/badge/Actions-自动合并-blue?style=for-the-badge&logo=github"></a>
+  <img src="https://img.shields.io/badge/平台-AdGuard%20Home-brightgreen?style=for-the-badge">
+  <img src="https://img.shields.io/badge/更新-每%208%20小时-orange?style=for-the-badge">
+</p>
 
-<h3 align="center">个人自用规则订阅 · 合并上游规则 · 多平台转换</h3>
+<p align="center">合并上游规则，转换为多平台可用的规则订阅。</p>
 
-<p align="center">每个平台独立合并上游规则并去重。规则内容由上游作者维护。</p>
+<p align="center"><sub>上次更新：—</sub></p>
 
-上次更新时间：2026-10-07 05:08:40
+---
 
-## 订阅地址
+## 📥 订阅地址
 
 ### AdGuard Home
 
-> 详细统计见 [STATS.md](adguard/dist/STATS.md)。
-
-| 规则类型 | 规则数 | 原始链接 | 加速 1 | 加速 2 |
+| 类型 | 规则数 | 原始 | 加速 1 | 加速 2 |
 |---|---|---|---|---|
-| 黑名单（拦截） | 220,181 | [订阅](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) |
-| 白名单（放行） | 15,223 | [订阅](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) | [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) |
+| **黑名单（拦截）** | — | [复制](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) |
+| **白名单（放行）** | — | [复制](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) | [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) |
 
-> 订阅地址如被墙，可选加速链接（Boki / ghfast）。
+> 直连被墙时用加速链接 · 详细统计见 [STATS.md](adguard/dist/STATS.md)
 
-## 目录结构
+---
+
+## 🧩 支持的平台
+
+| 平台 | 目录 | 状态 |
+|---|---|---|
+| AdGuard Home | `adguard/` | ✅ |
+| mihomo / Clash | `mihomo/` | ⏳ |
+| Surge | `surge/` | ⏳ |
+| Quantumult X | `qx/` | ⏳ |
+| dnsmasq | `dnsmasq/` | ⏳ |
+| Pi-hole / hosts | `pihole/` | ⏳ |
+| SmartDNS | `smartdns/` | ⏳ |
+| Shadowrocket | `shadowrocket/` | ⏳ |
+
+每个平台独立目录、独立源、独立合并，互不影响。
+
+---
+
+## 📂 目录结构
 
 ```
 rules-hub/
-├── adguard/                 # AdGuard Home 规则
-│   ├── black-sources.txt    # 黑名单源（一行一个 URL）
-│   ├── white-sources.txt    # 白名单源（一行一个 URL）
-│   ├── my-blacklist.txt     # 我的黑名单（一行一个裸域名）
-│   ├── my-whitelist.txt     # 我的白名单（一行一个裸域名）
-│   ├── merge.py             # 合并脚本
-│   └── dist/                # 输出（Actions 自动生成，勿手改）
-│       ├── adguard-black.txt
-│       ├── adguard-white.txt
-│       └── STATS.md
-└── .github/workflows/merge.yml   # 自动合并工作流（自动发现所有规则目录）
+├── adguard/                  # AdGuard Home
+│   ├── black-sources.txt     # 黑名单源（一行一个 URL）
+│   ├── white-sources.txt     # 白名单源（一行一个 URL）
+│   ├── my-blacklist.txt      # 我的黑名单（一行一个裸域名）
+│   ├── my-whitelist.txt      # 我的白名单（一行一个裸域名）
+│   ├── merge.py              # 合并脚本
+│   └── dist/                 # 输出（自动生成，勿手改）
+└── .github/workflows/        # 自动合并工作流
 ```
 
-## 修改上游源
+---
 
-编辑对应平台的 `black-sources.txt` / `white-sources.txt`，`#` 开头为注释。
-push 后自动触发一次合并。
+## ⚙️ 合并规则
 
-## 我的规则（my-blacklist.txt / my-whitelist.txt）
+- **黑名单** = 上游黑名单源【合并 + 去重】+ 我的黑名单
+- **白名单** = 上游白名单源【合并 + 去重】+ 黑源里筛出的白名单 + 我的白名单
+- 丢弃注释（`!`）、元数据（`[...]`）
+- **统一转小写，再整行去重**
+- 不做对冲 —— 黑白可能并存，交给引擎运行时裁决
 
-一行一个裸域名，脚本自动转成本平台格式：
+---
 
-| 你写进 `my-blacklist.txt` | 输出 |
-|---|---|
-| `ads.example.com` | `\|\|ads.example.com^` |
+## ✏️ 我的规则
 
-| 你写进 `my-whitelist.txt` | 输出 |
-|---|---|
-| `good.example.com` | `@@\|\|good.example.com^` |
+`my-blacklist.txt` / `my-whitelist.txt` 里**一行一个裸域名**，脚本自动转换：
 
-- **黑白源分离**：黑名单源、白名单源各自独立文件
-- **合并规则**：丢弃注释（`!`）、元数据（`[...]`）；大写转小写再整行去重
-- **不做对冲**：黑白规则可能并存，交给引擎运行时裁决
+| 文件 | 写法 | 输出 |
+|---|---|---|
+| `my-blacklist.txt` | `ads.example.com` | `\|\|ads.example.com^` |
+| `my-whitelist.txt` | `good.example.com` | `@@\|\|good.example.com^` |
 
-## 当前上游源（adguard）
+修改上游源：编辑对应平台的 `black-sources.txt` / `white-sources.txt`，`#` 开头为注释，push 后自动触发合并。
 
-### 黑名单源（black-sources.txt）
+---
+
+## 📚 当前上游源
+
+<details>
+<summary><b>AdGuard Home · 黑名单源（11）</b></summary>
 
 | 源 | 分类 |
 |---|---|
@@ -77,7 +100,10 @@ push 后自动触发一次合并。
 | [perflyst/SmartTV-AGH](https://github.com/perflyst/PiHoleBlocklist) | 智能电视 |
 | [sjhgvr/oisd abp_small](https://github.com/sjhgvr/oisd) | 大而全（ABP 版） |
 
-### 白名单源（white-sources.txt）
+</details>
+
+<details>
+<summary><b>AdGuard Home · 白名单源（4）</b></summary>
 
 | 源 | 分类 |
 |---|---|
@@ -86,15 +112,4 @@ push 后自动触发一次合并。
 | [AdGuard Turkish allowlist](https://github.com/AdguardTeam/AdguardFilters) | 土耳其站误杀修复 |
 | [AdGuard Spyware allowlist](https://github.com/AdguardTeam/AdguardFilters) | 反误报 |
 
-## 支持的平台（计划）
-
-| 平台 | 目录 | 状态 |
-|---|---|---|
-| AdGuard Home | `adguard/` | ✅ 已完成 |
-| mihomo / Clash | `mihomo/` | ⏳ 计划中 |
-| Surge | `surge/` | ⏳ 计划中 |
-| Quantumult X | `qx/` | ⏳ 计划中 |
-| dnsmasq | `dnsmasq/` | ⏳ 计划中 |
-| Pi-hole / hosts | `pihole/` | ⏳ 计划中 |
-| SmartDNS | `smartdns/` | ⏳ 计划中 |
-| Shadowrocket | `shadowrocket/` | ⏳ 计划中 |
+</details>
