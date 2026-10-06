@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-rules-hub 邮件通知脚本
-- 读 dist/STATS.md + 黑白名单文件，生成 HTML 邮件
+rules-hub 邮件通知脚本（纯文本版）
+- 读 dist/STATS.md + 黑白名单文件，生成纯文本邮件
 - 通过 163 SMTP 发送
 - 供 GitHub Actions 调用
 
@@ -17,7 +17,6 @@ rules-hub 邮件通知脚本
 import os
 import sys
 import smtplib
-import re
 from datetime import datetime, timezone, timedelta
 from email.mime.text import MIMEText
 from email.header import Header
@@ -51,102 +50,55 @@ def short_name(url):
     url = url.rstrip("/")
     name = url.split("/")[-1]
     if name in ("", "filter.txt", "rule.txt", "adblockdns.txt", "dns.txt", "adguard.txt"):
-        # 取倒数第二段（仓库/组织名）
         parts = [p for p in url.split("/") if p]
         if len(parts) >= 2:
             return parts[-2]
     return name
 
 
-def build_html(platform, status, stats_text, black_n, white_n, ts, build_info=None):
+def build_text(platform, status, stats_text, black_n, white_n, build_info=None):
     bj = (datetime.now(timezone.utc) + timedelta(hours=8)).strftime("%Y-%m-%d %H:%M")
-
-    if status == "success":
-        status_badge = '<span style="color:#34d399;">✅ 合并成功</span>'
-        status_emoji = "✅"
-    else:
-        status_badge = '<span style="color:#f87171;">❌ 合并失败</span>'
-        status_emoji = "❌"
-
-    # 构建信息区块（repo / status / sha）—— 极简竖排
-    build_html_block = ""
-    if build_info:
-        repo, build_status, sha = build_info
-        build_html_block = f'''
-    <div style="margin-top:12px;font-size:13px;color:#57606a;line-height:1.8;">
-      仓库 {repo}<br>
-      执行状态 {'成功 ✅' if build_status == 'success' else '失败 ❌'}<br>
-      提交 SHA {sha}
-    </div>'''
+    st = "成功" if status == "success" else "失败"
+    mark = "✅" if status == "success" else "❌"
 
     bad_url = f"https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/{platform}/dist/adguard-black.txt"
     ok_url = f"https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/{platform}/dist/adguard-white.txt"
 
+    lines = []
+    lines.append(f"{mark} rules-hub {platform} 合并{st}")
+    lines.append(f"时间：{bj}")
+    if build_info:
+        repo, bstatus, sha = build_info
+        lines.append(f"仓库：{repo}")
+        lines.append(f"状态：{'成功' if bstatus == 'success' else '失败'}")
+        lines.append(f"提交：{sha}")
+
+    lines.append("")
+    lines.append(f"黑名单：{black_n:,}")
+    lines.append(f"白名单：{white_n:,}")
+
     rows = parse_stats(stats_text)
+    if rows:
+        lines.append("")
+        lines.append("上游源统计：")
+        for url, total, ab, aw, st2 in rows:
+            status_txt = "OK" if st2 == "OK" else "FAIL"
+            lines.append(f"  {short_name(url)}  读取{int(total):,}  新增黑{int(ab):,}  新增白{int(aw):,}  {status_txt}")
+
     fail_rows = [r for r in rows if r[4] != "OK"]
-
-    # 失败源（极简：红色文字列出）
-    fail_html = ""
     if fail_rows:
-        fs = "、".join(short_name(u) for u, *_ in fail_rows)
-        fail_html = f'<div style="margin-top:8px;font-size:13px;color:#cf222e;">拉取失败：{fs}</div>'
+        lines.append("")
+        lines.append("拉取失败的源：" + "、".join(short_name(u) for u, *_ in fail_rows))
 
-    # 完整源列表（简洁）
-    all_body = ""
-    for url, total, ab, aw, st in rows:
-        st_txt = '<span style="color:#1a7f37;">OK</span>' if st == "OK" else '<span style="color:#cf222e;">FAIL</span>'
-        all_body += (
-            f'<tr>'
-            f'<td style="padding:4px 8px;border-bottom:1px solid #eaecef;font-size:13px;word-break:break-all;">{short_name(url)}</td>'
-            f'<td style="padding:4px 8px;text-align:right;border-bottom:1px solid #eaecef;font-size:13px;color:#57606a;">{int(total):,}</td>'
-            f'<td style="padding:4px 8px;text-align:right;border-bottom:1px solid #eaecef;font-size:13px;color:#57606a;">{int(ab):,}</td>'
-            f'<td style="padding:4px 8px;text-align:right;border-bottom:1px solid #eaecef;font-size:13px;color:#57606a;">{int(aw):,}</td>'
-            f'<td style="padding:4px 8px;text-align:center;border-bottom:1px solid #eaecef;font-size:13px;">{st_txt}</td>'
-            f'</tr>'
-        )
+    lines.append("")
+    lines.append("订阅地址：")
+    lines.append(f"  黑名单 {bad_url}")
+    lines.append(f"  白名单 {ok_url}")
 
-    html = f"""<!DOCTYPE html>
-<html><head><meta charset="utf-8"></head>
-<body style="margin:0;padding:0;background:#ffffff;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#1f2328;">
-  <div style="max-width:600px;margin:0 auto;padding:24px;">
-    <div style="font-size:20px;font-weight:600;">rules-hub</div>
-    <div style="font-size:13px;color:#6a737d;margin-top:4px;">{platform} · {bj} · {status_emoji}</div>
+    lines.append("")
+    lines.append("—— rules-hub 自动生成，每 8 小时更新")
 
-    {build_html_block}
-
-    <div style="border-top:1px solid #eaecef;margin-top:20px;padding-top:16px;">
-      <span style="font-size:14px;">黑名单 <strong>{black_n:,}</strong></span>
-      <span style="color:#d0d7de;margin:0 10px;">·</span>
-      <span style="font-size:14px;">白名单 <strong>{white_n:,}</strong></span>
-    </div>
-
-    <div style="margin-top:20px;font-size:14px;font-weight:600;">上游源</div>
-    {fail_html}
-    <table style="width:100%;border-collapse:collapse;margin-top:8px;font-size:13px;">
-      <tr>
-        <th style="padding:6px 8px;text-align:left;color:#6a737d;font-weight:500;">源</th>
-        <th style="padding:6px 8px;text-align:right;color:#6a737d;font-weight:500;">读取</th>
-        <th style="padding:6px 8px;text-align:right;color:#6a737d;font-weight:500;">新增黑</th>
-        <th style="padding:6px 8px;text-align:right;color:#6a737d;font-weight:500;">新增白</th>
-        <th style="padding:6px 8px;text-align:center;color:#6a737d;font-weight:500;">状态</th>
-      </tr>
-      {all_body}
-    </table>
-
-    <div style="margin-top:20px;font-size:14px;font-weight:600;">订阅地址</div>
-    <div style="margin-top:8px;font-size:13px;">
-      黑名单 <a href="{bad_url}" style="color:#0969da;text-decoration:none;">{bad_url}</a>
-    </div>
-    <div style="margin-top:4px;font-size:13px;">
-      白名单 <a href="{ok_url}" style="color:#0969da;text-decoration:none;">{ok_url}</a>
-    </div>
-
-    <div style="margin-top:24px;padding-top:12px;border-top:1px solid #eaecef;font-size:12px;color:#6a737d;">
-      由 rules-hub 自动生成 · 每 8 小时更新
-    </div>
-  </div>
-</body></html>"""
-    return html
+    return "\n".join(lines)
 
 
 def main():
@@ -174,14 +126,13 @@ def main():
 
     subject = f"rules-hub {platform} {'✅ 合并成功' if status == 'success' else '❌ 合并失败'} · 黑 {black_n:,} 白 {white_n:,}"
 
-    # 构建信息（可选，来自 GitHub Actions 环境变量）
     repo = os.environ.get("GITHUB_REPOSITORY", "")
     sha = os.environ.get("GITHUB_SHA", "")[:7]
     build_info = (repo, status, sha) if repo and sha else None
 
-    html = build_html(platform, status, stats_text, black_n, white_n, "", build_info)
+    body = build_text(platform, status, stats_text, black_n, white_n, build_info)
 
-    msg = MIMEText(html, "html", "utf-8")
+    msg = MIMEText(body, "plain", "utf-8")
     msg["Subject"] = Header(subject, "utf-8")
     msg["From"] = smtp_user
     msg["To"] = smtp_to
