@@ -1,44 +1,77 @@
-<h1 align="center">Rules Hub</h1>
+<div align="center">
 
-<p align="center">
-  <a href="https://github.com/Ethereal-09/rules-hub/actions/workflows/merge.yml"><img src="https://img.shields.io/badge/Actions-自动合并-blue?style=for-the-badge&logo=github"></a>
-  <img src="https://img.shields.io/badge/平台-AdGuard%20Home-brightgreen?style=for-the-badge">
-  <img src="https://img.shields.io/badge/更新-每%208%20小时-orange?style=for-the-badge">
-</p>
+# 🛡️ Rules Hub
 
-<p align="center">合并上游规则，转换为多平台可用的规则订阅。</p>
+**合并上游规则 · 转换为多平台可用的规则订阅**
 
-<p align="center"><sub>上次更新：2026-10-07 05:31:25
+<sub>AdGuard Home · mihomo · Surge · Quantumult X · dnsmasq · Pi-hole · SmartDNS · Shadowrocket</sub>
+
+<br>
+
+[![Actions](https://img.shields.io/github/actions/workflow/status/Ethereal-09/rules-hub/merge.yml?label=自动合并&style=for-the-badge&logo=github)](https://github.com/Ethereal-09/rules-hub/actions/workflows/merge.yml)
+[![Platform](https://img.shields.io/badge/平台-AdGuard%20Home-brightgreen?style=for-the-badge)](https://github.com/Ethereal-09/rules-hub)
+[![Update](https://img.shields.io/badge/更新-每%208%20小时-orange?style=for-the-badge)](https://github.com/Ethereal-09/rules-hub/actions)
+
+[![Blacklist](https://img.shields.io/badge/黑名单-220k+-blue?style=flat-square)](#-订阅地址)
+[![Whitelist](https://img.shields.io/badge/白名单-15k+-green?style=flat-square)](#-订阅地址)
+[![Sources](https://img.shields.io/badge/上游源-15-purple?style=flat-square)](#-上游源)
+[![License](https://img.shields.io/badge/license-MIT-yellow?style=flat-square)](LICENSE)
+
+<sub>上次更新：—</sub>
+
+</div>
 
 ---
 
 ## 📥 订阅地址
 
-### AdGuard Home
+### <img src="https://cdn.jsdelivr.net/gh/AdguardTeam/AdGuardHome@master/client/public/favicon.ico" width="16"> AdGuard Home
 
-| 类型 | 规则数 | 原始 | 加速 1 | 加速 2 |
-|---|---|---|---|---|
-| **黑名单（拦截）** | 220,193 | [复制](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) |
-| **白名单（放行）** | 15,223 | [复制](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) | [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) |
+| 类型 | 规则数 | 原始链接 | 加速 |
+|:---|:---:|:---:|:---:|
+| 🚫 **黑名单** · 拦截 | — | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) |
+| ✅ **白名单** · 放行 | — | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) |
 
-> 直连被墙时用加速链接 · 详细统计见 [STATS.md](adguard/dist/STATS.md)
+> 💡 **提示**：直连被墙时用加速链接 · 📊 详细统计见 [STATS.md](adguard/dist/STATS.md)
 
 ---
 
 ## 🧩 支持的平台
 
 | 平台 | 目录 | 状态 |
-|---|---|---|
-| AdGuard Home | `adguard/` | ✅ |
-| mihomo / Clash | `mihomo/` | ⏳ |
-| Surge | `surge/` | ⏳ |
-| Quantumult X | `qx/` | ⏳ |
-| dnsmasq | `dnsmasq/` | ⏳ |
-| Pi-hole / hosts | `pihole/` | ⏳ |
-| SmartDNS | `smartdns/` | ⏳ |
-| Shadowrocket | `shadowrocket/` | ⏳ |
+|:---|:---:|:---:|
+| <img src="https://cdn.jsdelivr.net/gh/AdguardTeam/AdGuardHome@master/client/public/favicon.ico" width="14"> AdGuard Home | [`adguard/`](adguard/) | ✅ **已完成** |
+| <img src="https://cdn.jsdelivr.net/gh/MetaCubeX/mihomo@Meta/favicon.ico" width="14"> mihomo / Clash | `mihomo/` | ⏳ 计划中 |
+| Surge | `surge/` | ⏳ 计划中 |
+| Quantumult X | `qx/` | ⏳ 计划中 |
+| dnsmasq | `dnsmasq/` | ⏳ 计划中 |
+| Pi-hole / hosts | `pihole/` | ⏳ 计划中 |
+| SmartDNS | `smartdns/` | ⏳ 计划中 |
+| Shadowrocket | `shadowrocket/` | ⏳ 计划中 |
 
-每个平台独立目录、独立源、独立合并，互不影响。
+> 🔀 每个平台**独立目录、独立源、独立合并**，互不影响。
+
+---
+
+## ⚙️ 合并逻辑
+
+```mermaid
+graph LR
+    A[上游黑名单源] --> B[合并去重]
+    C[我的黑名单] --> B
+    B --> D[dist/adguard-black.txt]
+
+    E[上游白名单源] --> F[合并去重]
+    G[黑源筛出的 @@] --> F
+    H[我的白名单] --> F
+    F --> I[dist/adguard-white.txt]
+```
+
+- 🔗 **黑名单** = 上游黑名单源【合并 + 去重】+ 我的黑名单
+- 🔗 **白名单** = 上游白名单源【合并 + 去重】+ 黑源筛出的白名单 + 我的白名单
+- 🧹 丢弃注释（`!`）、元数据（`[...]`）
+- 🔡 **统一转小写，再整行去重**
+- ⚖️ 不做对冲 —— 黑白可能并存，交给引擎运行时裁决
 
 ---
 
@@ -58,36 +91,27 @@ rules-hub/
 
 ---
 
-## ⚙️ 合并规则
-
-- **黑名单** = 上游黑名单源【合并 + 去重】+ 我的黑名单
-- **白名单** = 上游白名单源【合并 + 去重】+ 黑源里筛出的白名单 + 我的白名单
-- 丢弃注释（`!`）、元数据（`[...]`）
-- **统一转小写，再整行去重**
-- 不做对冲 —— 黑白可能并存，交给引擎运行时裁决
-
----
-
 ## ✏️ 我的规则
 
-`my-blacklist.txt` / `my-whitelist.txt` 里**一行一个裸域名**，脚本自动转换：
+在 `my-blacklist.txt` / `my-whitelist.txt` 里**一行一个裸域名**，脚本自动转换成对应平台格式：
 
-| 文件 | 写法 | 输出 |
-|---|---|---|
+| 文件 | 你写 | 输出 |
+|:---|:---|:---|
 | `my-blacklist.txt` | `ads.example.com` | `\|\|ads.example.com^` |
 | `my-whitelist.txt` | `good.example.com` | `@@\|\|good.example.com^` |
 
-修改上游源：编辑对应平台的 `black-sources.txt` / `white-sources.txt`，`#` 开头为注释，push 后自动触发合并。
+> 🛠 修改上游源：编辑 `black-sources.txt` / `white-sources.txt`（`#` 开头为注释），push 后**自动触发合并**。
 
 ---
 
-## 📚 当前上游源
+## 📚 上游源
 
 <details>
-<summary><b>AdGuard Home · 黑名单源（11）</b></summary>
+<summary><b>🚫 AdGuard Home · 黑名单源（11）</b></summary>
+<br>
 
 | 源 | 分类 |
-|---|---|
+|:---|:---|
 | [AdGuard Base](https://github.com/AdguardTeam/FiltersRegistry) | 通用广告（官方） |
 | [AdGuard Chinese](https://github.com/AdguardTeam/FiltersRegistry) | 中文广告（官方） |
 | [EasyList](https://easylist.to/) | 英文通用（老牌） |
@@ -103,13 +127,22 @@ rules-hub/
 </details>
 
 <details>
-<summary><b>AdGuard Home · 白名单源（4）</b></summary>
+<summary><b>✅ AdGuard Home · 白名单源（4）</b></summary>
+<br>
 
 | 源 | 分类 |
-|---|---|
+|:---|:---|
 | [AdGuard Chinese allowlist](https://github.com/AdguardTeam/AdguardFilters) | 中文站误杀修复 |
 | [AdGuard German allowlist](https://github.com/AdguardTeam/AdguardFilters) | 德文站误杀修复 |
 | [AdGuard Turkish allowlist](https://github.com/AdguardTeam/AdguardFilters) | 土耳其站误杀修复 |
 | [AdGuard Spyware allowlist](https://github.com/AdguardTeam/AdguardFilters) | 反误报 |
 
 </details>
+
+---
+
+<div align="center">
+<sub>⭐ 如果这个项目对你有帮助，欢迎 Star</sub>
+<br><br>
+<sub>Powered by <a href="https://github.com/Ethereal-09">Ethereal-09</a></sub>
+</div>
