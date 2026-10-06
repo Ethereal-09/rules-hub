@@ -6,7 +6,7 @@
 
 <p align="center">每个平台独立合并上游规则并去重。规则内容由上游作者维护。</p>
 
-上次更新时间：2026-10-07 02:13:58
+上次更新时间：2026-10-07 03:50:51
 
 ## 订阅地址
 
@@ -16,7 +16,7 @@
 
 | 规则类型 | 规则数 | 原始链接 | 加速 1 | 加速 2 |
 |---|---|---|---|---|
-| 黑名单（拦截） | 220,154 | [订阅](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) |
+| 黑名单（拦截） | 220,169 | [订阅](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) |
 | 白名单（放行） | 15,223 | [订阅](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) | [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) |
 
 > 订阅地址如被墙，可选加速链接（Boki / ghfast）。
