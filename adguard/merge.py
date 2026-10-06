@@ -232,8 +232,12 @@ def main():
     white_out.extend(bare_to_white(d) for d in my_white)
 
     # ---- 统一小写，再去重（保序）----
+    raw_black_n = len(black_out)
+    raw_white_n = len(white_out)
     black_out = dedupe_preserve_order(l.lower() for l in black_out)
     white_out = dedupe_preserve_order(l.lower() for l in white_out)
+    dedup_black = raw_black_n - len(black_out)
+    dedup_white = raw_white_n - len(white_out)
 
     ts = (datetime.now(timezone.utc) + timedelta(hours=8)).strftime("%Y-%m-%d %H:%M:%S")
 
@@ -246,12 +250,16 @@ def main():
         for l in white_out:
             f.write(l + "\n")
 
+    ok_src = sum(1 for _, _, _, _, st in stats if st == "OK")
+    fail_src = len(stats) - ok_src
+
     lines = [
         "# 合并统计",
         "",
         f"- 生成时间：{ts}",
-        f"- 黑名单规则：**{len(black_out)}** 条",
-        f"- 白名单规则：**{len(white_out)}** 条",
+        f"- 上游源：{len(stats)} 个（成功 {ok_src}，失败 {fail_src}）",
+        f"- 黑名单规则：**{len(black_out)}** 条（去重 {dedup_black}）",
+        f"- 白名单规则：**{len(white_out)}** 条（去重 {dedup_white}）",
         "",
         "| 上游源 | 读取 | 新增黑 | 新增白 | 状态 |",
         "|---|---|---|---|---|",
