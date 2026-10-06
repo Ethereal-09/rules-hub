@@ -147,18 +147,18 @@ def update_readme(black_n, white_n, ts):
     new_text = text
     # 黑名单行（锚点：adguard-black.txt）
     new_text = re.sub(
-        r"\| \*\*黑名单（拦截）\*\* \| [0-9,，—]* \| \[复制\]\(https://raw\.githubusercontent\.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black\.txt\)",
+        r"\| 🚫 \*\*黑名单\*\* · 拦截 \| [0-9,，—]* \| \[\*\*订阅\*\*\]\(https://raw\.githubusercontent\.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black\.txt\)",
         lambda m: m.group(0).replace(re.search(r"[0-9,，—]+", m.group(0)).group(0), f"{black_n:,}", 1),
         new_text,
     )
     # 白名单行（锚点：adguard-white.txt）
     new_text = re.sub(
-        r"\| \*\*白名单（放行）\*\* \| [0-9,，—]* \| \[复制\]\(https://raw\.githubusercontent\.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white\.txt\)",
+        r"\| ✅ \*\*白名单\*\* · 放行 \| [0-9,，—]* \| \[\*\*订阅\*\*\]\(https://raw\.githubusercontent\.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white\.txt\)",
         lambda m: m.group(0).replace(re.search(r"[0-9,，—]+", m.group(0)).group(0), f"{white_n:,}", 1),
         new_text,
     )
     # 上次更新时间（README 里是 "上次更新：—"）
-    new_text = re.sub(r"上次更新：.*", f"上次更新：{ts}", new_text, count=1)
+    new_text = re.sub(r"上次更新：.*?(?=</sub>)", f"上次更新：{ts} ", new_text)
     new_text = re.sub(r"上次更新时间：.*", f"上次更新时间：{ts}", new_text, count=1)
     if new_text != text:
         with open(readme, "w", encoding="utf-8") as f:
