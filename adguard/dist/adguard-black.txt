@@ -1,6 +1,6 @@
 ! Title: AdGuard Home 黑名单
-! Last modified: 2026-10-07 04:01:04
-! 规则数: 220169
+! Last modified: 2026-10-07 04:38:50
+! 规则数: 220177
 ! 本文件由 GitHub Actions 自动生成，请勿手动修改
 
 ||hunt.goshupward.com^
@@ -76468,6 +76468,7 @@ browsershots.org#@#.advert_area
 ||curriculumoutcry.com^
 ||curryfielddistribution.com^
 ||cursecrookadvantage.com^
+||curserswoesome.com^
 ||cursorpreach.com^
 ||curtaingluttonybounty.com^
 ||curtcrannyhustle.com^
@@ -83072,6 +83073,7 @@ browsershots.org#@#.advert_area
 ||goraps.com^
 ||gorblenonbookitoland.qpon^
 ||gorckvuyefwjt.site^
+||gorcocklinustramp.qpon^
 ||gordiusoer.com^
 ||gorerarayne.cfd^
 ||gorgedipitself.com^
@@ -92789,6 +92791,7 @@ browsershots.org#@#.advert_area
 ||nllvrimafveet.site^
 ||nllzvzafpfodg.space^
 ||nlmhhgvljqktf.website^
+||nlodtzqlcmbqn.online^
 ||nlomjydwxgoej.website^
 ||nlsgostuanbpy.website^
 ||nlsmhyylwozop.site^
@@ -93741,6 +93744,7 @@ browsershots.org#@#.advert_area
 ||oftensunlisty.qpon^
 ||oftheownouncillo.com^
 ||ofuqfehwctbgw.space^
+||ofymjcdwjuvdi.online^
 ||og-ali1.com^
 ||ogamamniota.qpon^
 ||ogaqholiwkolr.website^
@@ -103622,6 +103626,7 @@ browsershots.org#@#.advert_area
 ||thanksgivingdelights.com^
 ||thanksgivingdelights.name^
 ||thanosofcos5.com^
+||thasianhyenine.com^
 ||thasiankelkcunan.cyou^
 ||thatdtahanun.qpon^
 ||thatmonkeybites3.com^
@@ -104371,6 +104376,7 @@ browsershots.org#@#.advert_area
 ||tqrmlgjertjht.online^
 ||tqswwgfjomczh.space^
 ||tqtabexgyuqel.space^
+||tqvozybmajoya.site^
 ||tr-boost.com^
 ||tr-bouncer.com^
 ||tr-monday.xyz^
@@ -152137,12 +152143,18 @@ fqsousou.com,kengso.com#@#.user-share
 ://adv.$popup,domain=~adv.kompas.id|~adv.lack-girl.com
 ##.ad-unit
 ##[class^="div-gpt-ad"]
-||curserswoesome.com^
-||gorcocklinustramp.qpon^
-||nlodtzqlcmbqn.online^
-||ofymjcdwjuvdi.online^
-||thasianhyenine.com^
-||tqvozybmajoya.site^
+||anagramyappish.cfd^
+||cobwebsfrenum.cyou^
+||eprisimports.cfd^
+||etveoyriuqlxg.site^
+||goshupward.com^
+||gushedbewares.cfd^
+||hillockpippenberust.cyou^
+||marascaliny.cyou^
+||pizzadak.cyou^
+||rqhsfmwwy.com^
+||uqmrpdwvshsci.website^
+||viikpgnddsyqb.website^
 ||lockerdome.com^$third-party
 ||35.227.234.222^
 ||35.232.188.118^
@@ -217691,13 +217703,9 @@ zx.sina.cn##.z_c2.j_article_relevent_news.s_card
 ||rt.t-online.de^
 ||rta2.newscientist.com^
 ||rtapi.abbi.io^
-||rtb-apac.ergadx.com^
-||rtb-eu.ergadx.com^
 ||rtb-stack.com^
 ||rtb-trk4.linkedin.com^
 ||rtb-us-east.linkedin.com^
-||rtb-useast.ergadx.com^
-||rtb-uswest.ergadx.com^
 ||rtb.appbid.com^
 ||rtb.dynotech.io^
 ||rtb.videonow.ru^
