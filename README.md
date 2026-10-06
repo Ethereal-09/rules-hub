@@ -8,6 +8,12 @@
 
 <br>
 
+> 个人自用规则合集。把多个公开上游源合并去重，整理成各平台可直接订阅的格式。
+> 规则内容均由上游作者维护，本仓库只做合并与格式转换，不做任何规则审查。
+> 各平台的源、黑白名单都可以按自己的需求随意增删。
+
+<br>
+
 [![Actions](https://img.shields.io/github/actions/workflow/status/Ethereal-09/rules-hub/merge.yml?label=自动合并&style=for-the-badge&logo=github&logoColor=white)](https://github.com/Ethereal-09/rules-hub/actions/workflows/merge.yml)
 [![Platform](https://img.shields.io/badge/平台-AdGuard_Home-brightgreen?style=for-the-badge&logo=adguard&logoColor=white)](https://github.com/Ethereal-09/rules-hub)
 [![Update](https://img.shields.io/badge/更新-每_8_小时-orange?style=for-the-badge&logo=clockify&logoColor=white)](https://github.com/Ethereal-09/rules-hub/actions)
