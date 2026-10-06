@@ -78,14 +78,15 @@ def build_text(platform, status, stats_text, black_n, white_n, build_info=None):
     lines.append(f"白名单：{white_n:,}")
 
     rows = parse_stats(stats_text)
+    fail_rows = [r for r in rows if r[4] != "OK"]
+    ok_rows = [r for r in rows if r[4] == "OK"]
+
     if rows:
         lines.append("")
-        lines.append("上游源统计：")
+        lines.append(f"上游源：共 {len(rows)} 个（成功 {len(ok_rows)}，失败 {len(fail_rows)}）")
         for url, total, ab, aw, st2 in rows:
             status_txt = "OK" if st2 == "OK" else "FAIL"
-            lines.append(f"  {short_name(url)}  读取{int(total):,}  新增黑{int(ab):,}  新增白{int(aw):,}  {status_txt}")
-
-    fail_rows = [r for r in rows if r[4] != "OK"]
+            lines.append(f"  [{status_txt}] {short_name(url)}  {int(total):,} 行")
     if fail_rows:
         lines.append("")
         lines.append("拉取失败的源：" + "、".join(short_name(u) for u, *_ in fail_rows))
