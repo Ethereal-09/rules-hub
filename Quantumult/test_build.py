@@ -34,7 +34,7 @@ class BuilderTests(unittest.TestCase):
             return b"HOST-SUFFIX,example.org"
         assets = {}
         result, stats = b.process(BASE, fetch, assets)
-        self.assertEqual(stats, {"filter": 1, "rewrite": 1, "failed": 1, "skipped": 1})
+        self.assertEqual(stats, {"filter": 1, "rewrite": 1, "script": 0, "failed": 1, "skipped": 1})
         self.assertEqual(len(assets), 2)
         self.assertEqual(len(fetched), 3)
         self.assertIn("https://example.org/fail.list, enabled=true", result)
@@ -54,6 +54,59 @@ class BuilderTests(unittest.TestCase):
         self.assertEqual(result.count("\r\n"), 4)
         self.assertEqual(len(result.splitlines()), len(source.splitlines()))
         self.assertIn("enabled=true\r\nhttps://raw.githubusercontent.com/", result)
+
+    def test_script_dependencies_and_exclusions(self):
+        source = """[general]
+resource_parser_url=https://example.org/parser.js
+profile_img_url=https://example.org/icon.png
+[task_local]
+event-interaction https://example.org/check.js, tag=Check, enabled=true
+;event-interaction https://example.org/old.js
+[rewrite_remote]
+https://example.org/rewrite.conf, enabled=true
+[server_remote]
+https://example.org/private.yaml#token=abc, enabled=true
+"""
+        rewrite = b"""[Rewrite]
+^https://ads.example.org url script-response-body https://example.org/logic.js
+# ^https://old.example.org url script-response-body https://example.org/disabled.js
+^https://www.example.org url 302 https://example.org/redirect.js
+[MITM]
+hostname=ads.example.org
+"""
+        seen = []
+        def fetch(url, limit):
+            seen.append(url)
+            return rewrite if url.endswith("rewrite.conf") else b"// script\n"
+        assets = {}
+        result, stats = b.process(source, fetch, assets)
+        self.assertEqual(stats["script"], 3)
+        self.assertEqual(len(assets), 4)
+        self.assertEqual(len(seen), 4)
+        self.assertIn("profile_img_url=https://example.org/icon.png", result)
+        self.assertIn("https://example.org/private.yaml#token=abc", result)
+        self.assertIn("https://example.org/old.js", result)
+        mirrored = next(v.decode() for k, v in assets.items() if k.startswith("rewrite/"))
+        self.assertIn("/assets/script/logic-", mirrored)
+        self.assertIn("https://example.org/disabled.js", mirrored)
+        self.assertIn("https://example.org/redirect.js", mirrored)
+
+    def test_sources_manifest_only_successes(self):
+        sources = {}
+        def fetch(url, limit):
+            if "fail" in url:
+                raise OSError("offline")
+            return b"# QX resource\n"
+        assets = {}
+        _, stats = b.process(BASE, fetch, assets, sources)
+        doc = b.make_sources_md(sources, stats)
+        self.assertEqual(len(sources), 2)
+        self.assertIn("assets/filter/a-", doc)
+        self.assertIn("assets/rewrite/a-", doc)
+        self.assertIn("https://example.org/a.list", doc)
+        self.assertNotIn("token=secret", doc)
+        self.assertNotIn("fail.list", doc)
+        self.assertRegex(doc, r"[0-9a-f]{64}")
 
     def test_reject_bad_base(self):
         with self.assertRaises(ValueError):

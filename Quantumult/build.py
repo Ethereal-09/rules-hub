@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Build a QX profile by mirroring only enabled remote filters and rewrites.
+"""Build a QX profile by mirroring enabled functional dependencies.
 
-No server subscription, certificate or script URL is mirrored. URLs containing
-credentials/query strings are deliberately left untouched in the public output.
+Server subscriptions, credentials, certificates, icons and check URLs are not
+mirrored. Failed mirrors retain the original URL and are reported.
 """
 import argparse
 import hashlib
@@ -12,6 +12,8 @@ import re
 import sys
 import urllib.parse
 import urllib.request
+
+from dependencies import rewrite_profile, rewrite_resource, is_supported
 
 ROOT = Path(__file__).resolve().parent
 BASE_URL = "https://ddgksf2013.top/Profile/QuantumultX.conf"
@@ -55,50 +57,82 @@ def mirror_name(url):
     return f"{stem}-{digest}{suffix}"
 
 
-def process(text, fetch, assets):
+def process(text, fetch, assets, sources=None):
+    if sources is None:
+        sources = {}
     if not re.search(r"(?im)^\s*\[general\]\s*$", text):
         raise ValueError("base is not a Quantumult X profile: missing [general]")
     lines = text.splitlines(keepends=True)
     section = ""
-    count = {"filter": 0, "rewrite": 0, "failed": 0, "skipped": 0}
+    count = {"filter": 0, "rewrite": 0, "script": 0, "failed": 0, "skipped": 0}
     result = []
+    pending = set()
+
+    def mirror(url, category="script"):
+        if not safe_public_url(url) or (category == "script" and not is_supported(url)):
+            count["skipped"] += 1
+            return url
+        relative = f"{category}/{mirror_name(url)}"
+        new_url = f"{RAW}/{relative}"
+        if relative in pending:
+            raise ValueError("cyclic resource reference")
+        if relative not in assets:
+            pending.add(relative)
+            try:
+                blob = fetch(url, MAX_ASSET)
+                sample = blob[:512].lstrip().lower()
+                if sample.startswith((b"<!doctype html", b"<html")) or b"\x00" in blob:
+                    raise ValueError("not a text rule resource")
+                if category == "rewrite" or category == "script":
+                    decoded = blob.decode("utf-8-sig")
+                    blob = rewrite_resource(decoded, lambda dependency: attempt(dependency)).encode("utf-8")
+                assets[relative] = blob
+                sources[relative] = (url, hashlib.sha256(blob).hexdigest())
+            finally:
+                pending.remove(relative)
+        count[category] += 1
+        return new_url
+
+    def attempt(url, category="script"):
+        try:
+            return mirror(url, category)
+        except Exception as exc:
+            count["failed"] += 1
+            print(f"WARN: {category} dependency download failed ({type(exc).__name__}); original URL retained", file=sys.stderr)
+            return url
+
     for line in lines:
         m = re.match(r"^\s*\[([^\]]+)\]\s*(?:\r?\n)?$", line)
         if m:
             section = m.group(1).lower()
         category = SECTIONS.get(section)
-        # Preserve blank lines, comments and disabled resources byte-for-byte.
         if not category or not line.strip() or line.lstrip().startswith(("#", ";", "//")):
             result.append(line)
             continue
-        # Regex '.' excludes the line ending; explicitly preserve it when
-        # replacing a URL or consecutive subscriptions merge into one line.
         ending = "\r\n" if line.endswith("\r\n") else "\n" if line.endswith("\n") else ""
         m = re.match(r"^([^\S\r\n]*)(https?://[^\s,]+)([^\r\n]*)$", line[:-len(ending)] if ending else line)
         if not m or re.search(r"(?:^|,)\s*enabled\s*=\s*false\b", m.group(3), re.I):
             result.append(line)
             continue
         prefix, url, rest = m.groups()
-        if not safe_public_url(url):
-            count["skipped"] += 1
-            result.append(line)
-            continue
-        relative = f"{category}/{mirror_name(url)}"
-        try:
-            if relative not in assets:
-                blob = fetch(url, MAX_ASSET)
-                # Reject HTML error pages; QX remote resources are text.
-                sample = blob[:512].lstrip().lower()
-                if sample.startswith((b"<!doctype html", b"<html")) or b"\x00" in blob:
-                    raise ValueError("not a text rule resource")
-                assets[relative] = blob
-            count[category] += 1
-            result.append(f"{prefix}{RAW}/{relative}{rest}{ending}")
-        except Exception as exc:
-            count["failed"] += 1
-            print(f"WARN: {category} resource download failed ({type(exc).__name__}); original URL retained", file=sys.stderr)
-            result.append(line)
-    return "".join(result), count
+        result.append(f"{prefix}{attempt(url, category)}{rest}{ending}")
+    output = rewrite_profile("".join(result), attempt)
+    return output, count
+
+
+def make_sources_md(sources, stats):
+    """Stable, readable inventory; never list credential-bearing URLs."""
+    lines = [
+        "# Quantumult X 镜像来源", "",
+        "自动生成；仅记录本次成功镜像且被当前配置引用的功能文件。",
+        "旧文件为兼容客户端缓存会保留在 assets/，不代表仍处于启用状态。", "",
+        f"本次：分流 {stats['filter']}、重写 {stats['rewrite']}、脚本引用 {stats['script']}；失败 {stats['failed']}、跳过 {stats['skipped']}。", "",
+        "| 本仓库文件 | 原始地址 | SHA-256 |", "|---|---|---|",
+    ]
+    for relative, (url, digest) in sorted(sources.items()):
+        path = f"assets/{relative}"
+        lines.append(f"| [`{path}`]({path}) | `{url}` | `{digest}` |")
+    return "\n".join(lines) + "\n"
 
 
 def main():
@@ -114,7 +148,8 @@ def main():
         raise ValueError("base missing or too large")
     text = base.decode("utf-8-sig")
     assets = {}
-    output, stats = process(text, download, assets)
+    sources = {}
+    output, stats = process(text, download, assets, sources)
     # Only write the new profile after the base is valid and every successful
     # resource has been staged. Old assets stay available for old QX imports.
     for relative, blob in assets.items():
@@ -127,6 +162,10 @@ def main():
     temp = args.output.with_name(args.output.name + ".tmp")
     temp.write_text(output, encoding="utf-8")
     os.replace(temp, args.output)
+    manifest = ROOT / "SOURCES.md"
+    manifest_temp = manifest.with_name(manifest.name + ".tmp")
+    manifest_temp.write_text(make_sources_md(sources, stats), encoding="utf-8")
+    os.replace(manifest_temp, manifest)
     print(f"Built {args.output}: {stats}, stored assets: {len(assets)}")
     if stats["failed"]:
         print("WARNING: some upstream URLs were retained; see warnings above", file=sys.stderr)
