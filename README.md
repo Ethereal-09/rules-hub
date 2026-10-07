@@ -34,22 +34,20 @@
 
 | 类型 | 规则数 | 原始链接 | 加速 |
 |:---|:---:|:---:|:---:|
-| **黑名单** · 拦截 | — | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) |
-| **白名单** · 放行 | — | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) |
+| **黑名单** · 拦截 | 220,372 | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) |
+| **白名单** · 放行 | 15,217 | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) |
 
 > **提示**：直连被墙时用加速链接 · 详细统计见 [STATS.md](adguard/dist/STATS.md)
 
 ---
 
-### Quantumult X · 完整配置
+### [![Quantumult X](https://img.shields.io/badge/Quantumult_X-F97316?style=flat-square&logo=apple&logoColor=white)](Quantumult/)
 
-基于 ddgksf2013 底包自动构建，可直接导入 QX。仅镜像底包启用的远程分流、重写及可识别的脚本依赖；构建与邮件通知见 [QX Actions](https://github.com/Ethereal-09/rules-hub/actions/workflows/quantumult.yml)。
+| 类型 | 原始链接 | 加速 |
+|:---|:---:|:---:|
+| **完整配置** · 懒人订阅 | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/dist/QuantumultX.conf) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/dist/QuantumultX.conf) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/dist/QuantumultX.conf) |
 
-| 类型 | 配置直链 | 构建说明与来源 |
-|:---|:---|:---|
-| **完整配置 · 懒人订阅** | [**下载配置**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/dist/QuantumultX.conf) | [`Quantumult/`](Quantumult/) · [镜像来源](Quantumult/SOURCES.md) |
-
-> QX「下载配置」中粘贴上述直链。完整配置与 `qx/` 纯规则订阅是不同用途；导入前请备份原配置。
+> **提示**：QX「下载配置」中粘贴订阅链接，导入前先备份原配置 · [构建说明](Quantumult/) · [镜像来源](Quantumult/SOURCES.md) · [Actions](https://github.com/Ethereal-09/rules-hub/actions/workflows/quantumult.yml)
 
 ---
 
@@ -159,6 +157,38 @@ rules-hub/
 | [AdGuard Spyware allowlist](https://github.com/AdguardTeam/AdguardFilters) | 反误报 |
 
 </details>
+
+<details>
+<summary><b>Quantumult X · 底包与分流源</b></summary>
+<br>
+
+| 源 | 分类 |
+|:---|:---|
+| [ddgksf2013/Profile](https://ddgksf2013.top/Profile/QuantumultX.conf) | 完整 QX 配置底包 |
+| [ddgksf2013/Filter](https://github.com/ddgksf2013/Filter) | 自定义分流 |
+| [blackmatrix7/ios_rule_script](https://github.com/blackmatrix7/ios_rule_script/tree/master/rule/QuantumultX) | 已启用的分流规则 |
+| [VirgilClyne/GetSomeFries](https://github.com/VirgilClyne/GetSomeFries) | 中国 ASN 分流 |
+| [ConnersHua/RuleGo](https://github.com/ConnersHua/RuleGo) | 代理分流 |
+| [Cats-Team/AdRules](https://github.com/Cats-Team/AdRules) | 广告拦截分流 |
+
+</details>
+
+<details>
+<summary><b>Quantumult X · 重写与脚本源</b></summary>
+<br>
+
+| 源 | 分类 |
+|:---|:---|
+| [ddgksf2013/Rewrite](https://github.com/ddgksf2013/Rewrite) | 去广告与功能重写 |
+| [ddgksf2013/Scripts](https://github.com/ddgksf2013/Scripts) | 重写脚本 |
+| [ddgksf2013.top](https://ddgksf2013.top/) | 已启用的重写与脚本资源 |
+| [app2smile/rules](https://github.com/app2smile/rules) | 应用重写与脚本 |
+| [Maasea/sgmodule](https://github.com/Maasea/sgmodule) | 视频重写脚本 |
+| [chavyleung/scripts](https://github.com/chavyleung/scripts) | BoxJS 脚本 |
+| [KOP-XIAO/QuantumultX](https://github.com/KOP-XIAO/QuantumultX) | QX 资源解析器与任务脚本 |
+
+</details>
+
 
 ---
 

@@ -145,18 +145,12 @@ def update_readme(black_n, white_n, ts):
     except Exception:
         return
     new_text = text
-    # 黑名单行（锚点：adguard-black.txt）
-    new_text = re.sub(
-        r"\| 🚫 \*\*黑名单\*\* · 拦截 \| [0-9,，—]* \| \[\*\*订阅\*\*\]\(https://raw\.githubusercontent\.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black\.txt\)",
-        lambda m: m.group(0).replace(re.search(r"[0-9,，—]+", m.group(0)).group(0), f"{black_n:,}", 1),
-        new_text,
-    )
-    # 白名单行（锚点：adguard-white.txt）
-    new_text = re.sub(
-        r"\| ✅ \*\*白名单\*\* · 放行 \| [0-9,，—]* \| \[\*\*订阅\*\*\]\(https://raw\.githubusercontent\.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white\.txt\)",
-        lambda m: m.group(0).replace(re.search(r"[0-9,，—]+", m.group(0)).group(0), f"{white_n:,}", 1),
-        new_text,
-    )
+    # 只匹配 AdGuard 表格首两格，避免对 QX 行或链接作替换。
+    for label, count in (("黑名单", black_n), ("白名单", white_n)):
+        pattern = rf"(?m)^(\| \*\*{label}\*\* · [^|]+\|\s*)(?:[\d,，]+|—)(\s*\|)"
+        new_text, found = re.subn(pattern, lambda m: f"{m.group(1)}{count:,}{m.group(2)}", new_text, count=1)
+        if found != 1:
+            raise ValueError(f"README AdGuard {label}行未找到，拒绝静默漏更新")
     # 上次更新时间（README 里是 "上次更新：—"）
     new_text = re.sub(r"上次更新：.*?(?=</sub>)", f"上次更新：{ts} ", new_text)
     new_text = re.sub(r"上次更新时间：.*", f"上次更新时间：{ts}", new_text, count=1)
