@@ -1,0 +1,57 @@
+name: Build Quantumult X
+
+on:
+  schedule:
+    - cron: "25 22 * * *" # Beijing 06:25, daily
+  workflow_dispatch:
+  push:
+    paths:
+      - "Quantumult/build.py"
+      - ".github/workflows/quantumult.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: quantumult-build
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build and stage
+        run: python3 Quantumult/build.py
+      - name: Commit generated profile and enabled resources
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Quantumult/dist/ Quantumult/assets/
+          if git diff --cached --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git commit -m "chore(Quantumult): refresh enabled QX resources"
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              echo "Published"
+              exit 0
+            fi
+            # Keep generated files; rebase our commit over unrelated updates.
+            git fetch origin main
+            git rebase origin/main || {
+              git rebase --abort || true
+              echo "Rebase conflict: refusing to overwrite generated assets" >&2
+              exit 1
+            }
+          done
+          echo "Unable to publish after 5 attempts" >&2
+          exit 1
