@@ -43,6 +43,17 @@ class BuilderTests(unittest.TestCase):
         self.assertIn("[server_remote]\nhttps://example.org/private", result)
         self.assertIn("Quantumult/assets/filter/a-", result)
         self.assertIn("Quantumult/assets/rewrite/a-", result)
+        self.assertEqual(len(result.splitlines()), len(BASE.splitlines()))
+        self.assertIn(", tag=A, enabled=true\n;https://example.org/disabled.list", result)
+        self.assertIn(", tag=RW, enabled=true\n[mitm]", result)
+
+    def test_consecutive_rewrites_and_crlf(self):
+        source = "[general]\r\n[rewrite_remote]\r\nhttps://example.org/one.conf, enabled=true\r\nhttps://example.org/two.conf, enabled=true\r\n"
+        result, stats = b.process(source, lambda url, limit: b"# rewrite\n", {})
+        self.assertEqual(stats["rewrite"], 2)
+        self.assertEqual(result.count("\r\n"), 4)
+        self.assertEqual(len(result.splitlines()), len(source.splitlines()))
+        self.assertIn("enabled=true\r\nhttps://raw.githubusercontent.com/", result)
 
     def test_reject_bad_base(self):
         with self.assertRaises(ValueError):

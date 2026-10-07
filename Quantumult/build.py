@@ -71,7 +71,10 @@ def process(text, fetch, assets):
         if not category or not line.strip() or line.lstrip().startswith(("#", ";", "//")):
             result.append(line)
             continue
-        m = re.match(r"^(\s*)(https?://[^\s,]+)(.*)$", line)
+        # Regex '.' excludes the line ending; explicitly preserve it when
+        # replacing a URL or consecutive subscriptions merge into one line.
+        ending = "\r\n" if line.endswith("\r\n") else "\n" if line.endswith("\n") else ""
+        m = re.match(r"^([^\S\r\n]*)(https?://[^\s,]+)([^\r\n]*)$", line[:-len(ending)] if ending else line)
         if not m or re.search(r"(?:^|,)\s*enabled\s*=\s*false\b", m.group(3), re.I):
             result.append(line)
             continue
@@ -90,7 +93,7 @@ def process(text, fetch, assets):
                     raise ValueError("not a text rule resource")
                 assets[relative] = blob
             count[category] += 1
-            result.append(f"{prefix}{RAW}/{relative}{rest}")
+            result.append(f"{prefix}{RAW}/{relative}{rest}{ending}")
         except Exception as exc:
             count["failed"] += 1
             print(f"WARN: {category} resource download failed ({type(exc).__name__}); original URL retained", file=sys.stderr)
