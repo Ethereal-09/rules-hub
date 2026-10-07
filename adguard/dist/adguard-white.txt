@@ -1,6 +1,6 @@
 ! Title: AdGuard Home 白名单
-! Last modified: 2026-10-08 00:06:47
-! 规则数: 15217
+! Last modified: 2026-10-08 07:03:22
+! 规则数: 15218
 ! 本文件由 GitHub Actions 自动生成，请勿手动修改
 
 @@||amgload.net/z|$domain=sinoptik.ua|gismeteo.ua
@@ -11998,6 +11998,7 @@
 @@||d.tailtarget.com/profiles.js$domain=superesportes.com.br
 @@||google-analytics.com/urchin.js$domain=record.xl.pt
 @@||players.fichub.com/plugins/adobe/$domain=24kitchen.pt
+@@||sdk-analytics-web.cloud.itau.com.br/index.js$script,domain=meu.userede.com.br
 @@||serasaexperian.com.br/dist/scripts/fingerprint2.js$~third-party
 @@||sibs.com/fingerprint/sfp2/fp2.min.js$script,domain=net24.bancomontepio.pt
 @@||siteapps.com^$script,domain=netcombo.com.br
