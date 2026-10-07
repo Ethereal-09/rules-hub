@@ -1,6 +1,6 @@
 ! Title: AdGuard Home 白名单
-! Last modified: 2026-10-07 08:02:26
-! 规则数: 15223
+! Last modified: 2026-10-07 16:04:44
+! 规则数: 15216
 ! 本文件由 GitHub Actions 自动生成，请勿手动修改
 
 @@||amgload.net/z|$domain=sinoptik.ua|gismeteo.ua
@@ -34,7 +34,7 @@
 @@||camcam.cc^$generichide
 @@||blackwot.ru/ads/gads.js$domain=blackwot.ru
 @@||blackwot.ru/ads/ads.js$domain=blackwot.ru
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=mshares.co|gayvidsclub.com|1069boys.net
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=gayvidsclub.com|1069boys.net
 @@||cdnjs.cloudflare.com/ajax/libs/fuckadblock/*/fuckadblock.js
 @@||cdnjs.cloudflare.com/ajax/libs/fuckadblock/*/fuckadblock.min.js
 @@||cdnjs.cloudflare.com/ajax/libs/blockadblock/3.2.1/blockadblock.js
@@ -173,6 +173,8 @@
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=idol69.net|xcamcovid.com|fc2ppv.stream|blackwidof.org|sweetie-fox.com|hentaicovid.com|pig69.com|fikfok.net|ai18.pics|javball.com|javtele.net|cnxx.me|cosplay18.pics|cnpics.org|3minx.com|javsunday.com|porn4f.org|555fap.com|kin8-av.com|javbee.*|fikfok.net|porn-pig.com|hentai4f.com|cn-av.com|kr-av.com|hentaixnx.com|hentai-sub.com|chinese-pics.com|anime-jav.com|xxpics.org|hentaicovid.org|gofile.download|cosplay-xxx.com|s-porn.com|shentai-anime.com|chinese-pics.vip|hentai-manga.org|cosplaytele.vip|1minx.com|hentaicovid.vip|4up.pics|fc2ppv.me|fc2ppv.stream
 @@||static.trafficjunky.com/ab/ads_test.js$domain=bztube.com|hotovs.com|insuredhome.org|nudegista.com|pornluck.com|vidd.se|redtube.*|youpornru.com|tube8.com|tube8.es|tube8.fr|tube8.net|pornhub.com|pornhub.org|pornhub.net
 @@://www.exoclick.com/ads.js|
+@@||quge5.com/88/tag.min.js$xmlhttprequest,domain=nosubapp.com
+@@||nosubapp.com/favicon.ico$domain=nosubapp.com
 @@||highperformanceformat.com^$xmlhttprequest,domain=hogtiehub.com
 @@||oklivetv.com^$generichide
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=oklivetv.com
@@ -935,7 +937,6 @@
 @@||a.magsrv.com/ad-provider.js$domain=reshare.pm
 @@||media.salemwebnetwork.com/adverts/advertisement.js$domain=biblestudytools.com
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=vicksburgnews.com
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=gold-24.net
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js|$domain=snapwordz.com
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=gsmware.com
 @@||epnt.ebay.com/static/epn-smart-tools.js$xmlhttprequest,domain=theshedend.com
@@ -1458,7 +1459,6 @@
 @@||securenetsystems.net/*/scripts/ads/prebid.js
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=ethereumfaucet.info
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=isi7.net
-@@||swnovels.com/assets/js/prebid-ads.js
 @@||yt.upshrink.com/adex.js
 @@||scatfap.com/scat-porn/modules/vids/misc_static/adverts.js
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=techymedies.com
@@ -1729,7 +1729,6 @@
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=flipboard.com
 @@||discoveryplus.in/*/ads/banner_ad.js
 @@||googleads.g.doubleclick.net/pagead/ads?ads$domain=freebinchecker.com
-@@||mshares.co/js/blockadblock.js
 @@||atozmath.com^$cookie
 @@||atozmath.com^$generichide
 @@||assets.bilsyndication.com/plugins/safeframe/src/js/sf_host.min.js$domain=atozmath.com
@@ -1931,7 +1930,6 @@
 @@||bitent.com/lock_html5/adplayer/v*/adplayer.js
 @@||fingahvf.top/advertisers.js
 @@||javfinder.id$elemhide
-@@||retweetpicker.com^$generichide
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=quackr.io
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=sportskeeda.com
 @@||picmix.com/js/fuckadblock.js
@@ -2514,12 +2512,8 @@
 @@||tmearn.com/js/ads*.js
 @@||7sim.net^$generichide
 @@||tubitv.com^$generichide
-@@||adservice.google.com/adsid/integrator.js?domain=www.cbs.com$domain=cbs.com
-@@||cbs.com^$generichide
-@@||securepubads.g.doubleclick.net/gpt/pubads_impl_$domain=cbs.com
-@@||0914.global.ssl.fastly.net/ads/*/x.$domain=cbs.com
-@@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=cbs.com
-@@||pubads.g.doubleclick.net/gampad/ads?cmsid=*host%3dwww.cbs.com%26$domain=imasdk.googleapis.com
+@@||mssl.fwmrm.net/libs/adm/*/admanager.js$domain=cbs.com
+@@||imasdk.googleapis.com/pal/sdkloader/pal.js$domain=cbs.com
 @@||a10.com/wdg/js_aggregator-active/js/module/monetisation/advertisement.js
 @@||vertamedia.com/assets/img/adimage.png
 @@||v.fwmrm.net/ad/g/1?$domain=play.tv3.lt
@@ -7878,7 +7872,6 @@
 @@||f1countdown.com^$generichide
 @@||famfonts.com^$generichide
 @@||getpczone.com^$generichide
-@@||myviptuto.com^$generichide
 @@||8tm.net^$generichide
 @@||androidtunado.com.br^$generichide
 @@||gpucheck.com^$generichide
@@ -8777,7 +8770,6 @@
 @@||leakite.com^$generichide
 @@||contextual.media.net/dmedianet.js$domain=leakite.com
 @@||cdn.shortpixel.ai/*.leakite.com/wp-content/plugins/ad-inserter/images/ads.png$domain=leakite.com
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=myviptuto.com
 @@||hqq.tv/js/adv/ads.js
 @@||hqq.tv/js/adv/fuckadblock.js
 @@||musicradar.com^$generichide
@@ -9680,6 +9672,7 @@
 @@||calendar.google.com^$generichide
 @@||canva.com^$generichide
 @@||carbuzz.com^$generichide
+@@||cbs.com^$generichide
 @@||cdpn.io^$generichide
 @@||challenges.cloudflare.com^$generichide
 @@||chatgpt.com^$generichide
@@ -10575,7 +10568,6 @@
 @@||doubibackup.com^$generichide
 @@||doubleclick.net/ddm/trackclk/$popup,domain=hongkongcard.com
 @@||doubleclick.net/gpt/pubads_impl$domain=www.gamer.com.tw
-@@||doubleclick.net^$xmlhttprequest,domain=yyets.click
 @@||down.cc/down/js/ad.js
 @@||dqzsteel.com/website/image/guanggao/
 @@||duelmeta.com^$generichide
@@ -11220,7 +11212,6 @@
 @@||viu.com^*/tracking/
 @@||wl.jd.com/joya.js
 @@||wl.jd.com/wl.js
-@@||yimg.com/ss/rapid3.js$domain=style.yahoo.com.tw|tw.answers.yahoo.com
 @@||youku.com/cms/player/userinfo/
 @@||youku.com/cms/playlog/get?
 @@||discord.com^$generichide
@@ -12464,6 +12455,8 @@ festtravel.com#@##top-banner
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=beinsports.com
 tvtime.com,tvshowtime.com#@##top-banner
 @@||st-*.dynamicyield.com/st*&inhead=true&id=*&jsession=*scriptversion=*&noconsent=
+@@||rtl.nl/_astro/snowplow.*.js$domain=rtl.nl
+@@||st-*.dynamicyield.com/st?$script,domain=easytoys.pl|easytoys.nl|easytoys.be|easytoys.es|easytoys.it
 @@||liveapi.yext.com^$domain=answers.business.lloydsbank.com
 @@||power.mhi.com/modules/contrib/google_tag/js/gtm.js$domain=power.mhi.com
 @@||googletagmanager.com/gtm.js$domain=power.mhi.com
