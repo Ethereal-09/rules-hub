@@ -8,6 +8,7 @@ on:
     paths:
       - "Quantumult/build.py"
       - "Quantumult/dependencies.py"
+      - "Quantumult/notify.py"
       - ".github/workflows/quantumult.yml"
 
 permissions:
@@ -56,3 +57,11 @@ jobs:
           done
           echo "Unable to publish after 5 attempts" >&2
           exit 1
+      - name: Notify build result by email
+        if: always()
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          SMTP_TO: ${{ secrets.SMTP_TO }}
+          BUILD_STATUS: ${{ job.status }}
+        run: python3 Quantumult/notify.py
