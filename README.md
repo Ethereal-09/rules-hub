@@ -41,6 +41,18 @@
 
 ---
 
+### Quantumult X · 完整配置
+
+基于 ddgksf2013 底包自动构建，可直接导入 QX。仅镜像底包启用的远程分流、重写及可识别的脚本依赖；构建与邮件通知见 [QX Actions](https://github.com/Ethereal-09/rules-hub/actions/workflows/quantumult.yml)。
+
+| 类型 | 配置直链 | 构建说明与来源 |
+|:---|:---|:---|
+| **完整配置 · 懒人订阅** | [**下载配置**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/dist/QuantumultX.conf) | [`Quantumult/`](Quantumult/) · [镜像来源](Quantumult/SOURCES.md) |
+
+> QX「下载配置」中粘贴上述直链。完整配置与 `qx/` 纯规则订阅是不同用途；导入前请备份原配置。
+
+---
+
 ## 支持的平台
 
 | 平台 | 目录 | 状态 |
@@ -48,7 +60,7 @@
 | ![adguard](https://img.shields.io/badge/-68BC71?style=flat-square&logo=adguard&logoColor=white) **AdGuard Home** | [`adguard/`](adguard/) | **已完成** |
 | ![clash](https://img.shields.io/badge/-3B82F6?style=flat-square&logo=clash&logoColor=white) **mihomo / Clash** | `mihomo/` | 计划中 |
 | ![surge](https://img.shields.io/badge/-E879F9?style=flat-square&logo=surge&logoColor=white) **Surge** | `surge/` | 计划中 |
-| ![qx](https://img.shields.io/badge/-F97316?style=flat-square&logo=apple&logoColor=white) **Quantumult X** | `qx/` | 计划中 |
+| ![qx](https://img.shields.io/badge/-F97316?style=flat-square&logo=apple&logoColor=white) **Quantumult X · 完整配置** | [`Quantumult/`](Quantumult/) | **已完成，自动更新** |
 | ![dnsmasq](https://img.shields.io/badge/-6366F1?style=flat-square&logo=linux&logoColor=white) **dnsmasq** | `dnsmasq/` | 计划中 |
 | ![pihole](https://img.shields.io/badge/-F43F5E?style=flat-square&logo=pihole&logoColor=white) **Pi-hole / hosts** | `pihole/` | 计划中 |
 | ![smartdns](https://img.shields.io/badge/-14B8A6?style=flat-square&logo=serverfault&logoColor=white) **SmartDNS** | `smartdns/` | 计划中 |
@@ -91,7 +103,11 @@ rules-hub/
 │   ├── my-whitelist.txt      # 我的白名单（一行一个裸域名）
 │   ├── merge.py              # 合并脚本
 │   └── dist/                 # 输出（自动生成，勿手改）
-└── .github/workflows/        # 自动合并工作流
+├── Quantumult/               # QX 完整配置流水线及已启用资源
+│   ├── dist/QuantumultX.conf   # 可直接导入的配置
+│   ├── assets/                # 分流 / 重写 / 脚本镜像
+│   └── SOURCES.md             # 镜像来源
+└── .github/workflows/        # 自动合并与 QX 构建工作流
 ```
 
 ---
