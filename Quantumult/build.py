@@ -57,6 +57,28 @@ def mirror_name(url):
     return f"{stem}-{digest}{suffix}"
 
 
+def replace_preamble(text):
+    """Replace upstream's lengthy header, never modify QX configuration sections."""
+    match = re.search(r"(?im)^\[general\][ \t]*(?:\r?\n|$)", text)
+    if not match:
+        raise ValueError("base is not a Quantumult X profile: missing [general]")
+    original_header = text[:match.start()]
+    if any(line.strip() and not line.lstrip().startswith(("#", ";", "//"))
+           for line in original_header.splitlines()):
+        raise ValueError("unexpected active content before [general]; refusing to discard it")
+    header = (
+        "# Quantumult X 配置 · Ethereal-09 / rules-hub\n"
+        "# 来源底包：https://ddgksf2013.top/Profile/QuantumultX.conf\n"
+        "# 原底包作者：@ddgksf2013；规则与脚本版权归各上游作者。\n"
+        f"# 项目：https://github.com/{REPO}\n"
+        f"# 配置订阅：https://raw.githubusercontent.com/{REPO}/main/Quantumult/dist/QuantumultX.conf\n"
+        "# 本仓库每日构建：保留底包功能配置，仅镜像已启用且可安全下载的功能资源。\n"
+        "# 资源来源与 SHA-256：见 Quantumult/SOURCES.md；失败项保留原链接。\n"
+        "# 导入前请备份现有 QX 配置；节点订阅、证书与图标不会镜像。\n\n"
+    )
+    return header + text[match.start():]
+
+
 def process(text, fetch, assets, sources=None):
     if sources is None:
         sources = {}
@@ -117,7 +139,7 @@ def process(text, fetch, assets, sources=None):
         prefix, url, rest = m.groups()
         result.append(f"{prefix}{attempt(url, category)}{rest}{ending}")
     output = rewrite_profile("".join(result), attempt)
-    return output, count
+    return replace_preamble(output), count
 
 
 def make_sources_md(sources, stats):

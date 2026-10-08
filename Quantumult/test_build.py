@@ -43,7 +43,7 @@ class BuilderTests(unittest.TestCase):
         self.assertIn("[server_remote]\nhttps://example.org/private", result)
         self.assertIn("Quantumult/assets/filter/a-", result)
         self.assertIn("Quantumult/assets/rewrite/a-", result)
-        self.assertEqual(len(result.splitlines()), len(BASE.splitlines()))
+        self.assertEqual(len(result[result.index("[general]"):].splitlines()), len(BASE.splitlines()))
         self.assertIn(", tag=A, enabled=true\n;https://example.org/disabled.list", result)
         self.assertIn(", tag=RW, enabled=true\n[mitm]", result)
 
@@ -52,7 +52,7 @@ class BuilderTests(unittest.TestCase):
         result, stats = b.process(source, lambda url, limit: b"# rewrite\n", {})
         self.assertEqual(stats["rewrite"], 2)
         self.assertEqual(result.count("\r\n"), 4)
-        self.assertEqual(len(result.splitlines()), len(source.splitlines()))
+        self.assertEqual(len(result[result.index("[general]"):].splitlines()), len(source.splitlines()))
         self.assertIn("enabled=true\r\nhttps://raw.githubusercontent.com/", result)
 
     def test_script_dependencies_and_exclusions(self):
@@ -107,6 +107,19 @@ hostname=ads.example.org
         self.assertNotIn("token=secret", doc)
         self.assertNotIn("fail.list", doc)
         self.assertRegex(doc, r"[0-9a-f]{64}")
+
+    def test_replace_upstream_preamble_only(self):
+        preface = "// ==UserScript==\n// @Author @ddgksf2013\n// ==/UserScript==\n# changelog\n; advisory\n\n"
+        source = preface + BASE
+        output, _ = b.process(source, lambda url, limit: b"# valid\n", {})
+        self.assertTrue(output.startswith("# Quantumult X 配置 · Ethereal-09 / rules-hub\n"))
+        self.assertNotIn("// @Author @ddgksf2013", output)
+        self.assertNotIn("# changelog", output)
+        self.assertIn("原底包作者：@ddgksf2013", output)
+        self.assertEqual(len(output[output.index("[general]"):].splitlines()), len(BASE.splitlines()))
+        self.assertEqual(output.count("[general]"), 1)
+        with self.assertRaisesRegex(ValueError, "unexpected active content"):
+            b.replace_preamble("danger=true\n[general]\n")
 
     def test_reject_bad_base(self):
         with self.assertRaises(ValueError):
