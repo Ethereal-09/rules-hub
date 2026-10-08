@@ -17,6 +17,7 @@ on:
       - "**/my-blacklist.txt"
       - "**/my-whitelist.txt"
       - "**/merge.py"
+      - "Quantumult/convert_ads.py"
       - ".github/workflows/merge.yml"
 
 permissions:
@@ -68,11 +69,18 @@ jobs:
         working-directory: ${{ matrix.dir }}
         run: python3 merge.py
 
+      - name: Convert AdGuard domains to QX ads
+        if: matrix.dir == 'adguard'
+        run: python3 Quantumult/convert_ads.py
+
       - name: Commit & push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "${{ matrix.dir }}/dist/" README.md
+          if [ "${{ matrix.dir }}" = "adguard" ]; then
+            git add Quantumult/dist/Quantumult-ads.list Quantumult/dist/Quantumult-ads-STATS.md
+          fi
           if git diff --cached --quiet; then
             echo "无变化，跳过提交"
             exit 0
@@ -88,7 +96,13 @@ jobs:
             git reset --hard HEAD~1
             git pull --ff-only origin main || git pull --rebase --autostash origin main
             ( cd "${{ matrix.dir }}" && python3 merge.py )
+            if [ "${{ matrix.dir }}" = "adguard" ]; then
+              python3 Quantumult/convert_ads.py
+            fi
             git add "${{ matrix.dir }}/dist/" README.md
+            if [ "${{ matrix.dir }}" = "adguard" ]; then
+              git add Quantumult/dist/Quantumult-ads.list Quantumult/dist/Quantumult-ads-STATS.md
+            fi
             git diff --cached --quiet && { echo "无变化，结束重试"; break; }
             git commit -m "chore(${{ matrix.dir }}): 自动合并规则 $(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M')"
             sleep 3
