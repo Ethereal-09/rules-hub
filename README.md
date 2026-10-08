@@ -37,7 +37,7 @@
 | **黑名单** · 拦截 | 115,267 | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) |
 | **白名单** · 放行 | 58 | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) |
 
-> **提示**：以上为 AdGuard Home DNS 专用订阅，仅包含域名级拦截/例外；网页元素、URL 路径及重写规则不包含。直连被墙时可用加速链接 · [STATS.md](adguard/dist/STATS.md)
+> **提示**：黑名单仅保留 AGH DNS 域名拦截；白名单暂保留来源中未筛选的例外规则（可能包含非 DNS 语法），并不保证每条在 AGH 中生效。直连被墙时可用加速链接 · [STATS.md](adguard/dist/STATS.md)
 
 ---
 

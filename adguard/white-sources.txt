@@ -1,9 +1,4 @@
-# AdGuard Home 白名单源 —— 每行一个 URL，# 开头为注释
-# 顺序即合并顺序（影响输出的先后，不影响去重结果）
-# 源参考 GOODBYEADS (https://github.com/8680/GOODBYEADS)
-#
-# ---- AdGuard 官方 allowlist ----
-https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/ChineseFilter/sections/allowlist.txt
-https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/allowlist.txt
-https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/TurkishFilter/sections/allowlist.txt
-https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/allowlist.txt
+# AdGuard Home DNS 白名单上游源（每行一个 URL；暂不添加客户端专用过滤器）
+# AdGuardTeam/AdguardFilters 的 allowlist 含路径、页面来源等规则，
+# 无法在 AGH DNS 层按原意执行，因此移除此前的四条上游链接。
+# 黑名单上游中的 @@ 规则仍会归入白名单；我的白名单见 my-whitelist.txt。

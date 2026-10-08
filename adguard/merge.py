@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-AdGuard Home DNS 专用规则合并器
+AdGuard Home 规则合并器
 
-黑源合并后只保留纯域名拦截 `||domain^` 与 `||domain^$important`（原样保留 important），黑源中的纯域名例外 `@@||domain^` 归白；
-白源合并后只保留纯域名例外，白源中阻断及所有非 DNS 规则直接丢弃。
-各输出内部去重、域名小写；个人裸域名仍按黑白分别追加。
-不将路径、外观、脚本、正则或其他复杂修饰符规则扩大为整域规则。
-现有 adguard-black/white.txt 地址保持不变，但内容改为 DNS 专用。
+黑源仅将纯 DNS 域名拦截写入黑名单，黑源中的 `@@` 例外写入白名单。
+白源全部非注释规则保留在白名单，合并并去重，不再按语法筛选。
+注意：白源中可能混有阻断/改写/网页规则，白名单不保证全部为 DNS 放行规则。
+个人裸域名仍按黑白分别追加；现有订阅路径不变。
 """
 import os
 import re
@@ -242,18 +241,16 @@ def main():
             total += 1
             if is_dropped(line):
                 continue
-            white_rule = dns_white_rule(line)
-            black_rule = dns_black_rule(line)
-            if white_rule:
-                white_out.append(white_rule)
+            if line.startswith("@@"):
+                white_out.append(line)
                 add_w += 1
-            elif black_rule:
+            elif (black_rule := dns_black_rule(line)):
                 black_out.append(black_rule)
                 add_b += 1
         log(f"  -> 读取 {total}, 黑 {add_b}, 白 {add_w}")
         stats.append((url, total, add_b, add_w, "OK"))
 
-    # ---- 拉白名单源（只保留 DNS 白名单，阻断规则直接丢弃）----
+    # ---- 拉白名单源（不做语法筛选，保留非注释行）----
     for idx, url in enumerate(white_srcs, 1):
         log(f"[白 {idx}/{len(white_srcs)}] {url}")
         text = fetch(url)
@@ -268,10 +265,8 @@ def main():
             total += 1
             if is_dropped(line):
                 continue
-            white_rule = dns_white_rule(line)
-            if white_rule:
-                white_out.append(white_rule)
-                add_w += 1
+            white_out.append(line)
+            add_w += 1
         log(f"  -> 读取 {total}, 白 {add_w}")
         stats.append((url, total, 0, add_w, "OK"))
 
@@ -297,7 +292,7 @@ def main():
         for l in black_out:
             f.write(l + "\n")
     with open(OUT_WHITE, "w", encoding="utf-8") as f:
-        f.write(file_header("AdGuard Home DNS 专用白名单", ts, len(white_out)))
+        f.write(file_header("AdGuard Home 白名单（未筛选混合规则）", ts, len(white_out)))
         for l in white_out:
             f.write(l + "\n")
 
@@ -312,7 +307,7 @@ def main():
         f"- 黑名单规则：**{len(black_out)}** 条（去重 {dedup_black}）",
         f"- 白名单规则：**{len(white_out)}** 条（去重 {dedup_white}）",
         f"- 非 DNS 规则已跳过：{sum(total - ab - aw for _, total, ab, aw, _ in stats)} 行（含注释/元数据）",
-        "- 筛选范围：黑名单无修饰符 `||domain^` 或纯 `$important`，白名单无修饰符 `@@||domain^`；白源中的阻断规则丢弃。",
+        "- 筛选范围：黑名单仅纯域名拦截（含 `$important`）；白名单保留白源全部非注释规则与黑源 `@@` 例外，仅去重，可能含非放行规则。",
         "",
         "| 上游源 | 读取 | 新增黑 | 新增白 | 状态 |",
         "|---|---|---|---|---|",

@@ -22,13 +22,16 @@ class ClassificationTests(unittest.TestCase):
         self.assertIsNone(m.dns_white_rule('||black.example.com^'))
         self.assertIsNone(m.dns_white_rule('@@||allow.example.com^$third-party'))
 
-    def test_black_source_exceptions_white_source_blocks_discarded(self):
-        black_source = ['||ads.example.com^', '@@||safe.example.com^', 'example.com##.banner']
+    def test_white_source_kept_without_syntax_filter(self):
+        black_source = ['||ads.example.com^', '@@||safe.example.com^']
         white_source = ['@@||login.example.com^', '||bad-from-white.example.com^', 'example.com#@#.banner']
         black = [m.dns_black_rule(x) for x in black_source]
-        white = [m.dns_white_rule(x) for x in black_source + white_source]
+        white = m.dedupe_preserve_order(m.normalize(x) for x in black_source if x.startswith('@@'))
+        white += m.dedupe_preserve_order(m.normalize(x) for x in white_source)
         self.assertEqual([x for x in black if x], ['||ads.example.com^'])
-        self.assertEqual([x for x in white if x], ['@@||safe.example.com^', '@@||login.example.com^'])
+        self.assertIn('||bad-from-white.example.com^', white)
+        self.assertIn('example.com#@#.banner', white)
+        self.assertIn('@@||safe.example.com^', white)
 
     def test_case_sensitive_parts_preserved(self):
         rules=['||EXAMPLE.COM^','||example.com^','@@||Allow.COM^','example.com##.AdBanner','/Tracking[A-Z]+/','||example.com/Path?Token=AbC$script']
