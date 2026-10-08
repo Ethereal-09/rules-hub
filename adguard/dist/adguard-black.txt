@@ -1,6 +1,6 @@
 ! Title: AdGuard Home DNS 专用黑名单
-! Last modified: 2026-10-09 04:24:50
-! 规则数: 115346
+! Last modified: 2026-10-09 04:53:44
+! 规则数: 115351
 ! 本文件由 GitHub Actions 自动生成，请勿手动修改
 
 ||srt94.click^
@@ -63622,7 +63622,12 @@
 ||hdapp1003-a.akamaihd.net^
 ||hdapp1008-a.akamaihd.net^
 ||hdsrc-a.akamaihd.net^
+||fzdgvcwwlddmp.site^
 ||geoodigfrlxto.site^
+||hgbdprpi.com^
+||tayrascutatesnitchy.cyou^
+||tilljoyfully.com^
+||vtkfotftpbd.com^
 ||00px.net^
 ||18wosx.ru^
 ||1bliq.io^
