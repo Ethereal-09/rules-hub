@@ -1,6 +1,6 @@
 ! Title: AdGuard Home 白名单（未筛选混合规则）
-! Last modified: 2026-10-09 02:21:19
-! 规则数: 12104
+! Last modified: 2026-10-09 04:24:50
+! 规则数: 12106
 ! 本文件由 GitHub Actions 自动生成，请勿手动修改
 
 @@||amgload.net/z|$domain=sinoptik.ua|gismeteo.ua
@@ -2771,6 +2771,8 @@
 @@||v.fwmrm.net/ad/g/1$domain=medialaancdn.be
 @@||flair.be/js/default/*_jq.$script
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=klix.ba
+@@||balkantelevizija.net^$generichide
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=balkantelevizija.net
 @@||telegram.hr^$content
 @@||warforum.xyz/ads.js?$script,~third-party
 @@||vlm-ads.aimatch.com/vlm/jserver/$domain=titulky.com
