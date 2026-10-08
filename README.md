@@ -47,7 +47,7 @@
 |:---|:---:|:---:|
 | **完整配置** · 懒人订阅 | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/dist/QuantumultX.conf) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/dist/QuantumultX.conf) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/dist/QuantumultX.conf) |
 
-> **提示**：QX「下载配置」中粘贴订阅链接，导入前先备份原配置 · [构建说明](Quantumult/) · [镜像来源](Quantumult/SOURCES.md) · [Actions](https://github.com/Ethereal-09/rules-hub/actions/workflows/quantumult.yml)
+> [QX 懒人配置使用教程](Quantumult/%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.md)
 
 ---
 
