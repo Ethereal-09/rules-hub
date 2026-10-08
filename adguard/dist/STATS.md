@@ -1,23 +1,23 @@
 # 合并统计
 
-- 生成时间：2026-10-08 16:04:40
+- 生成时间：2026-10-08 19:11:20
 - 上游源：15 个（成功 15，失败 0）
-- 黑名单规则：**220578** 条（去重 146268）
-- 白名单规则：**15219** 条（去重 2030）
+- 黑名单规则：**220599** 条（去重 146260）
+- 白名单规则：**15219** 条（去重 2028）
 
 | 上游源 | 读取 | 新增黑 | 新增白 | 状态 |
 |---|---|---|---|---|
-| https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_2_Base/filter.txt | 164179 | 132709 | 10165 | OK |
-| https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_224_Chinese/filter.txt | 23251 | 21163 | 1180 | OK |
-| https://easylist-downloads.adblockplus.org/easylist.txt | 80487 | 79491 | 756 | OK |
-| https://easylist-downloads.adblockplus.org/easylistchina.txt | 19207 | 18116 | 983 | OK |
-| https://easylist-downloads.adblockplus.org/easyprivacy.txt | 54270 | 52743 | 848 | OK |
+| https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_2_Base/filter.txt | 164213 | 132743 | 10165 | OK |
+| https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_224_Chinese/filter.txt | 23220 | 21132 | 1180 | OK |
+| https://easylist-downloads.adblockplus.org/easylist.txt | 80526 | 79530 | 756 | OK |
+| https://easylist-downloads.adblockplus.org/easylistchina.txt | 19155 | 18066 | 981 | OK |
+| https://easylist-downloads.adblockplus.org/easyprivacy.txt | 54272 | 52745 | 848 | OK |
 | https://raw.githubusercontent.com/xinggsf/Adblock-Plus-Rule/master/rule.txt | 1201 | 1143 | 26 | OK |
 | https://raw.githubusercontent.com/cjx82630/cjxlist/master/cjx-annoyance.txt | 1863 | 1836 | 6 | OK |
 | https://raw.githubusercontent.com/Noyllopa/NoAppDownload/master/NoAppDownload.txt | 1121 | 877 | 0 | OK |
 | https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/AWAvenue-Ads-Rule.txt | 973 | 965 | 0 | OK |
 | https://perflyst.github.io/PiHoleBlocklist/SmartTV-AGH.txt | 266 | 154 | 9 | OK |
-| https://raw.githubusercontent.com/sjhgvr/oisd/main/abp_small.txt | 57660 | 57649 | 0 | OK |
+| https://raw.githubusercontent.com/sjhgvr/oisd/main/abp_small.txt | 57679 | 57668 | 0 | OK |
 | https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/ChineseFilter/sections/allowlist.txt | 306 | 0 | 149 | OK |
 | https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/allowlist.txt | 347 | 0 | 175 | OK |
 | https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/TurkishFilter/sections/allowlist.txt | 220 | 0 | 105 | OK |
