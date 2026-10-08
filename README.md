@@ -8,7 +8,7 @@
 
 <br>
 
-> 个人自用规则合集。把多个公开上游源合并去重，整理成各平台可直接订阅的格式。
+> 个人自用规则合集。AdGuard Home 输出为 DNS 专用域名规则；其他平台各自构建订阅。
 > 规则内容均由上游作者维护，本仓库只做合并与格式转换，不做任何规则审查。
 > 各平台的源、黑白名单都可以按自己的需求随意增删。
 
@@ -37,7 +37,7 @@
 | **黑名单** · 拦截 | 220,599 | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) |
 | **白名单** · 放行 | 15,219 | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) |
 
-> **提示**：直连被墙时用加速链接 · 详细统计见 [STATS.md](adguard/dist/STATS.md)
+> **提示**：以上为 AdGuard Home DNS 专用订阅，仅包含域名级拦截/例外；网页元素、URL 路径及重写规则不包含。直连被墙时可用加速链接 · [STATS.md](adguard/dist/STATS.md)
 
 ---
 

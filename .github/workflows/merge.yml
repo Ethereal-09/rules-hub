@@ -36,12 +36,19 @@ jobs:
       - uses: actions/checkout@v4
       - id: scan
         shell: bash
+        env:
+          REQUESTED_TARGET: ${{ inputs.target }}
         run: |
-          # 找出所有含 merge.py 的目录作为"平台项目"
+          set -euo pipefail
           mapfile -t DIRS < <(find . -mindepth 2 -name merge.py -not -path "./.github/*" \
             -printf '%h\n' | sed 's|^\./||' | sort)
-          if [ -n "${{ github.event.inputs.target }}" ]; then
-            DIRS=("${{ github.event.inputs.target }}")
+          for dir in "${DIRS[@]}"; do
+            [[ "$dir" =~ ^[A-Za-z0-9_-]+$ ]] || { echo "Invalid platform directory" >&2; exit 1; }
+          done
+          if [ -n "$REQUESTED_TARGET" ]; then
+            [[ "$REQUESTED_TARGET" =~ ^[A-Za-z0-9_-]+$ ]] || { echo "Invalid target" >&2; exit 1; }
+            printf '%s\n' "${DIRS[@]}" | grep -Fxq -- "$REQUESTED_TARGET" || { echo "Unknown target" >&2; exit 1; }
+            DIRS=("$REQUESTED_TARGET")
           fi
           JSON=$(printf '%s\n' "${DIRS[@]}" | jq -R . | jq -sc .)
           echo "dirs=$JSON" >> "$GITHUB_OUTPUT"
@@ -65,6 +72,10 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Check AdGuard safety regressions
+        if: matrix.dir == 'adguard'
+        run: python3 -m unittest discover -s adguard -p 'test_*.py' -q
+
       - name: Run merge (${{ matrix.dir }})
         working-directory: ${{ matrix.dir }}
         run: python3 merge.py
@@ -75,6 +86,7 @@ jobs:
 
       - name: Commit & push if changed
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "${{ matrix.dir }}/dist/" README.md
@@ -87,9 +99,11 @@ jobs:
           fi
           git commit -m "chore(${{ matrix.dir }}): 自动合并规则 $(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M')"
           # push 撞 ref 时：丢弃本地提交 -> 拉最新 -> 重新生成 -> 重新提交
+          published=0
           for i in 1 2 3 4 5; do
             if git push; then
               echo "推送成功"
+              published=1
               break
             fi
             echo "::warning::push 失败（第 $i 次），重新生成后重试..."
@@ -103,10 +117,14 @@ jobs:
             if [ "${{ matrix.dir }}" = "adguard" ]; then
               git add Quantumult/dist/Quantumult-ads.list Quantumult/dist/Quantumult-ads-STATS.md
             fi
-            git diff --cached --quiet && { echo "无变化，结束重试"; break; }
+            git diff --cached --quiet && { echo "最新分支已包含相同生成物"; published=1; break; }
             git commit -m "chore(${{ matrix.dir }}): 自动合并规则 $(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M')"
             sleep 3
           done
+          if [ "$published" -ne 1 ]; then
+            echo "::error::五次推送均失败，禁止报告构建成功" >&2
+            exit 1
+          fi
 
       - name: Notify success (email)
         if: success()
