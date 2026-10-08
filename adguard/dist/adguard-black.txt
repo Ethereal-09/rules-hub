@@ -1,6 +1,6 @@
 ! Title: AdGuard Home 黑名单
-! Last modified: 2026-10-08 07:03:22
-! 规则数: 220458
+! Last modified: 2026-10-08 08:02:00
+! 规则数: 220469
 ! 本文件由 GitHub Actions 自动生成，请勿手动修改
 
 ||caspervisiveogor.cyou^
@@ -72078,6 +72078,7 @@ browsershots.org#@#.advert_area
 ||balagantrifled.shop^
 ||balancedsuppercreed.com^
 ||balantetruisms.qpon^
+||balaosstrawerchelide.qpon^
 ||balasesersatz.com^
 ||balathyacine.cyou^
 ||balattequasi.cyou^
@@ -72694,6 +72695,7 @@ browsershots.org#@#.advert_area
 ||bfmovugujnybt.online^
 ||bfpartners.click^
 ||bfpqspjqaj.com^
+||bfqdxhotjrmhc.space^
 ||bfrbthswzgsam.website^
 ||bfrjiwydcakxu.site^
 ||bfrrndnsbmiov.site^
@@ -74153,6 +74155,7 @@ browsershots.org#@#.advert_area
 ||cabinzenith.com^
 ||cablishgenial.com^
 ||cabnnr.com^
+||caboucalamda.com^
 ||cabvrkooukotb.website^
 ||cabywork.shop^
 ||cachegorilla.com^
@@ -83063,6 +83066,7 @@ browsershots.org#@#.advert_area
 ||gnqzrwjwyjtgy.site^
 ||gnrenarsmfyys.website^
 ||gnrhougqgjthr.site^
+||gnschdti.com^
 ||gntelbdzwdmej.site^
 ||gntwuwuetfkzg.space^
 ||gnutplhbojrfe.site^
@@ -84307,6 +84311,7 @@ browsershots.org#@#.advert_area
 ||hfqxrivbvubyz.store^
 ||hfrmetlbzovrr.com^
 ||hfsmoyooeywgq.site^
+||hfsqpkalpdyio.space^
 ||hftciwcfqrotx.online^
 ||hfusiuuqknbwy.site^
 ||hfvnfhhixpnjd.online^
@@ -85301,6 +85306,7 @@ browsershots.org#@#.advert_area
 ||iaxitnxmakuso.store^
 ||iaxlwgtgcotvb.space^
 ||iaybafeluvuxr.online^
+||ibancahevqjjw.website^
 ||ibbdgcvtwtpuj.site^
 ||ibbexwmtzidhf.space^
 ||ibbnmezzazmbt.site^
@@ -88046,6 +88052,7 @@ browsershots.org#@#.advert_area
 ||kfwyfnlamzeth.site^
 ||kgbfawlsumiyn.space^
 ||kgbgcuabndbjw.store^
+||kgclhjgoauriu.site^
 ||kgcqegbyqnrnj.space^
 ||kgdvs9ov3l2aasw4nuts.com^
 ||kgfjrb711.com^
@@ -94328,6 +94335,7 @@ browsershots.org#@#.advert_area
 ||onychiapiety.cfd^
 ||onymitysangha.cyou^
 ||onymizeneighed.qpon^
+||ooadrhsqiofhv.space^
 ||oobeapxokjyke.online^
 ||oobzrkss.com^
 ||ooceqolgvobwy.online^
@@ -99496,6 +99504,7 @@ browsershots.org#@#.advert_area
 ||rlogscbdafnjf.site^
 ||rlqaepldbfpar.site^
 ||rlsnntgffqnli.online^
+||rltkjzzgfsjyq.space^
 ||rltovwwkqqxbd.space^
 ||rludahcaewkfd.online^
 ||rluhlgvsxabon.online^
@@ -101869,6 +101878,7 @@ browsershots.org#@#.advert_area
 ||sniveymuktear.cyou^
 ||snkgwapjqhnuy.site^
 ||snlaavecjmpja.online^
+||snnbtgzmzfrvt.site^
 ||snobbergariba.cfd^
 ||snobsshingle.shop^
 ||snoopy-source.pro^
@@ -106968,6 +106978,7 @@ browsershots.org#@#.advert_area
 ||verdetzonaria.cyou^
 ||verdinstaurian.cfd^
 ||vergebelard.qpon^
+||vergefauns.cfd^
 ||veridicmisgo.qpon^
 ||verifiablecomfort.com^
 ||verificationgloryrenaissance.com^
@@ -117400,6 +117411,7 @@ browsershots.org#@#.advert_area
 ||plista.com/async_lib.js?
 ||plista.com/tiny/$third-party
 ||plus.net/images/referrals/
+||pn.ybp.yahoo.com/ab/imp/
 ||pngmart.com/files/10/download-now-button-png-free-download.png
 ||pntra.com^$image,script
 ||pntrac.com^$image,script
@@ -135985,6 +135997,8 @@ newduba.cn###jq_youxi
 .z.dkt-ib.com
 ||cnzz.trafficmanager.net^
 ||cupfox.app^$third-party
+||w8n97pkzn6.com^
+||leotard54.com^
 ||trampoline12.com^
 ||0i2nax2di.com^
 ||ifnb6hfem.com^
@@ -152411,17 +152425,14 @@ fqsousou.com,kengso.com#@#.user-share
 ://adv.$popup,domain=~adv.kompas.id|~adv.lack-girl.com
 ##.ad-unit
 ##[class^="div-gpt-ad"]
-||balaosstrawerchelide.qpon^
-||bfqdxhotjrmhc.space^
-||caboucalamda.com^
-||gnschdti.com^
-||hfsqpkalpdyio.space^
-||ibancahevqjjw.website^
-||kgclhjgoauriu.site^
-||ooadrhsqiofhv.space^
-||rltkjzzgfsjyq.space^
-||snnbtgzmzfrvt.site^
-||vergefauns.cfd^
+||akqjcbryyxfzo.website^
+||danaineoxbowsquaggas.cyou^
+||ewxrwhjvldctm.online^
+||fxmrkvkeskzgh.online^
+||mjppwlfcyxubm.site^
+||oeddcqpagllfy.website^
+||qnfonjdhdpx.com^
+||zdgcclgxonrhi.website^
 ||lockerdome.com^$third-party
 ||35.227.234.222^
 ||35.232.188.118^
@@ -152431,7 +152442,7 @@ fqsousou.com,kengso.com#@#.user-share
 ||216.21.13.$popup,domain=~in-addr.arpa
 ||35.227.234.222^$popup
 ||35.232.188.118^$popup
-||pn.ybp.yahoo.com/ab/imp/
+||cdn.speakup.ai/cookie-sync.js
 ||2mdn.net/videoplayback/$rewrite=abp-resource:blank-mp4,domain=laurelberninteriors.com|safeframe.googlesyndication.com
 ||googlevideo.com/videoplayback?$rewrite=abp-resource:blank-mp4,domain=laurelberninteriors.com|safeframe.googlesyndication.com
 ||innovid.com/media/encoded/*.mp4$rewrite=abp-resource:blank-mp4,domain=ktla.com
@@ -152774,8 +152785,8 @@ hitomi.la##.content > div[class]:not([class*="-"]) {min-height:40px !important;}
 hitomi.la##.top-content > div[class]:not([class*="-"]) {min-height:40px !important;}
 myhentaicomics.com##.featured-manga, .header-spot, .pagination-image {min-height:0 !important;}
 otomi-games.com##.clean-grid-grid-post:has(> [id^="otomi-"] + .clean-grid-grid-post-details-full) {remove:true;}
-||w8n97pkzn6.com^
-||leotard54.com^
+||dabetlewtbdppi.com^
+||vfqhky3tos.com^
 ||*.$image,rewrite=abp-resource:1x1-transparent-gif,third-party,domain=rmdown.com
 ||*/ad/$rewrite=abp-resource:blank-mp3,domain=huaren.tv
 ||17173cdn.com/20*.mp4$rewrite=abp-resource:blank-mp3,domain=17173.com
