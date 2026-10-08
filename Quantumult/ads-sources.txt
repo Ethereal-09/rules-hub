@@ -1,0 +1,3 @@
+# QX 广告分流上游源；每行一个 HTTPS URL
+# AdGuard 转换结果由本地 adguard/dist/ 提供，不在此重复填写。
+https://raw.githubusercontent.com/Cats-Team/AdRules/main/qx.conf

@@ -18,6 +18,7 @@ on:
       - "**/my-whitelist.txt"
       - "**/merge.py"
       - "Quantumult/convert_ads.py"
+      - "Quantumult/ads-sources.txt"
       - ".github/workflows/merge.yml"
 
 permissions:

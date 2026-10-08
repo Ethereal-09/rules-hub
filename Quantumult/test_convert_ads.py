@@ -43,6 +43,18 @@ example.com##.banner
         self.assertEqual(stats["important_downgraded"], 1)
         self.assertEqual(stats["black_unsupported"], 2)
 
+    def test_native_upstream_deduplication(self):
+        upstream = ('# list\n' + 'host-suffix,ads.example.com,reject\n' * 2 + 'host-suffix,new.example.com,reject\n' * 1000).encode()
+        merged, stats = c.merge_qx_sources(['HOST-SUFFIX,ads.example.com,REJECT'], ['https://example.org/qx.conf'], lambda url: upstream)
+        self.assertEqual(merged, ['HOST-SUFFIX,ads.example.com,REJECT', 'HOST-SUFFIX,new.example.com,REJECT'])
+        self.assertEqual(stats['source_duplicate'], 1001)
+        self.assertEqual(stats['source_added'], 1)
+        self.assertEqual(stats['sources_ok'], 1)
+
+    def test_invalid_native_source_rejected(self):
+        with self.assertRaisesRegex(ValueError, '有效规则数量异常'):
+            c.merge_qx_sources([], ['https://example.org/qx.conf'], lambda url: b'<html>broken</html>')
+
     def test_no_rules_refuses_publish(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
