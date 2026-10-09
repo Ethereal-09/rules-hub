@@ -177,6 +177,14 @@ def update_readme(black_n, white_n, ts):
         new_text, found = re.subn(pattern, lambda m: f"{m.group(1)}{count:,}{m.group(2)}", new_text, count=1)
         if found != 1:
             raise ValueError(f"README AdGuard {label}行未找到，拒绝静默漏更新")
+    # 同步徽章上的数字（AdGuard_黑名单-258k / AdGuard_白名单-32）
+    def short(n):
+        return f"{n/1000:.0f}k" if n >= 10000 else str(n)
+    for badge_label, count in (("黑名单", black_n), ("白名单", white_n)):
+        pattern = rf"(badge/AdGuard_{badge_label}-)([^-\?]+)(-)"
+        new_text, found = re.subn(pattern, lambda m: f"{m.group(1)}{short(count)}{m.group(3)}", new_text, count=1)
+        if found != 1:
+            raise ValueError(f"README 徽章 AdGuard {badge_label} 未找到，拒绝静默漏更新")
     # 上次更新时间（README 里是 "上次更新：—"）
     new_text = re.sub(r"上次更新：.*?(?=</sub>)", f"上次更新：{ts} ", new_text)
     new_text = re.sub(r"上次更新时间：.*", f"上次更新时间：{ts}", new_text, count=1)
