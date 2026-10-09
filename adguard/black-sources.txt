@@ -1,22 +1,10 @@
-# AdGuard Home 黑名单源 —— 每行一个 URL，# 开头为注释
-# 顺序即合并顺序（影响输出的先后，不影响去重结果）
-# 源参考 GOODBYEADS (https://github.com/8680/GOODBYEADS)
-#
-# ---- AdGuard 官方 ----
-https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_2_Base/filter.txt
-https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_224_Chinese/filter.txt
-#
-# ---- EasyList 系 ----
-https://easylist-downloads.adblockplus.org/easylist.txt
-https://easylist-downloads.adblockplus.org/easylistchina.txt
-https://easylist-downloads.adblockplus.org/easyprivacy.txt
-#
-# ---- 中文 / 国内 ----
-https://raw.githubusercontent.com/xinggsf/Adblock-Plus-Rule/master/rule.txt
-https://raw.githubusercontent.com/cjx82630/cjxlist/master/cjx-annoyance.txt
-https://raw.githubusercontent.com/Noyllopa/NoAppDownload/master/NoAppDownload.txt
+# AdGuard Home 黑名单上游源 —— 每行一个 URL，顺序影响合并输出顺序
+# 仅提取当前合并器支持的 DNS 域名规则；来源原文件不一定全为 DNS 专用。
+https://raw.githubusercontent.com/damengzhu/banad/main/jiekouAD.txt
 https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/AWAvenue-Ads-Rule.txt
-#
-# ---- 智能电视 / 大而全 ----
-https://perflyst.github.io/PiHoleBlocklist/SmartTV-AGH.txt
-https://raw.githubusercontent.com/sjhgvr/oisd/main/abp_small.txt
+https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.mini.txt
+https://abp.oisd.nl/basic
+https://raw.githubusercontent.com/Cats-Team/AdRules/main/dns.txt
+https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt
+https://raw.githubusercontent.com/rssvcn/qy-Ads-Rule/main/black.txt
+https://raw.githubusercontent.com/2771936993/HG/main/hg1.txt

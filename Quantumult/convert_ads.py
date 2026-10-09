@@ -35,9 +35,10 @@ def convert(black, white):
         if not line or line.startswith(("!", "#", "[")):
             continue
         stats["white_input"] += 1
-        if line.startswith("@@"):
-            line = line[2:]
-        domain = parse_domain(line)
+        if not line.startswith("@@"):
+            stats["white_non_exception"] += 1
+            continue
+        domain = parse_domain(line[2:])
         if domain:
             allow.add(domain)
         else:
@@ -114,6 +115,30 @@ def download_source(url):
         return resp.read(SOURCE_MAX_BYTES + 1)
 
 
+def allowed_domains(white):
+    return {domain for raw in white.splitlines()
+            if (line := raw.strip().lower()).startswith("@@")
+            if (domain := parse_domain(line[2:]))}
+
+
+def is_allowed(domain, allow):
+    labels = domain.split(".")
+    return any(".".join(labels[i:]) in allow for i in range(len(labels) - 1))
+
+
+def filter_qx_allowlist(rules, white):
+    allow = allowed_domains(white)
+    retained = []
+    removed = 0
+    for rule in rules:
+        match = QX_SUFFIX.fullmatch(rule)
+        if match and is_allowed(match.group(1).lower(), allow):
+            removed += 1
+        else:
+            retained.append(rule)
+    return retained, removed
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--black", type=Path, default=ROOT / "adguard/dist/adguard-black.txt")
@@ -132,6 +157,8 @@ def main():
         raise ValueError("QX upstream list is empty or contains non-HTTPS URL")
     rules, source_stats = merge_qx_sources(rules, sources, download_source)
     stats.update(source_stats)
+    rules, excluded_after_merge = filter_qx_allowlist(rules, white)
+    stats["source_allow_excluded"] = excluded_after_merge
     args.output.parent.mkdir(parents=True, exist_ok=True)
     content = "# Quantumult X ad-domain rules: AdGuard conversion + native QX upstream\n# Sources: Quantumult/ads-sources.txt; only HOST-SUFFIX reject rules; deduped.\n" + "\n".join(rules) + "\n"
     temporary = args.output.with_name(args.output.name + ".tmp")

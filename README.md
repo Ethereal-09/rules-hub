@@ -18,9 +18,9 @@
 [![Platform](https://img.shields.io/badge/平台-AdGuard_Home-brightgreen?style=for-the-badge&logo=adguard&logoColor=white)](https://github.com/Ethereal-09/rules-hub)
 [![Update](https://img.shields.io/badge/更新-每_8_小时-orange?style=for-the-badge&logo=clockify&logoColor=white)](https://github.com/Ethereal-09/rules-hub/actions)
 
-[![Blacklist](https://img.shields.io/badge/黑名单-220k+-blue?style=flat-square&logo=adblock&logoColor=white)](#-订阅地址)
-[![Whitelist](https://img.shields.io/badge/白名单-15k+-green?style=flat-square&logo=checkmarx&logoColor=white)](#-订阅地址)
-[![Sources](https://img.shields.io/badge/上游源-15-purple?style=flat-square&logo=stackshare&logoColor=white)](#-上游源)
+[![Blacklist](https://img.shields.io/badge/黑名单-见下表-blue?style=flat-square&logo=adblock&logoColor=white)](#-订阅地址)
+[![Whitelist](https://img.shields.io/badge/白名单-见下表-green?style=flat-square&logo=checkmarx&logoColor=white)](#-订阅地址)
+[![Sources](https://img.shields.io/badge/上游源-8-purple?style=flat-square&logo=stackshare&logoColor=white)](#-上游源)
 
 <sub>上次更新：2026-10-09 11:17:28 </sub>
 
@@ -126,35 +126,27 @@ rules-hub/
 ## 上游源
 
 <details>
-<summary><b>AdGuard Home · 黑名单源（11）</b></summary>
+<summary><b>AdGuard Home · 黑名单源（8）</b></summary>
 <br>
 
 | 源 | 分类 |
 |:---|:---|
-| [AdGuard Base](https://github.com/AdguardTeam/FiltersRegistry) | 通用广告（官方） |
-| [AdGuard Chinese](https://github.com/AdguardTeam/FiltersRegistry) | 中文广告（官方） |
-| [EasyList](https://easylist.to/) | 英文通用（老牌） |
-| [EasyList China](https://easylist.to/) | 中文通用（老牌） |
-| [EasyPrivacy](https://easylist.to/) | 隐私追踪 |
-| [xinggsf/Adblock-Plus-Rule](https://github.com/xinggsf/Adblock-Plus-Rule) | 国内视频去广告 |
-| [cjx82630/cjxlist](https://github.com/cjx82630/cjxlist) | 国内 annoyances |
-| [Noyllopa/NoAppDownload](https://github.com/Noyllopa/NoAppDownload) | 阻止 App 下载跳转 |
-| [TG-Twilight/AWAvenue-Ads-Rule](https://github.com/TG-Twilight/AWAvenue-Ads-Rule) | 广告/隐私/不受欢迎 |
-| [perflyst/SmartTV-AGH](https://github.com/perflyst/PiHoleBlocklist) | 智能电视 |
-| [sjhgvr/oisd abp_small](https://github.com/sjhgvr/oisd) | 大而全（ABP 版） |
+| [damengzhu/banad](https://github.com/damengzhu/banad) | 接口广告拦截 · [规则](https://raw.githubusercontent.com/damengzhu/banad/main/jiekouAD.txt) |
+| [TG-Twilight/AWAvenue-Ads-Rule](https://github.com/TG-Twilight/AWAvenue-Ads-Rule) | 广告拦截 · [规则](https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/AWAvenue-Ads-Rule.txt) |
+| [hagezi/dns-blocklists](https://github.com/hagezi/dns-blocklists) | Pro mini · [规则](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.mini.txt) |
+| [oisd.nl](https://oisd.nl) | Basic · [规则](https://abp.oisd.nl/basic) |
+| [Cats-Team/AdRules](https://github.com/Cats-Team/AdRules) | DNS 广告拦截 · [规则](https://raw.githubusercontent.com/Cats-Team/AdRules/main/dns.txt) |
+| [AdGuard MobileFilter](https://github.com/AdguardTeam/AdguardFilters) | 移动端广告源 · [规则](https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt) |
+| [rssvcn/qy-Ads-Rule](https://github.com/rssvcn/qy-Ads-Rule) | 广告拦截 · [规则](https://raw.githubusercontent.com/rssvcn/qy-Ads-Rule/main/black.txt) |
+| [2771936993/HG](https://github.com/2771936993/HG) | 广告拦截 · [规则](https://raw.githubusercontent.com/2771936993/HG/main/hg1.txt) |
 
 </details>
 
 <details>
-<summary><b>AdGuard Home · 白名单源（4）</b></summary>
+<summary><b>AdGuard Home · 白名单上游（0）</b></summary>
 <br>
 
-| 源 | 分类 |
-|:---|:---|
-| [AdGuard Chinese allowlist](https://github.com/AdguardTeam/AdguardFilters) | 中文站误杀修复 |
-| [AdGuard German allowlist](https://github.com/AdguardTeam/AdguardFilters) | 德文站误杀修复 |
-| [AdGuard Turkish allowlist](https://github.com/AdguardTeam/AdguardFilters) | 土耳其站误杀修复 |
-| [AdGuard Spyware allowlist](https://github.com/AdguardTeam/AdguardFilters) | 反误报 |
+目前未配置白名单上游。白名单文件由黑源中的 `@@` 例外和 `my-whitelist.txt` 生成；并非全部规则都适用于 AGH DNS。
 
 </details>
 

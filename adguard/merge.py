@@ -175,7 +175,8 @@ def update_readme(black_n, white_n, ts):
         log(f"  -> README 已同步：黑 {black_n:,} 白 {white_n:,}")
 
 
-def validate_output(stats, black_count, white_count, previous_black=0, previous_white=0):
+def validate_output(stats, black_count, white_count, previous_black=0, previous_white=0,
+                    source_migration=False):
     """Fail closed before writing any generated files."""
     failed = [url for url, total, black, white, status in stats
               if status != "OK" or total == 0]
@@ -184,7 +185,7 @@ def validate_output(stats, black_count, white_count, previous_black=0, previous_
     if black_count < MIN_BLACK_RULES or white_count < MIN_WHITE_RULES:
         raise ValueError("合并规则数低于安全下限，拒绝发布")
     for label, current, old in (("黑", black_count, previous_black), ("白", white_count, previous_white)):
-        if old and current < old * MIN_PREVIOUS_RATIO:
+        if old and current < old * MIN_PREVIOUS_RATIO and not source_migration:
             raise ValueError(f"{label}名单规则骤降：{old} -> {current}；拒绝发布")
 
 
@@ -196,6 +197,19 @@ def dns_black_rule(line):
 def dns_white_rule(line):
     match = DNS_WHITE.fullmatch(line.strip())
     return f"@@||{match.group(1).lower()}^" if match else None
+
+
+def is_source_migration(black_srcs):
+    """One-time 11->8 replacement; all eight sources must still pass validation."""
+    stats_path = os.path.join(OUT_DIR, "STATS.md")
+    if not os.path.isfile(stats_path):
+        return False
+    with open(stats_path, encoding="utf-8") as f:
+        old = f.read()
+    return (len(black_srcs) == 8
+            and "上游源：11 个" in old
+            and "damengzhu/banad/main/jiekouAD.txt" in black_srcs[0]
+            and "2771936993/HG/main/hg1.txt" in black_srcs[-1])
 
 
 def previous_count(path):
@@ -283,7 +297,8 @@ def main():
     dedup_white = raw_white_n - len(white_out)
 
     validate_output(stats, len(black_out), len(white_out),
-                    previous_count(OUT_BLACK), previous_count(OUT_WHITE))
+                    previous_count(OUT_BLACK), previous_count(OUT_WHITE),
+                    source_migration=is_source_migration(black_srcs))
 
     ts = (datetime.now(timezone.utc) + timedelta(hours=8)).strftime("%Y-%m-%d %H:%M:%S")
 

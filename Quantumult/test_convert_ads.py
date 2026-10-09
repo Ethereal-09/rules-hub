@@ -55,6 +55,12 @@ example.com##.banner
         with self.assertRaisesRegex(ValueError, '有效规则数量异常'):
             c.merge_qx_sources([], ['https://example.org/qx.conf'], lambda url: b'<html>broken</html>')
 
+    def test_white_excludes_native_source_too(self):
+        native = ['HOST-SUFFIX,ads.example.com,REJECT', 'HOST-SUFFIX,sub.ads.example.com,REJECT', 'HOST-SUFFIX,other.example.org,REJECT']
+        result, removed = c.filter_qx_allowlist(native, '@@||ads.example.com^\n||other.example.org^\n')
+        self.assertEqual(result, ['HOST-SUFFIX,other.example.org,REJECT'])
+        self.assertEqual(removed, 2)
+
     def test_no_rules_refuses_publish(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
