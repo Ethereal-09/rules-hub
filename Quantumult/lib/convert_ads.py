@@ -14,7 +14,7 @@ SOURCE_FILE = Path(__file__).with_name("ads-sources.txt")
 SOURCE_MAX_BYTES = 20 * 1024 * 1024
 QX_SUFFIX = re.compile(r"^host-suffix\s*,\s*(" + r"(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?" + r")\s*,\s*reject$", re.I)
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]   # 仓库根（lib/ → Quantumult/ → repo）
 DOMAIN = r"(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?"
 PLAIN = re.compile(r"^\|\|(" + DOMAIN + r")\^$", re.I)
 IMPORTANT = re.compile(r"^\|\|(" + DOMAIN + r")\^\$important$", re.I)
