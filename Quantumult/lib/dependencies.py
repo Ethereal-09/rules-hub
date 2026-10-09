@@ -1,7 +1,13 @@
 """Mirror functional QX dependencies without changing comments or static URLs.
 
 Only recognized executable URL contexts are rewritten. Dependencies failing to
-mirror retain their original URL and are reported; build can be made strict.
+mirror retain their original URL and are reported.
+
+Rule files (.conf/.snippet/.list) carry QX assignment syntax and are rewritten.
+JavaScript payloads are NOT rewritten: their contents are opaque code where the
+same "script-response-body https://..." shape can appear as an unrelated string
+literal, and rewriting it corrupts the script (and previously caused a file to
+be re-requested while still pending).
 """
 import re
 from urllib.parse import urlsplit
@@ -12,9 +18,9 @@ URL = r"https?://[^\s,;\"'<>]+"
 ASSIGNMENT = re.compile(r"(?i)(\b(?:script-path|script-url)\s*=\s*|\bscript-(?:request|response)-(?:body|header)\s+)(" + URL + r")")
 SCRIPTS = re.compile(r"(?i)(\bevent-interaction\s+)(" + URL + r")")
 PARSER = re.compile(r"(?i)(\bresource_parser_url\s*=\s*)(" + URL + r")")
-# A few QX remote rewrite files embed further script references as JS/CSS
-# resource URLs in their own content. We don't crawl arbitrary JS imports.
 DEPENDENCY_SUFFIXES = {".js", ".mjs", ".conf", ".snippet", ".list", ".yaml", ".yml"}
+# Only these are configuration text that may safely be rewritten in place.
+REWRITABLE_SUFFIXES = {".conf", ".snippet", ".list"}
 
 
 def replace_matches(text, pattern, mirror):
@@ -22,6 +28,11 @@ def replace_matches(text, pattern, mirror):
         url = match.group(2)
         return match.group(1) + mirror(url)
     return pattern.sub(sub, text)
+
+
+def is_rewritable(url):
+    """True when the resource is configuration text safe to rewrite in place."""
+    return urlsplit(url).path.lower().endswith(tuple(REWRITABLE_SUFFIXES))
 
 
 def rewrite_resource(text, mirror):

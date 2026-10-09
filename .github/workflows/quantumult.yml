@@ -7,12 +7,10 @@ on:
   push:
     paths:
       - "Quantumult/build.py"
-      - "Quantumult/dependencies.py"
-      - "Quantumult/local_rules.py"
-      - "Quantumult/policy_rules.py"
+      - "Quantumult/lib/**"
+      - "Quantumult/tests/**"
       - "Quantumult/rewrite-local.txt"
       - "Quantumult/policy-local.txt"
-      - "Quantumult/notify.py"
       - ".github/workflows/quantumult.yml"
 
 permissions:
@@ -32,8 +30,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Run unit tests
+        run: python3 -m unittest discover -s Quantumult/tests -t Quantumult/tests -p 'test_*.py' -q
       - name: Build and stage
         run: python3 Quantumult/build.py
+      - name: Prune stale mirrored assets
+        run: python3 Quantumult/lib/prune_assets.py --days 30
       - name: Commit generated profile and enabled resources
         shell: bash
         run: |
@@ -68,4 +70,5 @@ jobs:
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
           SMTP_TO: ${{ secrets.SMTP_TO }}
           BUILD_STATUS: ${{ job.status }}
-        run: python3 Quantumult/notify.py
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 Quantumult/lib/notify.py

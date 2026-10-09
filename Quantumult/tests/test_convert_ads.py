@@ -1,11 +1,10 @@
-import importlib.util
-from pathlib import Path
 import tempfile
+from pathlib import Path
 import unittest
 
-spec = importlib.util.spec_from_file_location("convert_ads", Path(__file__).with_name("convert_ads.py"))
-c = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(c)
+from _bootstrap import load
+
+c = load("Quantumult/lib/convert_ads.py", "convert_ads")
 
 
 class ConvertAdsTests(unittest.TestCase):

@@ -1,10 +1,8 @@
-import importlib.util
-from pathlib import Path
 import unittest
 
-spec = importlib.util.spec_from_file_location("builder", Path(__file__).with_name("build.py"))
-b = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(b)
+from _bootstrap import load
+
+b = load("Quantumult/build.py", "qx_build")
 
 BASE = """[general]
 server_check_url = https://example.org
@@ -99,7 +97,7 @@ hostname=ads.example.org
             return b"# QX resource\n"
         assets = {}
         _, stats = b.process(BASE, fetch, assets, sources)
-        doc = b.make_sources_md(sources, stats)
+        doc = b.make_sources_md(sources, stats, [])
         self.assertEqual(len(sources), 2)
         self.assertIn("assets/filter/a-", doc)
         self.assertIn("assets/rewrite/a-", doc)

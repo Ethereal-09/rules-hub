@@ -10,15 +10,53 @@
 
 ```text
 Quantumult/
-├── dist/QuantumultX.conf
+├── build.py                # 唯一入口：构建 dist/QuantumultX.conf
+├── rewrite-local.txt       # 个人追加重写（[rewrite_remote] 语法）
+├── policy-local.txt        # 个人追加策略组（[policy] 语法）
+├── ads-sources.txt         # QX 广告分流上游
+├── lib/                    # 内部模块，不直接对外
+│   ├── dependencies.py     # 重写内文 URL 改写规则
+│   ├── section_inject.py   # 通用段注入器
+│   ├── notify.py           # 邮件通知
+│   ├── convert_ads.py      # AdGuard→QX 广告域名转换
+│   └── prune_assets.py     # 陈旧镜像清理
+├── tests/                  # 单元测试
 ├── assets/
 │   ├── filter/      # 已启用的分流
 │   ├── rewrite/     # 已启用的重写
 │   └── script/      # 重写依赖、任务、资源解析器
-└── SOURCES.md       # 自动生成：文件 → 原地址 → SHA-256
+├── dist/QuantumultX.conf
+├── SOURCES.md       # 自动生成：文件 → 原地址 → SHA-256 + 未能镜像清单
+└── .cache/          # 本地 HTTP 缓存，不提交
 ```
 
-目录只按用途分三级，不按来源另建文件夹；同名文件使用原 URL 的短哈希消歧。`SOURCES.md` 在每次构建时重新生成，只列出本次成功镜像并引用的文件。
+目录只按用途分三级，不按来源另建文件夹；同名文件使用原 URL 的短哈希消歧。
+
+工作流在构建前会先跑 `tests/`（43 个用例），失败则不构建。
+
+## 个人追加机制
+
+底包是只读上游，无法直接修改。本流水线提供两个追加入口，在**镜像之前**注入，因此其中的资源与他人条目走完全相同的处理路径：
+
+| 文件 | 注入位置 | 语法 |
+|---|---|---|
+| `rewrite-local.txt` | `[rewrite_remote]` 段尾 | `<conf URL>, tag=..., img-url=..., enabled=true` |
+| `policy-local.txt` | `[policy]` 段尾 | `url-latency-benchmark=..., server-tag-regex=..., img-url=...` |
+
+两者都由 `section_inject.py` 统一处理：定位段头、在上游条目之后、下一个段头之前插入。空文件即不追加。
+
+## 失败处理（fail closed）
+
+- 单条依赖下载失败 → 保留上游地址并记入 `SOURCES.md` 的「未能镜像」清单
+- **失败总数超过 8 个且占比超过 8% → 构建失败，拒绝发布**（阈值可用 `QX_MAX_FAILED` / `QX_MAX_FAILED_RATIO` 覆盖）
+- 底包缺失、过小、缺 `[general]`、`[general]` 之前存在活动内容 → 立即失败
+- 这样避免「构建报成功、客户端却有一半规则指向不可达地址」
+
+## 缓存与体积控制
+
+- `download()` 使用 `ETag` / `Last-Modified` 做条件请求，命中 304 时直接读本地副本；缓存存于 `.cache/`（已 gitignore）
+- JS 脚本**不做**内文 URL 改写：脚本正文是代码，同形状字符串可能是无关字面量，改写会破坏脚本
+- `prune_assets.py --days 30`：构建后清理既未被当前配置引用、又超过 30 天未更新的镜像文件，避免仓库无限增长
 
 ## QX 广告分流上游
 
@@ -26,14 +64,13 @@ Quantumult/
 
 ## 邮件通知
 
-工作流构建及发布完成后（成功或失败均会尝试发送），使用仓库已有的 Actions Secrets：`SMTP_USER`、`SMTP_PASS`、`SMTP_TO`，通过 163 SMTP 发送结果、镜像统计和运行记录链接。未设置 Secrets 时跳过通知；邮件发送失败会在 Actions 日志中报错，但不会把已成功的构建改判为失败。统计中的“下载失败”表示该资源保留了原上游链接，不代表本次 Actions 必然失败。
+工作流构建及发布完成后（成功或失败均会尝试发送），使用仓库已有的 Actions Secrets：`SMTP_USER`、`SMTP_PASS`、`SMTP_TO`，通过 163 SMTP 发送结果、镜像统计、**本次触发提交的完整说明**和运行记录链接。提交说明经 GitHub API 读取，读取失败时降级为「未能读取提交说明」，不影响通知发送。
 
 ## 注意
 
-- 仅镜像已启用规则及可识别的静态功能依赖；不镜像图标、测速地址、证书、节点订阅或带凭证 URL。重写 JS 运行时动态请求、混淆代码里的隐藏依赖无法仅靠静态解析保证穷尽。下载失败保留原地址并告警，不能把部分成功宣称为全部镜像完成。
-- HTTPS URL 若带查询参数或疑似凭证路径则跳过镜像，避免私密链接出现在公开仓库。请不要把私人节点订阅添加到公开底包。
-- 镜像文件保留旧版本已有的文件名，避免 QX 客户端短时间内引用失效；上游删除的项目不会出现在新配置中，但旧镜像文件暂不自动删除。
-- 已镜像的重写内部脚本 URL 会指向本仓库；未镜像成功的仍依赖上游，MITM 的效果与安全性仍取决于规则内容。首次导入前请备份 QX 当前配置。
-- 本目录不复用 `qx-config-sync` 代码。当前尚未设计个人增量覆盖机制；你明确指定具体改动后再加，避免擅改底包。
+- 仅镜像已启用规则及可识别的静态功能依赖；不镜像图标、测速地址、证书、节点订阅或带凭证 URL。重写 JS 运行时动态请求、混淆代码里的隐藏依赖无法仅靠静态解析保证穷尽。
+- HTTPS URL 若带查询参数或疑似凭证路径则跳过镜像；`?raw=true` 一类无害展示参数放行。
+- 镜像文件保留旧版本已有的文件名，避免 QX 客户端短时间内引用失效；上游删除的项目不会出现在新配置中，超过保留窗口的旧文件由 `prune_assets.py` 清理。
+- 已镜像的重写内部脚本 URL 会指向本仓库；未镜像成功的仍依赖上游。首次导入前请备份 QX 当前配置。
 
-本地运行：`python3 Quantumult/build.py`。测试：`python3 -m unittest discover -s Quantumult -p 'test_*.py' -v`。`--base-file` 可使用本地底包做离线测试。
+本地运行：`python3 Quantumult/build.py`。清理：`python3 Quantumult/lib/prune_assets.py --days 30 --dry-run`。测试：`python3 -m unittest discover -s Quantumult/tests -t Quantumult/tests -p 'test_*.py' -v`。`--base-file` 可使用本地底包做离线测试，`--no-cache` 跳过缓存。

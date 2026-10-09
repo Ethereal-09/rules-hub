@@ -17,7 +17,7 @@ on:
       - "**/my-blacklist.txt"
       - "**/my-whitelist.txt"
       - "**/merge.py"
-      - "Quantumult/convert_ads.py"
+      - "Quantumult/lib/convert_ads.py"
       - "Quantumult/ads-sources.txt"
       - ".github/workflows/merge.yml"
 
@@ -83,7 +83,7 @@ jobs:
 
       - name: Convert AdGuard domains to QX ads
         if: matrix.dir == 'adguard'
-        run: python3 Quantumult/convert_ads.py
+        run: python3 Quantumult/lib/convert_ads.py
 
       - name: Commit & push if changed
         run: |
@@ -112,7 +112,7 @@ jobs:
             git pull --ff-only origin main || git pull --rebase --autostash origin main
             ( cd "${{ matrix.dir }}" && python3 merge.py )
             if [ "${{ matrix.dir }}" = "adguard" ]; then
-              python3 Quantumult/convert_ads.py
+              python3 Quantumult/lib/convert_ads.py
             fi
             git add "${{ matrix.dir }}/dist/" README.md
             if [ "${{ matrix.dir }}" = "adguard" ]; then

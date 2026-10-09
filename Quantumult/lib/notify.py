@@ -1,21 +1,59 @@
 #!/usr/bin/env python3
 """Email a concise Quantumult X build/publish result via existing SMTP secrets."""
+import json
 import os
 from pathlib import Path
 import re
 import smtplib
 from datetime import datetime, timedelta, timezone
 from email.message import EmailMessage
+import urllib.request
 
 
-def make_message(status, manifest, repo, run_id, revision):
+def fetch_commit_note(repo, revision, token):
+    """Return (subject, body_lines) of the triggering commit, or None."""
+    if not (repo and revision and token):
+        return None
+    url = f"https://api.github.com/repos/{repo}/commits/{revision}"
+    req = urllib.request.Request(url, headers={
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "rules-hub-notify",
+    })
+    try:
+        with urllib.request.urlopen(req, timeout=20) as r:
+            data = json.load(r)
+    except Exception as exc:
+        print(f"读取提交说明失败（忽略）：{exc}")
+        return None
+    message = (data.get("commit") or {}).get("message", "")
+    if not message:
+        return None
+    parts = [ln.strip() for ln in message.splitlines()]
+    subject = parts[0] if parts else ""
+    body = [ln for ln in parts[1:] if ln]
+    return subject, body
+
+
+def make_message(status, manifest, repo, run_id, revision, commit_note=None):
     state = "成功" if status == "success" else "失败"
     now = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d %H:%M")
     source = re.search(r"本次：分流 (\d+)、重写 (\d+)、脚本引用 (\d+)；失败 (\d+)、跳过 (\d+)", manifest)
     lines = [f"Quantumult X 构建与发布：{state}", f"北京时间：{now}",
              f"仓库：{repo}", f"运行记录：https://github.com/{repo}/actions/runs/{run_id}",
              f"触发提交：{revision[:12]}"]
+    if commit_note:
+        subject, body = commit_note
+        lines.append("")
+        lines.append("本次改动：")
+        if subject:
+            lines.append(f"  {subject}")
+        for ln in body:
+            lines.append(f"  {re.sub(r'^[-*] ', '', ln)}")
+    else:
+        lines.append("本次改动：未能读取提交说明")
     if status == "success":
+        lines.append("")
         if source:
             lines.append("本次镜像：分流 {}、重写 {}、脚本引用 {}；下载失败 {}、跳过 {}".format(*source.groups()))
         lines.extend(["", "配置地址：", f"https://raw.githubusercontent.com/{repo}/main/Quantumult/dist/QuantumultX.conf",
@@ -36,13 +74,15 @@ def main():
     repo = os.environ.get("GITHUB_REPOSITORY", "Ethereal-09/rules-hub")
     run_id = os.environ.get("GITHUB_RUN_ID", "")
     revision = os.environ.get("GITHUB_SHA", "")
-    path = Path("Quantumult/SOURCES.md")
+    token = os.environ.get("GITHUB_TOKEN", "")
+    note = fetch_commit_note(repo, revision, token)
+    path = Path(__file__).resolve().parents[2] / "Quantumult" / "SOURCES.md"
     manifest = path.read_text(encoding="utf-8") if path.exists() else ""
     message = EmailMessage()
     message["Subject"] = f"rules-hub Quantumult X {'✅ 构建成功' if status == 'success' else '❌ 构建失败'}"
     message["From"] = user
     message["To"] = recipient
-    message.set_content(make_message(status, manifest, repo, run_id, revision))
+    message.set_content(make_message(status, manifest, repo, run_id, revision, note))
     with smtplib.SMTP_SSL("smtp.163.com", 465, timeout=30) as server:
         server.login(user, password)
         server.send_message(message)
