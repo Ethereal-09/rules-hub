@@ -14,8 +14,10 @@ import urllib.parse
 import urllib.request
 
 from dependencies import rewrite_profile, rewrite_resource, is_supported
+from local_rules import load_local_rules, inject_local_rules
 
 ROOT = Path(__file__).resolve().parent
+LOCAL_RULES = ROOT / "rewrite-local.txt"
 BASE_URL = "https://ddgksf2013.top/Profile/QuantumultX.conf"
 REPO = os.environ.get("GITHUB_REPOSITORY", "Ethereal-09/rules-hub")
 RAW = f"https://raw.githubusercontent.com/{REPO}/main/Quantumult/assets"
@@ -79,11 +81,16 @@ def replace_preamble(text):
     return header + text[match.start():]
 
 
-def process(text, fetch, assets, sources=None):
+def process(text, fetch, assets, sources=None, local_rules=None):
     if sources is None:
         sources = {}
+    if local_rules is None:
+        local_rules = []
     if not re.search(r"(?im)^\s*\[general\]\s*$", text):
         raise ValueError("base is not a Quantumult X profile: missing [general]")
+    # Personal rewrites are appended to [rewrite_local] before any URL is mirrored,
+    # so their script URLs take the exact same mirroring path as upstream rules.
+    text = inject_local_rules(text, local_rules, lambda rule: rule)
     lines = text.splitlines(keepends=True)
     section = ""
     count = {"filter": 0, "rewrite": 0, "script": 0, "failed": 0, "skipped": 0}
@@ -171,7 +178,10 @@ def main():
     text = base.decode("utf-8-sig")
     assets = {}
     sources = {}
-    output, stats = process(text, download, assets, sources)
+    local_rules = load_local_rules(LOCAL_RULES)
+    if local_rules:
+        print(f"Pers: 追加重写 {len(local_rules)} 条（rewrite-local.txt）")
+    output, stats = process(text, download, assets, sources, local_rules)
     # Only write the new profile after the base is valid and every successful
     # resource has been staged. Old assets stay available for old QX imports.
     for relative, blob in assets.items():

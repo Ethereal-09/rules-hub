@@ -1,0 +1,29 @@
+# Quantumult X 追加重写规则（[rewrite_remote] 引用格式）
+#
+# 每行一条，与底包写法一致：
+#   <conf URL>, tag=<标签>, img-url=<图标>, update-interval=86400, opt-parser=false, enabled=true
+#
+# 本文件为「引用」，不是本地规则正文。build.py 会把这里列出的 conf 下载后
+# 镜像到本仓库 assets/rewrite/，并把配置里的 URL 改写为本仓库 Raw 地址。
+#
+# 底包已引用的不在此重复（CaiYunAds / GoofishAds / NeteaseAds / WeiboAds / YoutubeAds）。
+# 图标取自底包同源的 Koolson/Qure IconSet/mini。
+
+# ======= 广告净化（补充） ======= #
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/Applet.conf, tag=微信小程序去广告@ddgksf2013, img-url=https://github.com/Koolson/Qure/raw/master/IconSet/mini/WeChat.png, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/BiliBiliComicsAds.conf, tag=哔哩哔哩漫画净化@ddgksf2013, img-url=https://github.com/Koolson/Qure/raw/master/IconSet/mini/bilibili.png, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/BingSimplify.conf, tag=Bing首页简化@ddgksf2013, img-url=https://github.com/Koolson/Qure/raw/master/IconSet/mini/Google_Search.png, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/CainiaoAds.conf, tag=菜鸟净化@ddgksf2013, img-url=https://github.com/Koolson/Qure/raw/master/IconSet/mini/Taobao.png, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/CheLaiLeAds.conf, tag=车来了净化@ddgksf2013, img-url=https://github.com/Koolson/Qure/raw/master/IconSet/mini/Daily.png, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/ChinaUnicomAds.conf, tag=中国联通净化@ddgksf2013, img-url=https://github.com/Koolson/Qure/raw/master/IconSet/mini/China_Unicom.png, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/FakeiOSAds.conf, tag=IOS伪装影视APP净化@ddgksf2013, img-url=https://github.com/Koolson/Qure/raw/master/IconSet/mini/Apple.png, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/KeepAds.conf, tag=Keep应用净化@ddgksf2013, img-url=https://github.com/Koolson/Qure/raw/master/IconSet/mini/Apple_Fitness.png, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/MoJiWeatherAds.conf, tag=墨迹天气净化@ddgksf2013, img-url=https://github.com/Koolson/Qure/raw/master/IconSet/mini/China.png, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/NeteaseMailAds.conf, tag=网易邮箱大师净化@ddgksf2013, img-url=https://github.com/Koolson/Qure/raw/master/IconSet/mini/Mail.png, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/QiShuiMusicAds.conf, tag=汽水音乐净化@ddgksf2013, img-url=https://github.com/Koolson/Qure/raw/master/IconSet/mini/Music.png, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/RedditAds.conf, tag=Reddit增强@ddgksf2013, img-url=https://github.com/Koolson/Qure/raw/master/IconSet/mini/AdWhite.png, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/SmzdmAds.conf, tag=什么值得买净化@ddgksf2013, img-url=https://github.com/Koolson/Qure/raw/master/IconSet/mini/Taobao.png, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/TaoPiaoPiaoAds.conf, tag=淘票票净化@ddgksf2013, img-url=https://github.com/Koolson/Qure/raw/master/IconSet/mini/Taobao.png, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/TieBaAds.conf, tag=百度贴吧净化@ddgksf2013, img-url=https://github.com/Koolson/Qure/raw/master/IconSet/mini/Baidu_Cloud.png, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/XiaoYuZhouAds.conf, tag=小宇宙FM去广告@ddgksf2013, img-url=https://github.com/Koolson/Qure/raw/master/IconSet/mini/Music_Enhance.png, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/Ximalaya.conf, tag=喜马拉雅净化@ddgksf2013, img-url=https://github.com/Koolson/Qure/raw/master/IconSet/mini/Music.png, update-interval=86400, opt-parser=false, enabled=true
