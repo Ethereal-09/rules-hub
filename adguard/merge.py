@@ -30,6 +30,8 @@ OUT_WHITE = os.path.join(OUT_DIR, "adguard-white.txt")
 UA = "Mozilla/5.0 (compatible; RulesHubBot/1.0)"
 TIMEOUT = 60
 RETRY = 3
+REPO = os.environ.get("GITHUB_REPOSITORY", "Ethereal-09/rules-hub")
+REPO_URL = f"https://github.com/{REPO}"
 MAX_SOURCE_BYTES = 32 * 1024 * 1024
 MIN_BLACK_RULES = 1000
 MIN_WHITE_RULES = 10
@@ -139,9 +141,18 @@ def parse_bare(path):
 def file_header(title, ts, n, extra=""):
     h = [
         f"! Title: {title}",
+        f"! Homepage: {REPO_URL}",
         f"! Last modified: {ts}",
         f"! 规则数: {n}",
-        "! 本文件由 GitHub Actions 自动生成，请勿手动修改",
+        "!",
+        "! 本文件由 GitHub Actions 自动生成，每 8 小时更新，请勿手动修改。",
+        "! 合并自多个公开上游规则，版权归各上游作者所有。",
+        f"! 上游来源清单：{REPO_URL}/blob/main/SOURCES.md",
+        "!",
+        "! 免责声明：本规则库仅供个人学习与研究使用，按「现状」提供，",
+        "!           不附带任何明示或暗示的担保。因使用本规则导致的任何",
+        "!           直接或间接损失，由使用者自行承担。请自行评估风险，",
+        "!           导入前备份现有配置。",
     ]
     if extra:
         h.append(extra)

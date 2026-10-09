@@ -7,8 +7,10 @@ and its subdomains; ambiguous whitelist syntax is reported, never guessed.
 from collections import Counter
 from pathlib import Path
 import argparse
+import os
 import re
 import urllib.request
+from datetime import datetime, timedelta, timezone
 
 SOURCE_FILE = Path(__file__).resolve().parents[1] / "ads-sources.txt"   # Quantumult/ads-sources.txt
 SOURCE_MAX_BYTES = 20 * 1024 * 1024
@@ -19,6 +21,30 @@ DOMAIN = r"(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z](?:[a-z0-9-]{0,61}[a-
 PLAIN = re.compile(r"^\|\|(" + DOMAIN + r")\^$", re.I)
 IMPORTANT = re.compile(r"^\|\|(" + DOMAIN + r")\^\$important$", re.I)
 BARE = re.compile(r"^(" + DOMAIN + r")$", re.I)
+
+
+def ad_list_header(count):
+    """Comment header shared by every generated QX ad list."""
+    repo = os.environ.get("GITHUB_REPOSITORY", "Ethereal-09/rules-hub")
+    url = f"https://github.com/{repo}"
+    ts = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S")
+    return "\n".join([
+        "# Title: Quantumult X 广告分流",
+        f"# Homepage: {url}",
+        f"# Last modified: {ts}",
+        f"# 规则数: {count:,}",
+        "#",
+        "# 本文件由 GitHub Actions 自动生成，请勿手动修改。",
+        "# 由 AdGuard 纯域名拦截转换而来，并与 ads-sources.txt 的 QX 原生上游合并去重。",
+        "# 仅保留 HOST-SUFFIX reject 语义；白名单只用于排除候选，不生成 DIRECT。",
+        f"# 上游来源清单：{url}/blob/main/SOURCES.md",
+        "#",
+        "# 免责声明：本规则库仅供个人学习与研究使用，按「现状」提供，",
+        "#           不附带任何明示或暗示的担保。因使用本规则导致的任何",
+        "#           直接或间接损失，由使用者自行承担。请自行评估风险，",
+        "#           导入前备份现有配置。",
+        "",
+    ])
 
 
 def parse_domain(line):
@@ -160,7 +186,7 @@ def main():
     rules, excluded_after_merge = filter_qx_allowlist(rules, white)
     stats["source_allow_excluded"] = excluded_after_merge
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    content = "# Quantumult X ad-domain rules: AdGuard conversion + native QX upstream\n# Sources: Quantumult/ads-sources.txt; only HOST-SUFFIX reject rules; deduped.\n" + "\n".join(rules) + "\n"
+    content = ad_list_header(len(rules)) + "\n".join(rules) + "\n"
     temporary = args.output.with_name(args.output.name + ".tmp")
     temporary.write_text(content, encoding="utf-8")
     temporary.replace(args.output)

@@ -8,7 +8,7 @@
 
 <br>
 
-> 个人自用规则合集。AdGuard Home 输出为 DNS 专用域名规则；其他平台各自构建订阅。
+> 个人自用规则合集。把多个公开上游源合并去重，整理成各平台可直接订阅的格式。
 > 规则内容均由上游作者维护，本仓库只做合并与格式转换，不做任何规则审查。
 > 各平台的源、黑白名单都可以按自己的需求随意增删。
 
@@ -18,11 +18,11 @@
 [![Platform](https://img.shields.io/badge/平台-AdGuard_Home-brightgreen?style=for-the-badge&logo=adguard&logoColor=white)](https://github.com/Ethereal-09/rules-hub)
 [![Update](https://img.shields.io/badge/更新-每_8_小时-orange?style=for-the-badge&logo=clockify&logoColor=white)](https://github.com/Ethereal-09/rules-hub/actions)
 
-[![Blacklist](https://img.shields.io/badge/黑名单-见下表-blue?style=flat-square&logo=adblock&logoColor=white)](#-订阅地址)
-[![Whitelist](https://img.shields.io/badge/白名单-见下表-green?style=flat-square&logo=checkmarx&logoColor=white)](#-订阅地址)
+[![Blacklist](https://img.shields.io/badge/黑名单-220k+-blue?style=flat-square&logo=adblock&logoColor=white)](#-订阅地址)
+[![Whitelist](https://img.shields.io/badge/白名单-15k+-green?style=flat-square&logo=checkmarx&logoColor=white)](#-订阅地址)
 [![Sources](https://img.shields.io/badge/上游源-8-purple?style=flat-square&logo=stackshare&logoColor=white)](#-上游源)
 
-<sub>上次更新：2026-10-10 03:48:46 </sub>
+<sub>上次更新：—</sub>
 
 </div>
 
@@ -34,20 +34,10 @@
 
 | 类型 | 规则数 | 原始链接 | 加速 |
 |:---|:---:|:---:|:---:|
-| **黑名单** · 拦截 | 258,653 | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) |
-| **白名单** · 放行 | 32 | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) |
+| **黑名单** · 拦截 | — | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) |
+| **白名单** · 放行 | — | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) |
 
-> **提示**：黑名单仅保留 AGH DNS 域名拦截；白名单暂保留来源中未筛选的例外规则（可能包含非 DNS 语法），并不保证每条在 AGH 中生效。直连被墙时可用加速链接 · [STATS.md](adguard/dist/STATS.md)
-
----
-
-### [![Quantumult X](https://img.shields.io/badge/Quantumult_X-F97316?style=flat-square&logo=apple&logoColor=white)](Quantumult/)
-
-| 类型 | 原始链接 | 加速 |
-|:---|:---:|:---:|
-| **完整配置** · 懒人订阅 | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/dist/QuantumultX.conf) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/dist/QuantumultX.conf) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/dist/QuantumultX.conf) |
-
-> [QX 懒人配置使用教程](Quantumult/%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.md)
+> **提示**：直连被墙时用加速链接 · 详细统计见 [STATS.md](adguard/dist/STATS.md)
 
 ---
 
@@ -58,7 +48,7 @@
 | ![adguard](https://img.shields.io/badge/-68BC71?style=flat-square&logo=adguard&logoColor=white) **AdGuard Home** | [`adguard/`](adguard/) | **已完成** |
 | ![clash](https://img.shields.io/badge/-3B82F6?style=flat-square&logo=clash&logoColor=white) **mihomo / Clash** | `mihomo/` | 计划中 |
 | ![surge](https://img.shields.io/badge/-E879F9?style=flat-square&logo=surge&logoColor=white) **Surge** | `surge/` | 计划中 |
-| ![qx](https://img.shields.io/badge/-F97316?style=flat-square&logo=apple&logoColor=white) **Quantumult X · 完整配置** | [`Quantumult/`](Quantumult/) | **已完成，自动更新** |
+| ![qx](https://img.shields.io/badge/-F97316?style=flat-square&logo=apple&logoColor=white) **Quantumult X** | `qx/` | 计划中 |
 | ![dnsmasq](https://img.shields.io/badge/-6366F1?style=flat-square&logo=linux&logoColor=white) **dnsmasq** | `dnsmasq/` | 计划中 |
 | ![pihole](https://img.shields.io/badge/-F43F5E?style=flat-square&logo=pihole&logoColor=white) **Pi-hole / hosts** | `pihole/` | 计划中 |
 | ![smartdns](https://img.shields.io/badge/-14B8A6?style=flat-square&logo=serverfault&logoColor=white) **SmartDNS** | `smartdns/` | 计划中 |
@@ -101,11 +91,7 @@ rules-hub/
 │   ├── my-whitelist.txt      # 我的白名单（一行一个裸域名）
 │   ├── merge.py              # 合并脚本
 │   └── dist/                 # 输出（自动生成，勿手改）
-├── Quantumult/               # QX 完整配置流水线及已启用资源
-│   ├── dist/QuantumultX.conf   # 可直接导入的配置
-│   ├── assets/                # 分流 / 重写 / 脚本镜像
-│   └── SOURCES.md             # 镜像来源
-└── .github/workflows/        # 自动合并与 QX 构建工作流
+└── .github/workflows/        # 自动合并工作流
 ```
 
 ---
@@ -125,62 +111,33 @@ rules-hub/
 
 ## 上游源
 
-<details>
-<summary><b>AdGuard Home · 黑名单源（8）</b></summary>
-<br>
+完整的来源清单、授权说明与免责声明见 **[SOURCES.md](SOURCES.md)**。
 
-| 源 | 分类 |
+### AdGuard Home（黑名单 8 源）
+
+| 源 | 说明 |
 |:---|:---|
-| [damengzhu/banad](https://github.com/damengzhu/banad) | 接口广告拦截 · [规则](https://raw.githubusercontent.com/damengzhu/banad/main/jiekouAD.txt) |
-| [TG-Twilight/AWAvenue-Ads-Rule](https://github.com/TG-Twilight/AWAvenue-Ads-Rule) | 广告拦截 · [规则](https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/AWAvenue-Ads-Rule.txt) |
-| [hagezi/dns-blocklists](https://github.com/hagezi/dns-blocklists) | Pro mini · [规则](https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.mini.txt) |
-| [oisd.nl](https://oisd.nl) | Basic · [规则](https://abp.oisd.nl/basic) |
-| [Cats-Team/AdRules](https://github.com/Cats-Team/AdRules) | DNS 广告拦截 · [规则](https://raw.githubusercontent.com/Cats-Team/AdRules/main/dns.txt) |
-| [AdGuard MobileFilter](https://github.com/AdguardTeam/AdguardFilters) | 移动端广告源 · [规则](https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt) |
-| [rssvcn/qy-Ads-Rule](https://github.com/rssvcn/qy-Ads-Rule) | 广告拦截 · [规则](https://raw.githubusercontent.com/rssvcn/qy-Ads-Rule/main/black.txt) |
-| [2771936993/HG](https://github.com/2771936993/HG) | 广告拦截 · [规则](https://raw.githubusercontent.com/2771936993/HG/main/hg1.txt) |
+| damengzhu/banad · jiekouAD | 国内接口广告 |
+| TG-Twilight/AWAvenue-Ads-Rule | 广告 / 隐私 / 不受欢迎 |
+| hagezi/dns-blocklists · pro.mini | 综合 DNS 拦截（精简专业版） |
+| oisd.nl · basic | 大而全 DNS 拦截（基础版） |
+| Cats-Team/AdRules · dns.txt | 中文区广告与追踪 |
+| AdguardTeam/AdFilters · adservers | 移动端广告服务器 |
+| rssvcn/qy-Ads-Rule · black | 中文广告 |
+| 2771936993/HG · hg1 | 综合拦截 |
 
-</details>
+白名单不设独立上游，由黑源中的 `@@` 例外与 `my-whitelist.txt` 生成。
 
-<details>
-<summary><b>AdGuard Home · 白名单上游（0）</b></summary>
-<br>
+### Quantumult X
 
-目前未配置白名单上游。白名单文件由黑源中的 `@@` 例外和 `my-whitelist.txt` 生成；并非全部规则都适用于 AGH DNS。
+底包 [ddgksf2013.top](https://ddgksf2013.top/Profile/QuantumultX.conf)，
+追加重写取自 [ddgksf2013/Rewrite](https://github.com/ddgksf2013/Rewrite)，
+广告分流来自 [Cats-Team/AdRules](https://github.com/Cats-Team/AdRules) 与本仓库 AdGuard 黑名单转换。
 
-</details>
+---
 
-<details>
-<summary><b>Quantumult X · 底包与分流源</b></summary>
-<br>
-
-| 源 | 分类 |
-|:---|:---|
-| [ddgksf2013/Profile](https://ddgksf2013.top/Profile/QuantumultX.conf) | 完整 QX 配置底包 |
-| [ddgksf2013/Filter](https://github.com/ddgksf2013/Filter) | 自定义分流 |
-| [blackmatrix7/ios_rule_script](https://github.com/blackmatrix7/ios_rule_script/tree/master/rule/QuantumultX) | 已启用的分流规则 |
-| [VirgilClyne/GetSomeFries](https://github.com/VirgilClyne/GetSomeFries) | 中国 ASN 分流 |
-| [ConnersHua/RuleGo](https://github.com/ConnersHua/RuleGo) | 代理分流 |
-| [Cats-Team/AdRules](https://github.com/Cats-Team/AdRules) | 广告拦截分流 |
-
-</details>
-
-<details>
-<summary><b>Quantumult X · 重写与脚本源</b></summary>
-<br>
-
-| 源 | 分类 |
-|:---|:---|
-| [ddgksf2013/Rewrite](https://github.com/ddgksf2013/Rewrite) | 去广告与功能重写 |
-| [ddgksf2013/Scripts](https://github.com/ddgksf2013/Scripts) | 重写脚本 |
-| [ddgksf2013.top](https://ddgksf2013.top/) | 已启用的重写与脚本资源 |
-| [app2smile/rules](https://github.com/app2smile/rules) | 应用重写与脚本 |
-| [Maasea/sgmodule](https://github.com/Maasea/sgmodule) | 视频重写脚本 |
-| [chavyleung/scripts](https://github.com/chavyleung/scripts) | BoxJS 脚本 |
-| [KOP-XIAO/QuantumultX](https://github.com/KOP-XIAO/QuantumultX) | QX 资源解析器与任务脚本 |
-
-</details>
-
+> **免责声明**：本仓库为个人自用的规则合集，仅供学习与研究使用。
+> 所有规则按「现状」提供，不附带任何担保；使用后果由使用者自行承担。
 
 ---
 
