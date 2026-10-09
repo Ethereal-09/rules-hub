@@ -1,8 +1,8 @@
 /***************
 
 
-^https:\/\/pan\.baidu\.com\/api\/streaming\?app_id=\d+&type=M3U8_HQ_1080 url script-request-header https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/bdpan-unlock-bf824252a4199f67.js
-^https:\/\/pan\.baidu\.com\/rest\/.*\/membership\/user url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/bdpan-unlock-bf824252a4199f67.js
+^https:\/\/pan\.baidu\.com\/api\/streaming\?app_id=\d+&type=M3U8_HQ_1080 url script-request-header https://ddgksf2013.top/scripts/bdpan.unlock.js
+^https:\/\/pan\.baidu\.com\/rest\/.*\/membership\/user url script-response-body https://ddgksf2013.top/scripts/bdpan.unlock.js
 
 
 hostname = pan.baidu.com, afd.baidu.com

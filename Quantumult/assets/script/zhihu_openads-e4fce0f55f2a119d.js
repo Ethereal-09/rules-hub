@@ -19,7 +19,7 @@ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/zhe
 [rewrite_local]
 
 # ～ 知乎开屏（2023-02-04）@ddgksf2013
-^https?:\/\/api\.zhihu\.com\/commercial_api.*launch_v2 url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/zhihu_openads-776ecbba07187297.js
+^https?:\/\/api\.zhihu\.com\/commercial_api.*launch_v2 url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/zhihu_openads.js
 
 [mitm]
 

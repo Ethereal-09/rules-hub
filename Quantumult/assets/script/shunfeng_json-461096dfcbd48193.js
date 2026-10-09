@@ -7,7 +7,7 @@ author      ddgksf2013
 
 
 [rewrite_local]
-https://ccsp-egmas.sf-express.com/cx-app-base/base/app/ad/queryInfoFlow url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/shunfeng_json-d3c84109da75d611.js
+https://ccsp-egmas.sf-express.com/cx-app-base/base/app/ad/queryInfoFlow url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/shunfeng_json.js
 
 [mitm]
 hostname = ccsp-egmas.sf-express.com

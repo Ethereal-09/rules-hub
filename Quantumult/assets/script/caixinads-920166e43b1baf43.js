@@ -17,7 +17,7 @@ host, gg.caixin.com, direct
 [rewrite_local]
 
 # ～ 财新（2024-01-14）@ddgksf2013
-^https?:\/\/gg\.caixin\.com\/s\?z=caixin&op=1&c=3362 url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/caixinads-be6de45ac42949c5.js
+^https?:\/\/gg\.caixin\.com\/s\?z=caixin&op=1&c=3362 url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/caixinads.js
 
 [mitm]
 

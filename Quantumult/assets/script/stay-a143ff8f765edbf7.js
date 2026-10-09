@@ -13,7 +13,7 @@
 [rewrite_local]
 
 # ～ Stay（2022-10-17）@ddgksf2013
-^https?:\/\/api\.shenyin\.name\/stay-fork\/browse\/featured$ url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/stay-125b873c3c286bf1.js
+^https?:\/\/api\.shenyin\.name\/stay-fork\/browse\/featured$ url script-response-body https://github.com/ddgksf2013/Scripts/raw/master/stay.js
 
 [mitm]
 

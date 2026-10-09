@@ -16,10 +16,10 @@ https://t.me/ddgksf2021
 ^https?:\/\/api\.zhihu\.com\/ab\/api\/v1\/products\/zhihu\/platforms\/ios\/config url reject-200
 
 # > 知乎_我的页面开通会员CARD@ddgksf2013
-^https?:\/\/api\.zhihu\.com\/unlimited/go/my_card url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/zhihu-ads-3f17ae3cd0346511.js
+^https?:\/\/api\.zhihu\.com\/unlimited/go/my_card url script-response-body https://ddgksf2013.top/scripts/zhihu.ads.js
 
 # > 知乎_开屏广告@ddgksf2013
-^https?:\/\/api\.zhihu\.com\/commercial_api.*launch_v2 url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/zhihu-ads-3f17ae3cd0346511.js
+^https?:\/\/api\.zhihu\.com\/commercial_api.*launch_v2 url script-response-body https://ddgksf2013.top/scripts/zhihu.ads.js
 
 # > 知乎_品牌提问广告@blackmatrix7
 ^https?:\/\/api\.zhihu\.com\/brand\/question\/\d+/card\? url reject-dict
@@ -57,62 +57,62 @@ https://t.me/ddgksf2021
 ^https?:\/\/.*zhihu\.com\/ad-style-service\/request url reject
 
 # > 知乎_用户信息@ddgksf2013
-^https?:\/\/api\.zhihu\.com\/people/self$ url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/zhihu-ads-3f17ae3cd0346511.js
+^https?:\/\/api\.zhihu\.com\/people/self$ url script-response-body https://ddgksf2013.top/scripts/zhihu.ads.js
 
 # > 知乎_文章页去除底部广告@blackmatrix7
 ^https?:\/\/www\.zhihu\.com\/api\/v\d\/articles\/\d+\/recommendation url reject-dict
 
 # > 知乎_推荐信息流去广告@ddgksf2013
-^https?:\/\/api\.zhihu\.com\/topstory\/recommend url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/zhihu-ads-3f17ae3cd0346511.js
+^https?:\/\/api\.zhihu\.com\/topstory\/recommend url script-response-body https://ddgksf2013.top/scripts/zhihu.ads.js
 
 # > 知乎_搜索页去除推广@ddgksf2013
-^https?:\/\/api\.zhihu\.com\/search\/preset_words url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/zhihu-ads-3f17ae3cd0346511.js
+^https?:\/\/api\.zhihu\.com\/search\/preset_words url script-response-body https://ddgksf2013.top/scripts/zhihu.ads.js
 
 # > 知乎_猜你想搜下面条目['猜你想搜'四个字无法去除]@ddgksf2013
-^https?:\/\/api\.zhihu\.com\/search\/recommend_query url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/zhihu-ads-3f17ae3cd0346511.js
+^https?:\/\/api\.zhihu\.com\/search\/recommend_query url script-response-body https://ddgksf2013.top/scripts/zhihu.ads.js
 
 # > 知乎_删除会员页面会员购@ddgksf2013
-^https?:\/\/api\.zhihu\.com\/bazaar\/vip_tab\/tabs url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/zhihu-ads-3f17ae3cd0346511.js
+^https?:\/\/api\.zhihu\.com\/bazaar\/vip_tab\/tabs url script-response-body https://ddgksf2013.top/scripts/zhihu.ads.js
 
 # > 知乎_热榜页去除广告@ddgksf2013
-^https?:\/\/api\.zhihu\.com\/v2\/topstory\/hot-lists url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/zhihu-ads-3f17ae3cd0346511.js
+^https?:\/\/api\.zhihu\.com\/v2\/topstory\/hot-lists url script-response-body https://ddgksf2013.top/scripts/zhihu.ads.js
 
 # > 知乎_我的页面下方内容@ddgksf2013
 ^https?:\/\/api\.zhihu\.com\/api\/v4\/profile\/cards url reject-dict
 
 # > 知乎_会员页面顶部处理@ddgksf2013
-^https?:\/\/api\.zhihu\.com\/bazaar\/vip_tab\/header url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/zhihu-ads-3f17ae3cd0346511.js
+^https?:\/\/api\.zhihu\.com\/bazaar\/vip_tab\/header url script-response-body https://ddgksf2013.top/scripts/zhihu.ads.js
 
 # > 知乎_热榜页去除直播@ddgksf2013
 ^https?:\/\/api\.zhihu\.com\/drama\/hot-drama-list url reject
 
 # > 知乎_回答信息流去广告@ddgksf2013
-^https?:\/\/api\.zhihu\.com\/next-data url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/zhihu-ads-3f17ae3cd0346511.js
-^https?:\/\/api\.zhihu\.com\/next-render url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/zhihu-ads-3f17ae3cd0346511.js
+^https?:\/\/api\.zhihu\.com\/next-data url script-response-body https://ddgksf2013.top/scripts/zhihu.ads.js
+^https?:\/\/api\.zhihu\.com\/next-render url script-response-body https://ddgksf2013.top/scripts/zhihu.ads.js
 
 # > 知乎_回答页面顶部推广@ddgksf2013
 ^https?:\/\/www\.zhihu\.com\/api\/v4\/topics\/rank_list\/question\/\d+\/related url reject
 
 # > 知乎_问题回答列表@ddgksf2013
-^https?:\/\/api\.zhihu\.com\/(v4\/)?questions\/\d+\/feeds url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/zhihu-ads-3f17ae3cd0346511.js
+^https?:\/\/api\.zhihu\.com\/(v4\/)?questions\/\d+\/feeds url script-response-body https://ddgksf2013.top/scripts/zhihu.ads.js
 
 # > 知乎_回答内容优化@ddgksf2013
-^https?:\/\/www\.zhihu\.com\/appview\/v2\/answer\/ url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/zhihu-ads-3f17ae3cd0346511.js
+^https?:\/\/www\.zhihu\.com\/appview\/v2\/answer\/ url script-response-body https://ddgksf2013.top/scripts/zhihu.ads.js
 
 # > 知乎_会员页面购物处理@ddgksf2013
-^https?:\/\/api\.zhihu\.com\/bazaar\/vip_tab\/modules url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/zhihu-ads-3f17ae3cd0346511.js
+^https?:\/\/api\.zhihu\.com\/bazaar\/vip_tab\/modules url script-response-body https://ddgksf2013.top/scripts/zhihu.ads.js
 
 # > 知乎_修改用户盐值@blackmatrix7
-^https?:\/\/api\.zhihu\.com\/user-credit\/basis url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/zhihu-ads-3f17ae3cd0346511.js
+^https?:\/\/api\.zhihu\.com\/user-credit\/basis url script-response-body https://ddgksf2013.top/scripts/zhihu.ads.js
 
 # > 知乎_消息页@blackmatrix7
-^https?:\/\/api\.zhihu\.com\/notifications\/v3\/(message|timeline\/entry\/system_message) url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/zhihu-ads-3f17ae3cd0346511.js
+^https?:\/\/api\.zhihu\.com\/notifications\/v3\/(message|timeline\/entry\/system_message) url script-response-body https://ddgksf2013.top/scripts/zhihu.ads.js
 
 # > 知乎_首页右下角悬浮窗@blackmatrix7
 ^https?:\/\/api\.zhihu\.com\/commercial_api\/app_float_layer url reject
 
 # > 知乎_关注页面去除今日话题和为您推荐@ddgksf2013
-^https?:\/\/api\.zhihu\.com\/moments_v3 url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/zhihu-ads-3f17ae3cd0346511.js
+^https?:\/\/api\.zhihu\.com\/moments_v3 url script-response-body https://ddgksf2013.top/scripts/zhihu.ads.js
 
 # > 知乎_回答页面相关搜索词@ddgksf2013
 ^https?:\/\/www\.zhihu\.com\/api\/v4\/search\/related_queries\/answer\/ url reject-dict
@@ -130,7 +130,7 @@ https://t.me/ddgksf2021
 ^https?:\/\/.*zhihu.com\/(answers|articles)\/v\d url jsonjq-response-body '.third_business |= del(.related_queries, .ring)'
 
 # > 知乎_搜索发现@ddgksf2013
-https://api.zhihu.com/search/hot_search url script-response-body https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/Quantumult/assets/script/zhihu-ads-3f17ae3cd0346511.js
+https://api.zhihu.com/search/hot_search url script-response-body https://ddgksf2013.top/scripts/zhihu.ads.js
 
 [mitm] 
 
