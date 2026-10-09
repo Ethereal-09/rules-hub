@@ -1,6 +1,6 @@
 ! Title: AdGuard Home DNS 专用黑名单
 ! Homepage: https://github.com/Ethereal-09/rules-hub
-! Last modified: 2026-10-10 04:21:34
+! Last modified: 2026-10-10 04:23:01
 ! 规则数: 258653
 !
 ! 本文件由 GitHub Actions 自动生成，每 8 小时更新，请勿手动修改。
