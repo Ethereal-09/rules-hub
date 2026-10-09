@@ -3,5 +3,8 @@
 # 每行一条，与底包写法一致：
 #   url-latency-benchmark=<组名>, server-tag-regex=<正则>, check-interval=1200, tolerance=0, img-url=<图标>
 #
-# 空文件 = 不追加任何策略组（当前状态）。
+# 空文件 = 不追加任何策略组。
 # 需要新增区域组时按上面格式写入即可，build.py 会注入到底包 [policy] 段尾部。
+
+# ======= 其他节点（未被区域组覆盖的国家） ======= #
+url-latency-benchmark=其他节点, server-tag-regex=(?i)^.*(\bVN|\bAE|\bMY|\bUK|\bDE|\bTR|\bNG|UKR|UA|\bPAK)\d, check-interval=1200, tolerance=0, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png
