@@ -3,17 +3,5 @@
 # 每行一条，与底包写法一致：
 #   url-latency-benchmark=<组名>, server-tag-regex=<正则>, check-interval=1200, tolerance=0, img-url=<图标>
 #
-# 依据实际节点命名（国旗 + 区域代码 + 编号）编写，例如 🇻🇳 VN01 / 🇬🇧 UK01。
-# 正则只锁定各自的区域代码，互不抢夺；底包原有 5 个区域组不受影响。
-# 图标取自 Koolson/Qure IconSet/Color。
-
-# ======= 个人追加区域组 ======= #
-url-latency-benchmark=越南节点, server-tag-regex=(?i)^.*\bVN\d, check-interval=1200, tolerance=0, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/VN.png
-url-latency-benchmark=英国节点, server-tag-regex=(?i)^.*\bUK\d, check-interval=1200, tolerance=0, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/UK.png
-url-latency-benchmark=德国节点, server-tag-regex=(?i)^.*\bDE\d, check-interval=1200, tolerance=0, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/DE.png
-url-latency-benchmark=土耳其节点, server-tag-regex=(?i)^.*\bTR\d, check-interval=1200, tolerance=0, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Turkey.png
-url-latency-benchmark=阿联酋节点, server-tag-regex=(?i)^.*\bAE\d, check-interval=1200, tolerance=0, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Area.png
-url-latency-benchmark=马来节点, server-tag-regex=(?i)^.*\bMY\d, check-interval=1200, tolerance=0, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/MY.png
-url-latency-benchmark=尼日利亚节点, server-tag-regex=(?i)^.*\bNG\d, check-interval=1200, tolerance=0, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Africa_Map.png
-url-latency-benchmark=乌克兰节点, server-tag-regex=(?i)^.*(UKR|UA)\d, check-interval=1200, tolerance=0, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/UA.png
-url-latency-benchmark=巴基斯坦节点, server-tag-regex=(?i)^.*\bPAK\d, check-interval=1200, tolerance=0, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Asia_Map.png
+# 空文件 = 不追加任何策略组（当前状态）。
+# 需要新增区域组时按上面格式写入即可，build.py 会注入到底包 [policy] 段尾部。
