@@ -10,7 +10,7 @@ import argparse
 import re
 import urllib.request
 
-SOURCE_FILE = Path(__file__).with_name("ads-sources.txt")
+SOURCE_FILE = Path(__file__).resolve().parents[1] / "ads-sources.txt"   # Quantumult/ads-sources.txt
 SOURCE_MAX_BYTES = 20 * 1024 * 1024
 QX_SUFFIX = re.compile(r"^host-suffix\s*,\s*(" + r"(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?" + r")\s*,\s*reject$", re.I)
 
