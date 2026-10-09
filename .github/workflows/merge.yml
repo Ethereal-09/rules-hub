@@ -17,8 +17,10 @@ on:
       - "**/my-blacklist.txt"
       - "**/my-whitelist.txt"
       - "**/merge.py"
+      - "**/test_*.py"
       - "Quantumult/lib/convert_ads.py"
       - "Quantumult/ads-sources.txt"
+      - ".github/notify.py"
       - ".github/workflows/merge.yml"
 
 permissions:
@@ -127,22 +129,19 @@ jobs:
             exit 1
           fi
 
-      - name: Notify success (email)
-        if: success()
+      - name: Notify build result (email)
+        if: always()
         env:
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
           SMTP_TO: ${{ secrets.SMTP_TO }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_SHA: ${{ github.sha }}
-        run: python3 .github/notify.py "${{ matrix.dir }}" success
-
-      - name: Notify failure (email)
-        if: failure()
-        env:
-          SMTP_USER: ${{ secrets.SMTP_USER }}
-          SMTP_PASS: ${{ secrets.SMTP_PASS }}
-          SMTP_TO: ${{ secrets.SMTP_TO }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_SHA: ${{ github.sha }}
-        run: python3 .github/notify.py "${{ matrix.dir }}" failure
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ job.status }}" = "success" ]; then
+            python3 .github/notify.py "${{ matrix.dir }}" success
+          else
+            python3 .github/notify.py "${{ matrix.dir }}" failure
+          fi
