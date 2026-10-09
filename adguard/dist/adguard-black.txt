@@ -1,6 +1,6 @@
 ! Title: AdGuard Home DNS 专用黑名单
-! Last modified: 2026-10-09 22:44:38
-! 规则数: 258656
+! Last modified: 2026-10-10 03:39:20
+! 规则数: 258653
 ! 本文件由 GitHub Actions 自动生成，请勿手动修改
 
 ||amusingarmorycomment.com^
@@ -247586,6 +247586,7 @@
 ||errnewlog.umeng.com^
 ||lemon.gameley.com^
 ||wallpaper-1258344696.file.myqcloud.com^
+||cnc9.cc^
 ||mf39.cc^
 ||xzcds.60ssq.com^
 ||qingdao.53gv9.cn^
@@ -250051,7 +250052,6 @@
 ||api.jshwu.cn^
 ||api.kpgxb.com^
 ||api.ksport.io^
-||api.kuaishouzt.com^
 ||api.liuliangguo.com^
 ||api.look.360.cn^
 ||api.mapps.uve.weibo.com^
@@ -252459,7 +252459,6 @@
 ||gyyd.wpdpt.com^
 ||gz.adsl.cn^
 ||gz.ejnjyc.cn^
-||gz.file.myqcloud.com^
 ||gz.gzyunguo.com^
 ||gz360.tv^
 ||gzhxjiaoyu.com^
@@ -254553,7 +254552,6 @@
 ||mul1py.vip^
 ||mulm.6t.com^
 ||multi-az-ad.kuaishou.com^
-||multi-az-www-api.kuaishou.com^
 ||multimedia.tns-global.com^
 ||mum.hzchengdun.com^
 ||mus-nettech.youku.com^
@@ -255323,7 +255321,6 @@
 ||ppdaicdn.com^
 ||ppdn.bzszyy123.com^
 ||ppdzl.cn^
-||ppg.m.etoote.com^
 ||ppg.viviv.com^
 ||ppoga2512211151.gtxnf.com^
 ||ppqqzkn.com^

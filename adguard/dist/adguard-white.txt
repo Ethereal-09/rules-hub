@@ -1,5 +1,5 @@
 ! Title: AdGuard Home 白名单（未筛选混合规则）
-! Last modified: 2026-10-09 22:44:38
+! Last modified: 2026-10-10 03:39:20
 ! 规则数: 32
 ! 本文件由 GitHub Actions 自动生成，请勿手动修改
 

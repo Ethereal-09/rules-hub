@@ -27014,7 +27014,6 @@ HOST-SUFFIX,api.kochava.com,REJECT
 HOST-SUFFIX,api.kongogramado.com.br,REJECT
 HOST-SUFFIX,api.kpgxb.com,REJECT
 HOST-SUFFIX,api.ksport.io,REJECT
-HOST-SUFFIX,api.kuaishouzt.com,REJECT
 HOST-SUFFIX,api.kudaplox.com,REJECT
 HOST-SUFFIX,api.kwaizt.com,REJECT
 HOST-SUFFIX,api.laatus.com.br,REJECT
@@ -48146,6 +48145,7 @@ HOST-SUFFIX,cnbd1.appmobile.cn,REJECT
 HOST-SUFFIX,cnbnews.com,REJECT
 HOST-SUFFIX,cnbvnc.win,REJECT
 HOST-SUFFIX,cnc.multiax.com,REJECT
+HOST-SUFFIX,cnc9.cc,REJECT
 HOST-SUFFIX,cncnails.net,REJECT
 HOST-SUFFIX,cncpt-central.com,REJECT
 HOST-SUFFIX,cncpt.dk,REJECT
@@ -95170,7 +95170,6 @@ HOST-SUFFIX,gz.adsl.cn,REJECT
 HOST-SUFFIX,gz.apigw.tencentcs.com,REJECT
 HOST-SUFFIX,gz.budgingtusseh.qpon,REJECT
 HOST-SUFFIX,gz.ejnjyc.cn,REJECT
-HOST-SUFFIX,gz.file.myqcloud.com,REJECT
 HOST-SUFFIX,gz.gzyunguo.com,REJECT
 HOST-SUFFIX,gz360.tv,REJECT
 HOST-SUFFIX,gz93n2pkh.com,REJECT
@@ -141112,7 +141111,6 @@ HOST-SUFFIX,mulmhitch.cfd,REJECT
 HOST-SUFFIX,multi-az-ad.kuaishou.com,REJECT
 HOST-SUFFIX,multi-az-ulog.gifshow.com,REJECT
 HOST-SUFFIX,multi-az-ulog.ksapisrv.com,REJECT
-HOST-SUFFIX,multi-az-www-api.kuaishou.com,REJECT
 HOST-SUFFIX,multi-pixels.com,REJECT
 HOST-SUFFIX,multi.xnxx.com,REJECT
 HOST-SUFFIX,multibrandaffiliates.com,REJECT
@@ -158902,7 +158900,6 @@ HOST-SUFFIX,ppedzeazco.in,REJECT
 HOST-SUFFIX,ppeqetzfaepfc.space,REJECT
 HOST-SUFFIX,pperkvadtvtxk.online,REJECT
 HOST-SUFFIX,ppftj.freshcleantees.com,REJECT
-HOST-SUFFIX,ppg.m.etoote.com,REJECT
 HOST-SUFFIX,ppg.viviv.com,REJECT
 HOST-SUFFIX,ppgcmv.yamamotoyama.co.jp,REJECT
 HOST-SUFFIX,ppgdyq.ideenmitherz.de,REJECT

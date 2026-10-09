@@ -22,7 +22,7 @@
 [![Whitelist](https://img.shields.io/badge/白名单-见下表-green?style=flat-square&logo=checkmarx&logoColor=white)](#-订阅地址)
 [![Sources](https://img.shields.io/badge/上游源-8-purple?style=flat-square&logo=stackshare&logoColor=white)](#-上游源)
 
-<sub>上次更新：2026-10-09 22:44:38 </sub>
+<sub>上次更新：2026-10-10 03:39:20 </sub>
 
 </div>
 
@@ -34,7 +34,7 @@
 
 | 类型 | 规则数 | 原始链接 | 加速 |
 |:---|:---:|:---:|:---:|
-| **黑名单** · 拦截 | 258,656 | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) |
+| **黑名单** · 拦截 | 258,653 | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) |
 | **白名单** · 放行 | 32 | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) |
 
 > **提示**：黑名单仅保留 AGH DNS 域名拦截；白名单暂保留来源中未筛选的例外规则（可能包含非 DNS 语法），并不保证每条在 AGH 中生效。直连被墙时可用加速链接 · [STATS.md](adguard/dist/STATS.md)

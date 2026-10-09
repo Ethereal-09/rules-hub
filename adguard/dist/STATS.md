@@ -1,8 +1,8 @@
 # 合并统计
 
-- 生成时间：2026-10-09 22:44:38
+- 生成时间：2026-10-10 03:39:20
 - 上游源：8 个（成功 8，失败 0）
-- 黑名单规则：**258656** 条（去重 83844）
+- 黑名单规则：**258653** 条（去重 83844）
 - 白名单规则：**32** 条（去重 0）
 - 非 DNS 规则已跳过：3301 行（含注释/元数据）
 - 筛选范围：黑名单仅纯域名拦截（含 `$important`）；白名单保留白源全部非注释规则与黑源 `@@` 例外，仅去重，可能含非放行规则。
@@ -16,5 +16,5 @@
 | https://raw.githubusercontent.com/Cats-Team/AdRules/main/dns.txt | 199280 | 198834 | 0 | OK |
 | https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt | 1065 | 900 | 0 | OK |
 | https://raw.githubusercontent.com/rssvcn/qy-Ads-Rule/main/black.txt | 574 | 543 | 0 | OK |
-| https://raw.githubusercontent.com/2771936993/HG/main/hg1.txt | 13041 | 11783 | 0 | OK |
+| https://raw.githubusercontent.com/2771936993/HG/main/hg1.txt | 13038 | 11780 | 0 | OK |
 
