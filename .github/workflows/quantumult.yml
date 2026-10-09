@@ -8,6 +8,10 @@ on:
     paths:
       - "Quantumult/build.py"
       - "Quantumult/dependencies.py"
+      - "Quantumult/local_rules.py"
+      - "Quantumult/policy_rules.py"
+      - "Quantumult/rewrite-local.txt"
+      - "Quantumult/policy-local.txt"
       - "Quantumult/notify.py"
       - ".github/workflows/quantumult.yml"
 

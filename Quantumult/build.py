@@ -15,9 +15,11 @@ import urllib.request
 
 from dependencies import rewrite_profile, rewrite_resource, is_supported
 from local_rules import load_local_rules, inject_local_rules
+from policy_rules import load_local_rules as load_local_policies, inject_local_policies
 
 ROOT = Path(__file__).resolve().parent
 LOCAL_RULES = ROOT / "rewrite-local.txt"
+LOCAL_POLICIES = ROOT / "policy-local.txt"
 BASE_URL = "https://ddgksf2013.top/Profile/QuantumultX.conf"
 REPO = os.environ.get("GITHUB_REPOSITORY", "Ethereal-09/rules-hub")
 RAW = f"https://raw.githubusercontent.com/{REPO}/main/Quantumult/assets"
@@ -81,16 +83,19 @@ def replace_preamble(text):
     return header + text[match.start():]
 
 
-def process(text, fetch, assets, sources=None, local_rules=None):
+def process(text, fetch, assets, sources=None, local_rules=None, local_policies=None):
     if sources is None:
         sources = {}
     if local_rules is None:
         local_rules = []
+    if local_policies is None:
+        local_policies = []
     if not re.search(r"(?im)^\s*\[general\]\s*$", text):
         raise ValueError("base is not a Quantumult X profile: missing [general]")
-    # Personal rewrites are appended to [rewrite_local] before any URL is mirrored,
+    # Personal policies and rewrites are injected before any URL is mirrored,
     # so their script URLs take the exact same mirroring path as upstream rules.
     text = inject_local_rules(text, local_rules, lambda rule: rule)
+    text = inject_local_policies(text, local_policies)
     lines = text.splitlines(keepends=True)
     section = ""
     count = {"filter": 0, "rewrite": 0, "script": 0, "failed": 0, "skipped": 0}
@@ -181,7 +186,10 @@ def main():
     local_rules = load_local_rules(LOCAL_RULES)
     if local_rules:
         print(f"Pers: 追加重写 {len(local_rules)} 条（rewrite-local.txt）")
-    output, stats = process(text, download, assets, sources, local_rules)
+    local_policies = load_local_policies(LOCAL_POLICIES)
+    if local_policies:
+        print(f"Pers: 追加策略组 {len(local_policies)} 条（policy-local.txt）")
+    output, stats = process(text, download, assets, sources, local_rules, local_policies)
     # Only write the new profile after the base is valid and every successful
     # resource has been staged. Old assets stay available for old QX imports.
     for relative, blob in assets.items():
