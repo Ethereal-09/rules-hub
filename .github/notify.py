@@ -108,11 +108,14 @@ def build_text(platform, status, stats_text, build_info=None, black_n=0, white_n
     st = "成功" if status == "success" else "失败"
     mark = "✅" if status == "success" else "❌"
 
-    bad_url = f"https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/{platform}/dist/adguard-black.txt"
-    ok_url = f"https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/{platform}/dist/adguard-white.txt"
+    repo = build_info[0] if build_info and build_info[0] else os.environ.get("GITHUB_REPOSITORY", "Ethereal-09/rules-hub")
+    bad_url = f"https://raw.githubusercontent.com/{repo}/main/{platform}/dist/adguard-black.txt"
+    ok_url = f"https://raw.githubusercontent.com/{repo}/main/{platform}/dist/adguard-white.txt"
 
-    info = parse_summary(stats_text)
-    fails = parse_fail_sources(stats_text)
+    # A failed run may find STATS.md and dist from a previous successful run.
+    # Never present those numbers or failed-source rows as this run's results.
+    info = parse_summary(stats_text) if status == "success" else {"sources": "", "black": "", "white": ""}
+    fails = parse_fail_sources(stats_text) if status == "success" else []
 
     lines = []
     lines.append(f"{mark} rules-hub · {platform} 合并{st}")
@@ -136,10 +139,13 @@ def build_text(platform, status, stats_text, build_info=None, black_n=0, white_n
         lines.append("本次改动：未能读取提交说明")
 
     lines.append("")
-    if info["sources"]:
-        lines.append(f"上游源：{info['sources']}")
-    lines.append(f"黑名单：{fmt_rule(info['black']) if info['black'] else f'{black_n:,} 条'}")
-    lines.append(f"白名单：{fmt_rule(info['white']) if info['white'] else f'{white_n:,} 条'}")
+    if status == "success":
+        if info["sources"]:
+            lines.append(f"上游源：{info['sources']}")
+        lines.append(f"黑名单：{fmt_rule(info['black']) if info['black'] else f'{black_n:,} 条'}")
+        lines.append(f"白名单：{fmt_rule(info['white']) if info['white'] else f'{white_n:,} 条'}")
+    else:
+        lines.append("本轮未发布；本地 STATS 与产物可能属于旧版，不作为本轮结果。")
 
     if fails:
         lines.append("")

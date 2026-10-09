@@ -9,13 +9,14 @@ import argparse
 import os
 from pathlib import Path
 import re
+import subprocess
 import sys
 import time
 
 ROOT = Path(__file__).resolve().parents[1]   # Quantumult/
 ASSETS = ROOT / "assets"
 DEFAULT_DAYS = 30
-ASSET_REF = re.compile(r"Quantumult/assets/(?:filter|rewrite|script)/([^\s,)\"']+)")
+ASSET_REF = re.compile(r"Quantumult/assets/((?:filter|rewrite|script)/[^\s,)\"']+)")
 
 
 def referenced_by(path):
@@ -24,6 +25,20 @@ def referenced_by(path):
         return set()
     text = path.read_text(encoding="utf-8", errors="replace")
     return set(ASSET_REF.findall(text))
+
+
+def last_change_time(path):
+    """Use Git history for tracked assets: checkout mtime resets on every CI run."""
+    try:
+        rel = path.relative_to(ROOT.parent).as_posix()
+        result = subprocess.run(
+            ["git", "log", "-1", "--format=%ct", "--", rel],
+            cwd=ROOT.parent, capture_output=True, text=True, check=True, timeout=10)
+        if result.stdout.strip().isdigit():
+            return int(result.stdout.strip())
+    except (OSError, ValueError, subprocess.SubprocessError):
+        pass
+    return path.stat().st_mtime
 
 
 def prune(days, dry_run=False):
@@ -43,7 +58,7 @@ def prune(days, dry_run=False):
             if not f.is_file():
                 continue
             rel = f"{category}/{f.name}"
-            if rel in keep or f.stat().st_mtime >= cutoff:
+            if rel in keep or last_change_time(f) >= cutoff:
                 kept += 1
                 continue
             if dry_run:

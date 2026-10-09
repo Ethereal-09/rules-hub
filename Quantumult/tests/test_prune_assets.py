@@ -32,6 +32,7 @@ class PruneTests(unittest.TestCase):
             os.utime(old, (stale, stale))
             keep = assets / "script" / "keep.js"
             keep.write_text("y", encoding="utf-8")
+            os.utime(keep, (stale, stale))
             with mock.patch.object(pa, "ASSETS", assets), mock.patch.object(pa, "ROOT", Path(d)):
                 removed, kept = pa.prune(30)
             self.assertEqual(removed, 1)
@@ -48,6 +49,18 @@ class PruneTests(unittest.TestCase):
                 removed, kept = pa.prune(30)
             self.assertEqual(removed, 0)
             self.assertTrue(recent.exists())
+
+    def test_old_git_asset_removed_despite_recent_checkout_mtime(self):
+        with tempfile.TemporaryDirectory() as d:
+            assets = self._setup(d)
+            old = assets / "script" / "orphan.js"
+            old.write_text("x", encoding="utf-8")
+            with (mock.patch.object(pa, "ASSETS", assets),
+                  mock.patch.object(pa, "ROOT", Path(d)),
+                  mock.patch.object(pa, "last_change_time", return_value=time.time() - 60 * 86400)):
+                removed, _ = pa.prune(30)
+            self.assertEqual(removed, 1)
+            self.assertFalse(old.exists())
 
     def test_missing_assets_dir_is_noop(self):
         with tempfile.TemporaryDirectory() as d:

@@ -94,9 +94,14 @@ def download(url, limit, cache=None):
         body, resp = http_get(url, limit, headers)
     except urllib.error.HTTPError as exc:
         if exc.code == 304 and entry and "file" in entry:
-            cached = ROOT / entry["file"]
-            if cached.exists():
-                return cached.read_bytes()
+            rel = entry["file"]
+            digest = Path(rel).name
+            cached = ROOT / rel
+            if (re.fullmatch(r"\.cache/blob/[0-9a-f]{64}", rel)
+                    and cached.is_file() and cached.stat().st_size <= limit):
+                body = cached.read_bytes()
+                if body and hashlib.sha256(body).hexdigest() == digest:
+                    return body
         raise
     if cache is not None:
         digest = hashlib.sha256(body).hexdigest()
@@ -137,10 +142,7 @@ def safe_public_url(url):
         return False
     if re.search(r"(?:token|key|auth|secret|password|subscribe|subscription)", parts.path, re.I):
         return False
-    if re.search(r"(?:token|key|auth|secret|password)", parts.query, re.I):
-        return False
-    # Harmless presentation parameters used by raw file hosts.
-    if parts.query and not re.fullmatch(r"(?:[\w.~-]+=[\w.~%-]*&?)+", parts.query, re.I):
+    if parts.query not in ("", "raw=true"):
         return False
     return True
 
@@ -260,10 +262,8 @@ def check_failure_budget(stats):
     """Refuse to publish when too many dependencies could not be mirrored."""
     failed = stats["failed"]
     total = failed + stats["filter"] + stats["rewrite"] + stats["script"]
-    if failed <= MAX_FAILED:
-        return
-    ratio = (failed / total) if total else 1.0
-    if ratio > MAX_FAILED_RATIO:
+    if failed > MAX_FAILED or (total and failed / total > MAX_FAILED_RATIO):
+        ratio = (failed / total) if total else 1.0
         raise ValueError(
             f"镜像失败 {failed}/{total}（{ratio:.1%}），超过阈值"
             f"（最多 {MAX_FAILED} 个且不超过 {MAX_FAILED_RATIO:.0%}）；拒绝发布半成品配置")

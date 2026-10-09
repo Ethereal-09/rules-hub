@@ -24,9 +24,12 @@ class FailureBudgetTests(unittest.TestCase):
             b.check_failure_budget(stats(20))
 
     def test_count_below_max_but_ratio_high(self):
-        # 9 failures > MAX_FAILED(8) with a tiny total -> must refuse
         with self.assertRaises(ValueError):
-            b.check_failure_budget(stats(9, filt=1, rew=1, script=1))
+            b.check_failure_budget(stats(2, filt=1, rew=1, script=1))
+
+    def test_count_above_max_even_if_ratio_low(self):
+        with self.assertRaises(ValueError):
+            b.check_failure_budget(stats(9, script=1000))
 
 
 class PublicUrlTests(unittest.TestCase):
@@ -39,6 +42,7 @@ class PublicUrlTests(unittest.TestCase):
     def test_credential_query_rejected(self):
         self.assertFalse(b.safe_public_url("https://example.com/a.conf?token=abc"))
         self.assertFalse(b.safe_public_url("https://example.com/a.conf?key=x&raw=true"))
+        self.assertFalse(b.safe_public_url("https://example.com/a.conf?sig=PRIVATEVALUE"))
 
     def test_sensitive_path_rejected(self):
         self.assertFalse(b.safe_public_url("https://example.com/subscription/x.conf"))

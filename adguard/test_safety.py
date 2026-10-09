@@ -1,5 +1,6 @@
 import importlib.util
 from pathlib import Path
+import tempfile
 import unittest
 
 spec = importlib.util.spec_from_file_location("adguard_merge", Path(__file__).with_name("merge.py"))
@@ -21,7 +22,29 @@ class SafetyTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     m.validate_output(stats, black, white, previous_black, previous_white)
         m.validate_output(stats, 220000, 15000, 220000, 15000)
-        m.validate_output([("https://cosmetic.example", 100, 0, 0, "OK")], 1000, 10)
+        with self.assertRaisesRegex(ValueError, "上游"):
+            m.validate_output([("https://cosmetic.example", 100, 0, 0, "OK")], 1000, 10)
+        with self.assertRaisesRegex(ValueError, "上游"):
+            m.validate_output([("https://comments.example", 20, 0, 0, "OK")], 220000, 15000)
+        # Black sources consisting solely of exceptions remain valid.
+        m.validate_output([("https://exceptions.example", 20, 0, 20, "OK")], 220000, 15000)
+        # White sources may contain non-exception rules by design.
+        m.validate_output([("https://white.example", 20, 0, 20, "OK")], 220000, 15000)
+
+    def test_previous_white_count_and_bad_header(self):
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d) / "adguard-white.txt"
+            p.write_text("! Title: AdGuard Home 白名单（未筛选混合规则）\n! meta\n@@||a.example^\n@@||b.example^\n", encoding="utf-8")
+            self.assertEqual(m.previous_count(str(p)), 2)
+            p.write_text("! unexpected\n@@||a.example^\n", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "头部异常"):
+                m.previous_count(str(p))
+
+    def test_personal_domain_label_limit(self):
+        self.assertTrue(m.BARE_DOMAIN_RE.fullmatch("a" * 63 + ".example"))
+        self.assertFalse(m.BARE_DOMAIN_RE.fullmatch("a" * 64 + ".example"))
+        self.assertFalse(m.BARE_DOMAIN_RE.fullmatch("example." + "b" * 64))
+        self.assertTrue(m.BARE_DOMAIN_RE.fullmatch("a.example"))
 
 
 if __name__ == "__main__":

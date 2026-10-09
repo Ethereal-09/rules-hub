@@ -38,7 +38,7 @@ MIN_WHITE_RULES = 10
 MIN_PREVIOUS_RATIO = 0.70
 
 BARE_DOMAIN_RE = re.compile(
-    r"^[a-z0-9](?:[a-z0-9\-]*[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9\-]*[a-z0-9])?)+$", re.I)
+    r"^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)+$", re.I)
 
 
 def log(msg):
@@ -198,7 +198,7 @@ def validate_output(stats, black_count, white_count, previous_black=0, previous_
                     source_migration=False):
     """Fail closed before writing any generated files."""
     failed = [url for url, total, black, white, status in stats
-              if status != "OK" or total == 0]
+              if status != "OK" or black + white == 0]
     if failed:
         raise ValueError(f"上游下载失败或无有效规则：{len(failed)} 个；拒绝覆盖旧版")
     if black_count < MIN_BLACK_RULES or white_count < MIN_WHITE_RULES:
@@ -233,11 +233,15 @@ def is_source_migration(black_srcs):
 
 def previous_count(path):
     if not os.path.isfile(path):
-        return 0
+        return 0  # First run: absolute minimums still apply.
     with open(path, encoding="utf-8") as f:
-        first = f.readline()
-        if "DNS 专用" not in first:
-            return 0  # One-time migration from full rules; not a sudden loss.
+        first = f.readline().strip()
+        valid_titles = (
+            "! Title: AdGuard Home DNS 专用黑名单",
+            "! Title: AdGuard Home 白名单（未筛选混合规则）",
+        )
+        if first not in valid_titles:
+            raise ValueError(f"旧产物头部异常，拒绝跳过跌幅保护：{path}")
         return sum(1 for line in f if line.strip() and not line.startswith("!"))
 
 

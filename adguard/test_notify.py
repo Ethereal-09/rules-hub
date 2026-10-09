@@ -58,8 +58,11 @@ class AdGuardNotifyTests(unittest.TestCase):
 
     def test_failure_body_lists_reason(self):
         body = n.build_text("adguard", "failure", STATS, None, 0, 0)
-        self.assertIn("拉取失败 1 个", body)
-        self.assertIn("broken", body)
+        self.assertIn("本轮未发布", body)
+        self.assertIn("旧版", body)
+        self.assertNotIn("258,656", body)
+        self.assertNotIn("broken", body)
+        self.assertNotIn("黑名单：", body)
         self.assertIn("构建或发布失败", body)
         self.assertNotIn("订阅地址：", body)
 
@@ -68,6 +71,18 @@ class AdGuardNotifyTests(unittest.TestCase):
         self.assertIn("订阅地址：", body)
         self.assertIn("adguard-black.txt", body)
         self.assertIn("adguard-white.txt", body)
+
+    def test_fork_subscription_uses_run_repository(self):
+        body = n.build_text("adguard", "success", STATS,
+                            ("someone/fork", "success", "abc"))
+        self.assertIn("raw.githubusercontent.com/someone/fork/main/adguard/dist/adguard-black.txt", body)
+        self.assertNotIn("raw.githubusercontent.com/Ethereal-09/rules-hub", body)
+
+    def test_failure_without_stats_reports_unpublished(self):
+        body = n.build_text("adguard", "failure", "", None, 1234, 99)
+        self.assertIn("本轮未发布", body)
+        self.assertNotIn("1,234", body)
+        self.assertNotIn("99 条", body)
 
     def test_fetch_without_token_is_none(self):
         self.assertIsNone(n.fetch_commit_note("a/b", "sha", ""))
