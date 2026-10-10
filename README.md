@@ -23,7 +23,7 @@
 [![QX](https://img.shields.io/badge/Quantumult_X-配置订阅-F97316?style=flat-square&logo=apple&logoColor=white)](#-订阅地址)
 [![License](https://img.shields.io/badge/来源-公开上游-lightgrey?style=flat-square)](SOURCES.md)
 
-<sub>上次更新：2026-10-10 22:01:15 </sub>
+<sub>上次更新：2026-10-11 03:35:58 </sub>
 
 </div>
 
@@ -35,7 +35,7 @@
 
 | 类型 | 规则数 | 原始链接 | 加速 |
 |:---|:---:|:---:|:---:|
-| **黑名单** · 拦截 | 260,955 | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) |
+| **黑名单** · 拦截 | 261,013 | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) |
 | **白名单** · 放行 | 32 | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) |
 
 > **提示**：直连被墙时用加速链接 · 详细统计见 [STATS.md](adguard/dist/STATS.md)
