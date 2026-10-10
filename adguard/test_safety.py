@@ -2,6 +2,7 @@ import importlib.util
 from pathlib import Path
 import tempfile
 import unittest
+from unittest import mock
 
 spec = importlib.util.spec_from_file_location("adguard_merge", Path(__file__).with_name("merge.py"))
 m = importlib.util.module_from_spec(spec)
@@ -30,6 +31,24 @@ class SafetyTests(unittest.TestCase):
         m.validate_output([("https://exceptions.example", 20, 0, 20, "OK")], 220000, 15000)
         # White sources may contain non-exception rules by design.
         m.validate_output([("https://white.example", 20, 0, 20, "OK")], 220000, 15000)
+
+    def test_source_migration_is_one_shot(self):
+        srcs = ["https://raw.githubusercontent.com/damengzhu/banad/main/jiekouAD.txt",
+                "https://raw.githubusercontent.com/rssvcn/qy-Ads-Rule/main/black.txt"]
+        with tempfile.TemporaryDirectory() as d:
+            out = Path(d)
+            with mock.patch.object(m, "OUT_DIR", str(out)):
+                (out / "STATS.md").write_text("- 上游源：8 个（成功 8，失败 0）", encoding="utf-8")
+                self.assertTrue(m.is_source_migration(srcs))
+                (out / "STATS.md").write_text("- 上游源：7 个（成功 7，失败 0）", encoding="utf-8")
+                self.assertFalse(m.is_source_migration(srcs))
+                # 首源/末源不匹配时不豁免
+                (out / "STATS.md").write_text("- 上游源：8 个（成功 8，失败 0）", encoding="utf-8")
+                self.assertFalse(m.is_source_migration(
+                    ["https://other.example/first.txt", srcs[-1]]))
+                # STATS 缺失时不豁免
+                (out / "STATS.md").unlink()
+                self.assertFalse(m.is_source_migration(srcs))
 
     def test_previous_white_count_and_bad_header(self):
         with tempfile.TemporaryDirectory() as d:

@@ -9,7 +9,7 @@
 
 ## AdGuard Home
 
-### 黑名单源（8）
+### 黑名单源（7）
 
 | 源 | 说明 |
 |:---|:---|
@@ -20,7 +20,6 @@
 | [Cats-Team/AdRules · dns.txt](https://github.com/Cats-Team/AdRules) | 中文区广告与追踪 |
 | [AdguardTeam/AdguardFilters · MobileFilter/adservers](https://github.com/AdguardTeam/AdguardFilters) | 移动端广告服务器（官方） |
 | [rssvcn/qy-Ads-Rule · black.txt](https://github.com/rssvcn/qy-Ads-Rule) | 中文广告 |
-| [2771936993/HG · hg1.txt](https://github.com/2771936993/HG) | 综合拦截 |
 
 ### 白名单源（0）
 

@@ -16,14 +16,14 @@
 
 [![Merge Rules](https://img.shields.io/github/actions/workflow/status/Ethereal-09/rules-hub/merge.yml?label=AdGuard%20合并&style=for-the-badge&logo=github&logoColor=white)](https://github.com/Ethereal-09/rules-hub/actions/workflows/merge.yml)
 [![Build QX](https://img.shields.io/github/actions/workflow/status/Ethereal-09/rules-hub/quantumult.yml?label=QX%20构建&style=for-the-badge&logo=github&logoColor=white)](https://github.com/Ethereal-09/rules-hub/actions/workflows/quantumult.yml)
-[![Sources](https://img.shields.io/badge/上游源-8-purple?style=for-the-badge&logo=stackshare&logoColor=white)](SOURCES.md)
+[![Sources](https://img.shields.io/badge/上游源-7-purple?style=for-the-badge&logo=stackshare&logoColor=white)](SOURCES.md)
 
-[![Blacklist](https://img.shields.io/badge/AdGuard_黑名单-261k-blue?style=flat-square&logo=adblock&logoColor=white)](#-订阅地址)
+[![Blacklist](https://img.shields.io/badge/AdGuard_黑名单-258k-blue?style=flat-square&logo=adblock&logoColor=white)](#-订阅地址)
 [![Whitelist](https://img.shields.io/badge/AdGuard_白名单-32-green?style=flat-square&logo=checkmarx&logoColor=white)](#-订阅地址)
 [![QX](https://img.shields.io/badge/Quantumult_X-配置订阅-F97316?style=flat-square&logo=apple&logoColor=white)](#-订阅地址)
 [![License](https://img.shields.io/badge/来源-公开上游-lightgrey?style=flat-square)](SOURCES.md)
 
-<sub>上次更新：2026-10-11 03:35:58 </sub>
+<sub>上次更新：—</sub>
 
 </div>
 
@@ -35,8 +35,8 @@
 
 | 类型 | 规则数 | 原始链接 | 加速 |
 |:---|:---:|:---:|:---:|
-| **黑名单** · 拦截 | 261,013 | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) |
-| **白名单** · 放行 | 32 | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) |
+| **黑名单** · 拦截 | — | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-black.txt) |
+| **白名单** · 放行 | — | [**订阅**](https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) | [Boki](https://github.boki.moe/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) · [ghfast](https://ghfast.top/https://raw.githubusercontent.com/Ethereal-09/rules-hub/main/adguard/dist/adguard-white.txt) |
 
 > **提示**：直连被墙时用加速链接 · 详细统计见 [STATS.md](adguard/dist/STATS.md)
 
@@ -75,7 +75,7 @@
 
 ```mermaid
 graph LR
-    A[上游黑名单源 ×8] --> B{按语义分类}
+    A[上游黑名单源 ×7] --> B{按语义分类}
     B -->|"||域名^"| C[黑名单]
     B -->|"@@||域名^"| D[白名单]
     E[我的黑名单] --> C
@@ -155,7 +155,7 @@ QX 的个人改动写在 `Quantumult/rewrite-local.txt` 与 `policy-local.txt`�
 完整的来源清单、授权说明与免责声明见 **[SOURCES.md](SOURCES.md)**。
 
 <details>
-<summary><b>AdGuard Home · 黑名单 8 源</b></summary>
+<summary><b>AdGuard Home · 黑名单 7 源</b></summary>
 <br>
 
 | 源 | 说明 |
@@ -167,7 +167,6 @@ QX 的个人改动写在 `Quantumult/rewrite-local.txt` 与 `policy-local.txt`�
 | Cats-Team/AdRules · dns.txt | 中文区广告与追踪 |
 | AdguardTeam/AdFilters · adservers | 移动端广告服务器 |
 | rssvcn/qy-Ads-Rule · black | 中文广告 |
-| 2771936993/HG · hg1 | 综合拦截 |
 
 白名单不设独立上游，由黑源中的 `@@` 例外与 `my-whitelist.txt` 生成。
 

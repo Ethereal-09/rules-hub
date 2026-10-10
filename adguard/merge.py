@@ -218,17 +218,34 @@ def dns_white_rule(line):
     return f"@@||{match.group(1).lower()}^" if match else None
 
 
+# A deliberate source-list change reduces output by design; the shrink guard would
+# otherwise block the very commit that performs the migration. Each entry below is
+# a one-shot exemption keyed on the previous source count recorded in STATS.md,
+# narrowed by the first and last source currently configured.
+SOURCE_MIGRATIONS = [
+    # 11 -> 8：换用用户指定的八源
+    {"previous": "上游源：11 个", "first": "damengzhu/banad/main/jiekouAD.txt",
+     "last": "2771936993/HG/main/hg1.txt"},
+    # 8 -> 7：移除 2771936993/HG（含大量 CDN/DNS 误杀）
+    {"previous": "上游源：8 个", "first": "damengzhu/banad/main/jiekouAD.txt",
+     "last": "rssvcn/qy-Ads-Rule/main/black.txt"},
+]
+
+
 def is_source_migration(black_srcs):
-    """One-time 11->8 replacement; all eight sources must still pass validation."""
+    """True when the current run performs a declared, one-time source migration."""
     stats_path = os.path.join(OUT_DIR, "STATS.md")
     if not os.path.isfile(stats_path):
         return False
     with open(stats_path, encoding="utf-8") as f:
         old = f.read()
-    return (len(black_srcs) == 8
-            and "上游源：11 个" in old
-            and "damengzhu/banad/main/jiekouAD.txt" in black_srcs[0]
-            and "2771936993/HG/main/hg1.txt" in black_srcs[-1])
+    for rule in SOURCE_MIGRATIONS:
+        if (rule["previous"] in old
+                and black_srcs
+                and rule["first"] in black_srcs[0]
+                and rule["last"] in black_srcs[-1]):
+            return True
+    return False
 
 
 def previous_count(path):

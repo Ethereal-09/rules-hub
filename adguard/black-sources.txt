@@ -7,4 +7,3 @@ https://abp.oisd.nl/basic
 https://raw.githubusercontent.com/Cats-Team/AdRules/main/dns.txt
 https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt
 https://raw.githubusercontent.com/rssvcn/qy-Ads-Rule/main/black.txt
-https://raw.githubusercontent.com/2771936993/HG/main/hg1.txt
