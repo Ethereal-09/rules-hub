@@ -5,8 +5,8 @@
 - excluded: 2
 - source_added: 1
 - source_allow_excluded: 1
-- source_duplicate: 201413
-- source_valid: 201414
+- source_duplicate: 201486
+- source_valid: 201487
 - sources_ok: 1
 - unique_allow: 4
 - unique_black: 250186

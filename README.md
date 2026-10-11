@@ -23,7 +23,7 @@
 [![QX](https://img.shields.io/badge/Quantumult_X-配置订阅-F97316?style=flat-square&logo=apple&logoColor=white)](#-订阅地址)
 [![License](https://img.shields.io/badge/来源-公开上游-lightgrey?style=flat-square)](SOURCES.md)
 
-<sub>上次更新：2026-10-11 22:26:42 </sub>
+<sub>上次更新：2026-10-12 03:46:36 </sub>
 
 </div>
 
