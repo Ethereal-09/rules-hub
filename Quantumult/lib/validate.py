@@ -4,7 +4,7 @@ import re
 from pathlib import Path
 
 SECTIONS = re.compile(r"^\[([^\]]+)\]\s*$", re.M)
-ASSET = re.compile(r"https://raw\.githubusercontent\.com/[^\s,]+/Quantumult/assets/((?:filter|rewrite|script)/[^\s,]+)")
+ASSET = re.compile(r"https://(?:github\.boki\.moe/https://)?raw\.githubusercontent\.com/[^\s,]+/Quantumult/assets/((?:filter|rewrite|script)/[^\s,]+)")
 
 
 def validate(profile, root, additions=()):

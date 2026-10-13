@@ -41,6 +41,8 @@ class BuilderTests(unittest.TestCase):
         self.assertIn("[server_remote]\nhttps://example.org/private", result)
         self.assertIn("Quantumult/assets/filter/a-", result)
         self.assertIn("Quantumult/assets/rewrite/a-", result)
+        self.assertIn("https://github.boki.moe/https://raw.githubusercontent.com/", result)
+        self.assertNotIn("https://github.boki.moe/https://github.boki.moe/", result)
         self.assertEqual(len(result[result.index("[general]"):].splitlines()), len(BASE.splitlines()))
         self.assertIn(", tag=A, enabled=true\n;https://example.org/disabled.list", result)
         self.assertIn(", tag=RW, enabled=true\n[mitm]", result)
@@ -51,7 +53,7 @@ class BuilderTests(unittest.TestCase):
         self.assertEqual(stats["rewrite"], 2)
         self.assertEqual(result.count("\r\n"), 4)
         self.assertEqual(len(result[result.index("[general]"):].splitlines()), len(source.splitlines()))
-        self.assertIn("enabled=true\r\nhttps://raw.githubusercontent.com/", result)
+        self.assertIn("enabled=true\r\nhttps://github.boki.moe/https://raw.githubusercontent.com/", result)
 
     def test_script_dependencies_and_exclusions(self):
         source = """[general]
@@ -85,6 +87,7 @@ hostname=ads.example.org
         self.assertIn("https://example.org/private.yaml#token=abc", result)
         self.assertIn("https://example.org/old.js", result)
         mirrored = next(v.decode() for k, v in assets.items() if k.startswith("rewrite/"))
+        self.assertIn("https://github.boki.moe/https://raw.githubusercontent.com/", mirrored)
         self.assertIn("/assets/script/logic-", mirrored)
         self.assertIn("https://example.org/disabled.js", mirrored)
         self.assertIn("https://example.org/redirect.js", mirrored)

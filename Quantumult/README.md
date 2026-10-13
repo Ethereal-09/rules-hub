@@ -79,7 +79,8 @@ Quantumult/
 
 - 仅镜像已启用规则及可识别的静态功能依赖；不镜像图标、测速地址、证书、节点订阅或带凭证 URL。重写 JS 运行时动态请求、混淆代码里的隐藏依赖无法仅靠静态解析保证穷尽。
 - 仅原始 URL 为 `?raw=true` 的公开资源可带查询串参与镜像；其他带查询串或疑似凭证的 URL 跳过镜像，避免将查询值写入公开清单。
-- 镜像文件保留旧版本已有的文件名，避免 QX 客户端短时间内引用失效；上游删除的项目不会出现在新配置中，超过保留窗口的旧文件由 `prune_assets.py` 清理。
-- 已镜像的重写内部脚本 URL 会指向本仓库；未镜像成功的仍依赖上游。首次导入前请备份 QX 当前配置。
+- 已镜像的重写内部脚本 URL 指向本仓库加速地址；未镜像成功的仍依赖上游。首次导入前请备份 QX 当前配置。
+- 镜像文件保留旧版本已有的文件名，避免客户端缓存短时间内引用失效；超过保留窗口且未被当前配置引用的旧文件由 `prune_assets.py` 清理。
+- 构建结果中的本仓库 `assets/` 功能资源引用使用 Boki 加速前缀 `https://github.boki.moe/https://raw.githubusercontent.com/...`；原始订阅入口、上游下载地址、图标 URL 不变。Boki 的可用性取决于网络环境，构建机不能代替手机流量验证。
 
 本地运行：`python3 Quantumult/build.py`。清理：`python3 Quantumult/lib/prune_assets.py --days 30 --dry-run`。测试：`python3 -m unittest discover -s Quantumult/tests -t Quantumult/tests -p 'test_*.py' -v`。`--base-file` 可使用本地底包做离线测试，`--no-cache` 跳过缓存。
