@@ -162,7 +162,7 @@ def build_text(platform, status, stats_text, build_info=None, black_n=0, white_n
         lines.append("构建或发布失败，请打开运行记录查看失败步骤；不要把旧产物误认为已更新。")
 
     lines.append("")
-    lines.append("—— rules-hub 自动生成，每 8 小时更新")
+    lines.append("—— rules-hub 自动生成，每天定时更新")
 
     return "\n".join(lines)
 

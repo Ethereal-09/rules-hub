@@ -35,7 +35,7 @@ def fetch_commit_note(repo, revision, token):
     return subject, body
 
 
-def make_message(status, manifest, repo, run_id, revision, commit_note=None):
+def make_message(status, manifest, repo, run_id, revision, commit_note=None, upstream_report=""):
     state = "成功" if status == "success" else "失败"
     now = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d %H:%M")
     source = re.search(r"本次：分流 (\d+)、重写 (\d+)、脚本引用 (\d+)；失败 (\d+)、跳过 (\d+)", manifest)
@@ -52,6 +52,8 @@ def make_message(status, manifest, repo, run_id, revision, commit_note=None):
             lines.append(f"  {re.sub(r'^[-*] ', '', ln)}")
     else:
         lines.append("本次改动：未能读取提交说明")
+    if upstream_report:
+        lines.extend(["", "上游更新 / 定制冲突：", upstream_report.strip()])
     if status == "success":
         lines.append("")
         if source:
@@ -77,12 +79,14 @@ def main():
     token = os.environ.get("GITHUB_TOKEN", "")
     note = fetch_commit_note(repo, revision, token)
     path = Path(__file__).resolve().parents[2] / "Quantumult" / "SOURCES.md"
+    report_path = path.with_name("upstream-update.txt")
+    report = report_path.read_text(encoding="utf-8") if report_path.exists() else ""
     manifest = path.read_text(encoding="utf-8") if path.exists() else ""
     message = EmailMessage()
     message["Subject"] = f"rules-hub Quantumult X {'✅ 构建成功' if status == 'success' else '❌ 构建失败'}"
     message["From"] = user
     message["To"] = recipient
-    message.set_content(make_message(status, manifest, repo, run_id, revision, note))
+    message.set_content(make_message(status, manifest, repo, run_id, revision, note, report))
     with smtplib.SMTP_SSL("smtp.163.com", 465, timeout=30) as server:
         server.login(user, password)
         server.send_message(message)

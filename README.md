@@ -191,7 +191,7 @@ QX 的个人改动写在 `Quantumult/rewrite-local.txt` 与 `policy-local.txt`�
 
 | 工作流 | 触发 | 内容 |
 |:---|:---|:---|
-| **Merge Rules** | 每 8 小时 / 源文件变更 | 合并 AdGuard 黑白名单，转换 QX 广告分流 |
+| **Merge Rules** | 每天北京时间 08:00 / 源文件变更 | 合并 AdGuard 黑白名单，转换 QX 广告分流 |
 | **Build Quantumult X** | 每日 06:25 / 底包或本地规则变更 | 构建 QX 配置，镜像全部资源 |
 
 两者都在构建前跑单元测试（AdGuard 18 例 · QX 43 例），任一失败即中止；

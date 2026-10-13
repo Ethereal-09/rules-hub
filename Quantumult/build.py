@@ -24,10 +24,15 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from Quantumult.lib.dependencies import (
     rewrite_profile, rewrite_resource, is_supported, is_rewritable)
 from Quantumult.lib.section_inject import load_entries, inject_entries
+from Quantumult.lib.overrides import PatchConflict, active_sections, apply_patches, load_patches, section_state, state_report
+from Quantumult.lib.validate import validate
 
 ROOT = Path(__file__).resolve().parent
 LOCAL_RULES = ROOT / "rewrite-local.txt"
 LOCAL_POLICIES = ROOT / "policy-local.txt"
+OVERRIDES = ROOT / "overrides.json"
+UPSTREAM_STATE = ROOT / "upstream-state.json"
+UPDATE_REPORT = ROOT / "upstream-update.txt"
 CACHE_FILE = ROOT / ".cache" / "upstream.json"
 BASE_URL = "https://ddgksf2013.top/Profile/QuantumultX.conf"
 REPO = os.environ.get("GITHUB_REPOSITORY", "Ethereal-09/rules-hub")
@@ -180,7 +185,7 @@ def replace_preamble(text):
 
 
 def process(text, fetch, assets, sources=None, local_rules=None, local_policies=None,
-            failures=None):
+            failures=None, patches=None):
     if sources is None:
         sources = {}
     if failures is None:
@@ -189,8 +194,14 @@ def process(text, fetch, assets, sources=None, local_rules=None, local_policies=
     local_policies = local_policies or []
     if not re.search(r"(?im)^\s*\[general\]\s*$", text):
         raise ValueError("base is not a Quantumult X profile: missing [general]")
-    # Personal policies and rewrites are injected before any URL is mirrored,
-    # so their script URLs take the exact same mirroring path as upstream rules.
+    # Check upstream changes before mirroring; changed override targets abort.
+    upstream_entries = {(name, line.split(",", 1)[0]) for name, line in active_sections(text)}
+    for name, entries in (("rewrite_remote", local_rules), ("policy", local_policies)):
+        for entry in entries:
+            key = (name, entry.split(",", 1)[0])
+            if key in upstream_entries:
+                raise PatchConflict(f"上游新增与个人追加冲突：[{name}] 条目指纹 {hashlib.sha256(key[1].encode()).hexdigest()[:12]}")
+    text = apply_patches(text, patches or [])
     text = inject_entries(text, "rewrite_remote", local_rules, "个人追加")
     text = inject_entries(text, "policy", local_policies, "个人追加策略组")
     lines = text.splitlines(keepends=True)
@@ -305,6 +316,14 @@ def main():
     if len(base) > MAX_BASE or not base.strip():
         raise ValueError("base missing or too large")
     text = base.decode("utf-8-sig")
+    new_state = section_state(text)
+    old_state = json.loads(UPSTREAM_STATE.read_text(encoding="utf-8")) if UPSTREAM_STATE.exists() else {}
+    changes = state_report(old_state, new_state) if old_state else []
+    if changes:
+        UPDATE_REPORT.write_text("上游配置发生变化（仅列出段与内容指纹，不包含订阅凭据）：\n"
+                                 + "\n".join(changes) + "\n", encoding="utf-8")
+    elif UPDATE_REPORT.exists():
+        UPDATE_REPORT.unlink()
 
     assets = {}
     sources = {}
@@ -316,8 +335,14 @@ def main():
     if local_policies:
         print(f"Pers: 追加策略组 {len(local_policies)} 条（policy-local.txt）")
 
-    output, stats = process(text, lambda url, limit: download(url, limit, cache),
-                            assets, sources, local_rules, local_policies, failures)
+    try:
+        output, stats = process(text, lambda url, limit: download(url, limit, cache),
+                                assets, sources, local_rules, local_policies, failures,
+                                load_patches(OVERRIDES))
+    except PatchConflict as exc:
+        with UPDATE_REPORT.open("a", encoding="utf-8") as report:
+            report.write(f"定制冲突，已停止发布：{exc}\n")
+        raise
 
     # Fail closed before touching any output file.
     check_failure_budget(stats)
@@ -336,8 +361,19 @@ def main():
     manifest_temp = manifest.with_name(manifest.name + ".tmp")
     manifest_temp.write_text(make_sources_md(sources, stats, failures), encoding="utf-8")
     os.replace(manifest_temp, manifest)
+    expected = []
+    for entry in local_rules:
+        tag = re.search(r"(?:^|,)\s*tag=([^,]+)", entry)
+        if not tag:
+            raise ValueError("追加重写缺少 tag")
+        expected.append("tag=" + tag.group(1))
+    expected.extend(entry.split(",", 1)[0] for entry in local_policies)
+    validate(args.output, ROOT, expected)
     if not args.no_cache:
         save_cache(cache)
+    state_temp = UPSTREAM_STATE.with_name(UPSTREAM_STATE.name + ".tmp")
+    state_temp.write_text(json.dumps(new_state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    os.replace(state_temp, UPSTREAM_STATE)
     print(f"Built {args.output}: {stats}, stored assets: {len(assets)}")
     if failures:
         print(f"WARNING: {len(failures)} dependency/ies retained upstream URL; "

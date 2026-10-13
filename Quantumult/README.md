@@ -14,6 +14,8 @@ Quantumult/
 ├── rewrite-local.txt       # 个人追加重写（[rewrite_remote] 语法）
 ├── policy-local.txt        # 个人追加策略组（[policy] 语法）
 ├── ads-sources.txt         # QX 广告分流上游
+├── overrides.json          # 个人替换或删除上游条目（默认空）
+├── upstream-state.json     # 上游非敏感段指纹，成功构建后自动更新
 ├── lib/                    # 内部模块，不直接对外
 │   ├── dependencies.py     # 重写内文 URL 改写规则
 │   ├── section_inject.py   # 通用段注入器
@@ -32,7 +34,7 @@ Quantumult/
 
 目录只按用途分三级，不按来源另建文件夹；同名文件使用原 URL 的短哈希消歧。
 
-工作流在构建前会先跑 `tests/`（43 个用例），失败则不构建。
+工作流在构建前会先跑 `tests/`，失败则不构建。
 
 ## 个人追加机制
 
@@ -44,6 +46,13 @@ Quantumult/
 | `policy-local.txt` | `[policy]` 段尾 | `url-latency-benchmark=..., server-tag-regex=..., img-url=...` |
 
 两者都由 `section_inject.py` 统一处理：定位段头、在上游条目之后、下一个段头之前插入。空文件即不追加。
+
+## 个人定制与上游更新
+
+- `rewrite-local.txt` 与 `policy-local.txt` 负责追加条目。
+- `overrides.json` 用于精确**替换或删除**上游活动行。每项包含 `section`、`match`（`policy` 用策略组类型和名称、远程订阅用 URL、本地规则用完整行）、`operation`（`replace` / `remove`）、`expected_sha256`（上游完整行去首尾空白后的 SHA-256）；替换时还须提供 `value`（单行）。目标缺失、重复或上游原行发生变化会停止发布并发送冲突邮件，不能静默跳过。
+- `upstream-state.json` 仅记录上游各段条目数量及 SHA-256 指纹，不存上游原文或订阅凭据。每日构建比较新旧指纹；有变化时在邮件和 Actions artifact 提示增删条目的数量和短指纹，**不会自动覆盖个人定制**。短指纹不是可读规则差异，采纳前需要人工核对上游具体变更。
+- 构建器还执行自有的结构与镜像文件一致性校验；它**不是 Quantumult X 官方解析器**，最终兼容性仍需客户端导入验证。
 
 ## 失败处理（fail closed）
 

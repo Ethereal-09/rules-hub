@@ -2,8 +2,8 @@ name: Merge Rules
 
 on:
   schedule:
-    # 每 8 小时一次：UTC 00:00 / 08:00 / 16:00 = 北京 08:00 / 16:00 / 00:00
-    - cron: "0 */8 * * *"
+    # 每天一次：UTC 00:00 = 北京时间 08:00
+    - cron: "0 0 * * *"
   workflow_dispatch:
     inputs:
       target:

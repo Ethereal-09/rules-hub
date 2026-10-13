@@ -145,7 +145,7 @@ def file_header(title, ts, n, extra=""):
         f"! Last modified: {ts}",
         f"! 规则数: {n}",
         "!",
-        "! 本文件由 GitHub Actions 自动生成，每 8 小时更新，请勿手动修改。",
+        "! 本文件由 GitHub Actions 自动生成，每天定时更新，请勿手动修改。",
         "! 合并自多个公开上游规则，版权归各上游作者所有。",
         f"! 上游来源清单：{REPO_URL}/blob/main/SOURCES.md",
         "!",
