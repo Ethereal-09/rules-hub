@@ -1,19 +1,19 @@
 # 合并统计
 
-- 生成时间：2026-11-11 11:53:47
+- 生成时间：2026-11-12 13:01:46
 - 上游源：7 个（成功 7，失败 0）
-- 黑名单规则：**285512** 条（去重 89557）
+- 黑名单规则：**287138** 条（去重 91696）
 - 白名单规则：**32** 条（去重 0）
-- 非 DNS 规则已跳过：2048 行（含注释/元数据）
+- 非 DNS 规则已跳过：2049 行（含注释/元数据）
 - 筛选范围：黑名单仅纯域名拦截（含 `$important`）；白名单保留白源全部非注释规则与黑源 `@@` 例外，仅去重，可能含非放行规则。
 
 | 上游源 | 读取 | 新增黑 | 新增白 | 状态 |
 |---|---|---|---|---|
-| https://raw.githubusercontent.com/damengzhu/banad/main/jiekouAD.txt | 5914 | 4512 | 32 | OK |
+| https://raw.githubusercontent.com/damengzhu/banad/main/jiekouAD.txt | 5917 | 4514 | 32 | OK |
 | https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/AWAvenue-Ads-Rule.txt | 984 | 972 | 0 | OK |
-| https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.mini.txt | 99415 | 99401 | 0 | OK |
-| https://abp.oisd.nl/basic | 60328 | 60317 | 0 | OK |
-| https://raw.githubusercontent.com/Cats-Team/AdRules/main/dns.txt | 208863 | 208418 | 0 | OK |
-| https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt | 1071 | 906 | 0 | OK |
+| https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.mini.txt | 99677 | 99663 | 0 | OK |
+| https://abp.oisd.nl/basic | 62039 | 62028 | 0 | OK |
+| https://raw.githubusercontent.com/Cats-Team/AdRules/main/dns.txt | 210652 | 210207 | 0 | OK |
+| https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt | 1072 | 907 | 0 | OK |
 | https://raw.githubusercontent.com/rssvcn/qy-Ads-Rule/main/black.txt | 574 | 543 | 0 | OK |
 
