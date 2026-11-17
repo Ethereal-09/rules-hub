@@ -1,15 +1,15 @@
 # AdGuard → QX 广告分流转换与上游合并统计
 
-- black_input: 289449
-- converted: 289447
+- black_input: 289268
+- converted: 289266
 - excluded: 2
 - source_added: 1
 - source_allow_excluded: 1
-- source_duplicate: 211681
-- source_valid: 211682
+- source_duplicate: 210302
+- source_valid: 210303
 - sources_ok: 1
 - unique_allow: 4
-- unique_black: 289449
+- unique_black: 289268
 - white_ambiguous: 28
 - white_input: 32
 

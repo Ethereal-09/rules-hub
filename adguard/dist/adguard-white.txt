@@ -1,6 +1,6 @@
 ! Title: AdGuard Home 白名单（未筛选混合规则）
 ! Homepage: https://github.com/Ethereal-09/rules-hub
-! Last modified: 2026-11-16 11:57:58
+! Last modified: 2026-11-17 13:50:08
 ! 规则数: 32
 !
 ! 本文件由 GitHub Actions 自动生成，每天定时更新，请勿手动修改。
