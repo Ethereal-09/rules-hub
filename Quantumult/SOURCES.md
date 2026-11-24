@@ -3,7 +3,7 @@
 自动生成；仅记录本次成功镜像且被当前配置引用的功能文件。
 旧文件为兼容客户端缓存会保留在 assets/，不代表仍处于启用状态。
 
-本次：分流 12、重写 35、脚本引用 156；失败 0、跳过 2。
+本次：分流 12、重写 35、脚本引用 137；失败 0、跳过 0。
 
 ## 成功镜像
 
@@ -11,16 +11,16 @@
 |---|---|---|
 | [`assets/filter/ASN-China-7d24066b4969b19c.list`](assets/filter/ASN-China-7d24066b4969b19c.list) | `https://raw.githubusercontent.com/VirgilClyne/GetSomeFries/main/ruleset/ASN.China.list` | `50f106604b9da0b0adc3f17f0d004dd129684ae95811ac29f13471332c8bcafa` |
 | [`assets/filter/Ai-f1e9b2263f96f425.yaml`](assets/filter/Ai-f1e9b2263f96f425.yaml) | `https://ddgksf2013.top/filter/Ai.yaml` | `f32c38ed10fb498dcc3b8e65a1767ac6fc95e005b1cbfe0a60e35c1f78635f13` |
-| [`assets/filter/Apple-927dc0aac9178cb3.list`](assets/filter/Apple-927dc0aac9178cb3.list) | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Apple/Apple.list` | `966cb314803464ea516243104ed97aaa695d44da71f46b4c72bf8a14e7c67931` |
-| [`assets/filter/GitHub-616483ccabda55d5.list`](assets/filter/GitHub-616483ccabda55d5.list) | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/GitHub/GitHub.list` | `413f664aa29692e83879422ee6d35ced46dd135ebd85f67afaf554ab14391f77` |
+| [`assets/filter/Apple_rules_60fc94eb42cdb5a8-193c65a3216389a2.list`](assets/filter/Apple_rules_60fc94eb42cdb5a8-193c65a3216389a2.list) | `https://magicrule.pages.dev/data/_shared/artifacts/Apple_rules_60fc94eb42cdb5a8.list` | `dfead8caf2bfc4c848e6a32710148d025befb246ab318c301a25abde3501a1f8` |
+| [`assets/filter/GitHub_rules_8ae314ae6a73a225-2881e93924ba35f8.list`](assets/filter/GitHub_rules_8ae314ae6a73a225-2881e93924ba35f8.list) | `https://magicrule.pages.dev/data/_shared/artifacts/GitHub_rules_8ae314ae6a73a225.list` | `0de1da6d43d94f056d4f3f3cda76f3e185cbfbcce18310104c5e6630d5b7d367` |
 | [`assets/filter/GoogleVoice-ce4a2504ce0056f2.list`](assets/filter/GoogleVoice-ce4a2504ce0056f2.list) | `https://raw.githubusercontent.com/ddgksf2013/Filter/master/GoogleVoice.list` | `7176bb89c9a3c010a2a8e3601c576c3d9259f34ab1c97d02c79337aa00d3e904` |
 | [`assets/filter/Proxy-03eaa7d5c9f67508.list`](assets/filter/Proxy-03eaa7d5c9f67508.list) | `https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Proxy.list` | `2292abb55f20caf031ffbb7011c84b85c2246f54ae050fe416323da1fd2b8ead` |
-| [`assets/filter/Spotify-3e73adfff0f78661.list`](assets/filter/Spotify-3e73adfff0f78661.list) | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Spotify/Spotify.list` | `d29fa087d00317231e7de7c8cd4aa9ca91ed0c51660fbf76101b719d8ac5e78c` |
+| [`assets/filter/Spotify_rules_e2de74aedecac710-07a27827273e805f.list`](assets/filter/Spotify_rules_e2de74aedecac710-07a27827273e805f.list) | `https://magicrule.pages.dev/data/_shared/artifacts/Spotify_rules_e2de74aedecac710.list` | `e18e7610ca6634ce9ffa1e1548c567a5cd3d748bc021c5be7fe19d5c8fae2a9c` |
 | [`assets/filter/Streaming-401ff58cd3dd9bdc.list`](assets/filter/Streaming-401ff58cd3dd9bdc.list) | `https://raw.githubusercontent.com/ddgksf2013/Filter/master/Streaming.list` | `d3ba8500f7202942d4ba1f1830b8d01274ff1a4066ad300a9872f9b03431c95a` |
 | [`assets/filter/StreamingSE-b36e4153128bea44.list`](assets/filter/StreamingSE-b36e4153128bea44.list) | `https://raw.githubusercontent.com/ddgksf2013/Filter/master/StreamingSE.list` | `29fc51068ad90bdd6f2066e60e7b666f9f1eda31486cc4cc4bc8e7ca60a5e476` |
 | [`assets/filter/Unbreak-14877bc2dac1b851.list`](assets/filter/Unbreak-14877bc2dac1b851.list) | `https://raw.githubusercontent.com/ddgksf2013/Filter/master/Unbreak.list` | `200f6b9fb07f8570ac27b62f6b0cfbfc7b131785820dffd39a30076af0ebe13e` |
 | [`assets/filter/WeChat-b13e9db20545b0eb.list`](assets/filter/WeChat-b13e9db20545b0eb.list) | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/WeChat/WeChat.list` | `f2b1097292162858845d3b4f99058f047e0715bef4a0e6202b40a10af5c38e2c` |
-| [`assets/filter/qx-84c28310906987ec.conf`](assets/filter/qx-84c28310906987ec.conf) | `https://raw.githubusercontent.com/Cats-Team/AdRules/main/qx.conf` | `77df2374e2a49138e7f1de1e74481d8836167d2a37ecf995fda24412917467a0` |
+| [`assets/filter/qx-84c28310906987ec.conf`](assets/filter/qx-84c28310906987ec.conf) | `https://raw.githubusercontent.com/Cats-Team/AdRules/main/qx.conf` | `62c666dfc4df7e774f9c11e8c63972567f357f81e75c2b92b78d30571c5bc013` |
 | [`assets/rewrite/AmapAds-82184e0240b0dea4.conf`](assets/rewrite/AmapAds-82184e0240b0dea4.conf) | `https://github.com/ddgksf2013/Rewrite/raw/master/AdBlock/AmapAds.conf` | `8b72f89be64f0a8ae571ce47a9dd756cc9667d21b641da2c9e96f9c0f48708d1` |
 | [`assets/rewrite/Applet-3edda6ad809e23e4.conf`](assets/rewrite/Applet-3edda6ad809e23e4.conf) | `https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/Applet.conf` | `f4f29c9c8ecf175bdd8ed733aa49af145e3261baa2c7e3354986836fb4c8f2b2` |
 | [`assets/rewrite/BiliBiliAdsLite-fda71e86f6378aac.conf`](assets/rewrite/BiliBiliAdsLite-fda71e86f6378aac.conf) | `https://ddgksf2013.top/rewrite/BiliBiliAdsLite.conf` | `9a02f59f36b632cc3acfc40e2b4ea0d57d350ec0c1ed2c56b3e0d6048ffd089e` |
@@ -46,7 +46,7 @@
 | [`assets/rewrite/TaoPiaoPiaoAds-3bb8fecc519e9d58.conf`](assets/rewrite/TaoPiaoPiaoAds-3bb8fecc519e9d58.conf) | `https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/TaoPiaoPiaoAds.conf` | `407478ae46a2fdff4dc920cedc23dbea5e5b93c463f89526e7ca87786d537022` |
 | [`assets/rewrite/TieBaAds-12247aafd15d1945.conf`](assets/rewrite/TieBaAds-12247aafd15d1945.conf) | `https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/TieBaAds.conf` | `f9ddb47b615bcd987d5ca19a6b3598f7e2def0b2c35dceda46e5cf23d611c05a` |
 | [`assets/rewrite/UnblockURLinWeChat-7640bb432fb6f735.conf`](assets/rewrite/UnblockURLinWeChat-7640bb432fb6f735.conf) | `https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/Function/UnblockURLinWeChat.conf` | `734415667a5fa02b7f5375f8722abd0497ebbe6f3b98986646d77db56a33fd62` |
-| [`assets/rewrite/WeiboAds-cb93a8ff919d9303.conf`](assets/rewrite/WeiboAds-cb93a8ff919d9303.conf) | `https://github.com/ddgksf2013/Rewrite/raw/master/AdBlock/WeiboAds.conf` | `79125ff3cea97a2c23c67f76355f73466b4f57c4a06b6b36639c55e08f7c088d` |
+| [`assets/rewrite/WeiboEnhanced-81307e6ea6809fcd.conf`](assets/rewrite/WeiboEnhanced-81307e6ea6809fcd.conf) | `https://ddgksf2013.top/rewrite/WeiboEnhanced.conf` | `1385d653e38101cac12898942b0657c6f5fb4cc13331d5f281bdc1343def4f41` |
 | [`assets/rewrite/XiaoHongShuAds-b20c3106705ca7e6.conf`](assets/rewrite/XiaoHongShuAds-b20c3106705ca7e6.conf) | `https://ddgksf2013.top/rewrite/XiaoHongShuAds.conf` | `cc3cab67295d02b95648e300860364e26d286a56c91105a11929d4f5e4c9bc9d` |
 | [`assets/rewrite/XiaoYuZhouAds-e38275611de05f30.conf`](assets/rewrite/XiaoYuZhouAds-e38275611de05f30.conf) | `https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/XiaoYuZhouAds.conf` | `99fb43e0eab706d199cec15e265fd7e9da50125cc4f248d2ee714e98b688c181` |
 | [`assets/rewrite/Ximalaya-72dab34e14ae32d5.conf`](assets/rewrite/Ximalaya-72dab34e14ae32d5.conf) | `https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/Ximalaya.conf` | `f8b3d77906f90f1e75bdd5eb1d7b1e6a739094747db4a56ec6dac0c8d3550dde` |
@@ -87,7 +87,7 @@
 | [`assets/script/quark-1f0bd1771212e8a8.js`](assets/script/quark-1f0bd1771212e8a8.js) | `https://raw.githubusercontent.com/ddgksf2013/Scripts/master/quark.js` | `a80632f4308d8971f2ee1b42cb1b2c3b72c90ec5619ed33849fcc0fcbf0f1bcc` |
 | [`assets/script/redbook-ads-5be593ff34e02be2.js`](assets/script/redbook-ads-5be593ff34e02be2.js) | `https://ddgksf2013.top/scripts/redbook.ads.js` | `f75ed15254d4bd23454fd0019cf340b581ad60cf8bb2c355e09e0e32a98fc74d` |
 | [`assets/script/reddit-48085fb91a7c7047.js`](assets/script/reddit-48085fb91a7c7047.js) | `https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/reddit.js` | `9fba62bb23f38607739e135376c88c8276d4f26d7e1cac478ad7467cedd0590e` |
-| [`assets/script/resource-parser-c902cf3dfff6582b.js`](assets/script/resource-parser-c902cf3dfff6582b.js) | `https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/resource-parser.js` | `6c94e9f1db33bd1ebaa396692d99dcbb3874a193e2d9fedc19ffa526b2e282cd` |
+| [`assets/script/resource-parser-c902cf3dfff6582b.js`](assets/script/resource-parser-c902cf3dfff6582b.js) | `https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/resource-parser.js` | `d49cab1f7ac887b723dbd44177c01ed0574898cb3358a955d8211c5be404404e` |
 | [`assets/script/server-info-pure-92d554be504a797e.js`](assets/script/server-info-pure-92d554be504a797e.js) | `https://ddgksf2013.top/scripts/server-info-pure.js` | `559874ea79fd4faf387f6b0d3155928d7ef2275a296c7ac850a23343804e00f3` |
 | [`assets/script/shunfeng_json-461096dfcbd48193.js`](assets/script/shunfeng_json-461096dfcbd48193.js) | `https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/shunfeng_json.js` | `63d75bd700e36799dfa1b2fd0111e5ed26c27e9db910b096e902ae62d017cb56` |
 | [`assets/script/smzdm_json-dbdcc5fc1c239242.js`](assets/script/smzdm_json-dbdcc5fc1c239242.js) | `https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/smzdm_json.js` | `cbcabf770447117a66358314950a4233448eeb86274ccfb96d148294d327eece` |
@@ -98,7 +98,7 @@
 | [`assets/script/stay-a143ff8f765edbf7.js`](assets/script/stay-a143ff8f765edbf7.js) | `https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/stay.js` | `7f4a7b8170640d7479f0e0d9124dc29ee8764e5260ff39d1b67394c16294a147` |
 | [`assets/script/streaming-ui-check-8bf89de045b4284f.js`](assets/script/streaming-ui-check-8bf89de045b4284f.js) | `https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/streaming-ui-check.js` | `64970f9a7b230da08d7d5989605c9a9f73fbb7b94c3b3c01b2cab3eea8f09783` |
 | [`assets/script/tieba-proto-f38021eb462fc211.js`](assets/script/tieba-proto-f38021eb462fc211.js) | `https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-proto.js` | `6015d737870b6d89c38a0181479ed715e07d11b5a2c3746f96f95e25835e8610` |
-| [`assets/script/weibo_json-ca866532ca5809b3.js`](assets/script/weibo_json-ca866532ca5809b3.js) | `https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/weibo_json.js` | `1714a128eb1e2cc5c333e93bd66c860cbaa6a76bae0a3c9d15d5138fcd30b151` |
+| [`assets/script/weibo_json-6077b7f5c7734569.js`](assets/script/weibo_json-6077b7f5c7734569.js) | `https://ddgksf2013.top/scripts/weibo_json.js` | `c58f679b813f11d0a65270e20064d3d226cd7d9fa0941f4130f54609647a2702` |
 | [`assets/script/weixin110-31309cf9372192c0.js`](assets/script/weixin110-31309cf9372192c0.js) | `https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/weixin110.js` | `46067f2f84b38afedc9115b881f1d06018feb76a17b949a596fb261abae36a7b` |
 | [`assets/script/ximalaya_json-7207e9dc08009d9d.js`](assets/script/ximalaya_json-7207e9dc08009d9d.js) | `https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/ximalaya_json.js` | `2b0cb0abf3cf9eaf16e45591c947d2ab1905c2fa5aa8c1ca56ac1f3b4cf19533` |
 | [`assets/script/youtube-response-b4990e49550a5d8d.js`](assets/script/youtube-response-b4990e49550a5d8d.js) | `https://raw.githubusercontent.com/Maasea/sgmodule/refs/heads/master/Script/Youtube/youtube.response.js` | `f98483d5f5017514f82502253c0db5ce2d4ffb7839887aa2cadc22666f5a7f12` |
