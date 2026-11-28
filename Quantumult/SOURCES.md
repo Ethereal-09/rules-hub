@@ -3,7 +3,15 @@
 自动生成；仅记录本次成功镜像且被当前配置引用的功能文件。
 旧文件为兼容客户端缓存会保留在 assets/，不代表仍处于启用状态。
 
-本次：分流 12、重写 35、脚本引用 137；失败 0、跳过 0。
+本次：分流 9、重写 35、脚本引用 137；失败 3、跳过 0。
+
+## 未能镜像（保留上游原链接）
+
+以下条目仍指向上游地址；若上游不可达，客户端侧不会生效。
+
+- `https://magicrule.pages.dev/data/_shared/artifacts/GitHub_rules_8ae314ae6a73a225.list` — HTTPError: HTTP Error 403: Forbidden
+- `https://magicrule.pages.dev/data/_shared/artifacts/Spotify_rules_e2de74aedecac710.list` — HTTPError: HTTP Error 403: Forbidden
+- `https://magicrule.pages.dev/data/_shared/artifacts/Apple_rules_60fc94eb42cdb5a8.list` — HTTPError: HTTP Error 403: Forbidden
 
 ## 成功镜像
 
@@ -11,16 +19,13 @@
 |---|---|---|
 | [`assets/filter/ASN-China-7d24066b4969b19c.list`](assets/filter/ASN-China-7d24066b4969b19c.list) | `https://raw.githubusercontent.com/VirgilClyne/GetSomeFries/main/ruleset/ASN.China.list` | `50f106604b9da0b0adc3f17f0d004dd129684ae95811ac29f13471332c8bcafa` |
 | [`assets/filter/Ai-f1e9b2263f96f425.yaml`](assets/filter/Ai-f1e9b2263f96f425.yaml) | `https://ddgksf2013.top/filter/Ai.yaml` | `f32c38ed10fb498dcc3b8e65a1767ac6fc95e005b1cbfe0a60e35c1f78635f13` |
-| [`assets/filter/Apple_rules_60fc94eb42cdb5a8-193c65a3216389a2.list`](assets/filter/Apple_rules_60fc94eb42cdb5a8-193c65a3216389a2.list) | `https://magicrule.pages.dev/data/_shared/artifacts/Apple_rules_60fc94eb42cdb5a8.list` | `dfead8caf2bfc4c848e6a32710148d025befb246ab318c301a25abde3501a1f8` |
-| [`assets/filter/GitHub_rules_8ae314ae6a73a225-2881e93924ba35f8.list`](assets/filter/GitHub_rules_8ae314ae6a73a225-2881e93924ba35f8.list) | `https://magicrule.pages.dev/data/_shared/artifacts/GitHub_rules_8ae314ae6a73a225.list` | `0de1da6d43d94f056d4f3f3cda76f3e185cbfbcce18310104c5e6630d5b7d367` |
 | [`assets/filter/GoogleVoice-ce4a2504ce0056f2.list`](assets/filter/GoogleVoice-ce4a2504ce0056f2.list) | `https://raw.githubusercontent.com/ddgksf2013/Filter/master/GoogleVoice.list` | `7176bb89c9a3c010a2a8e3601c576c3d9259f34ab1c97d02c79337aa00d3e904` |
 | [`assets/filter/Proxy-03eaa7d5c9f67508.list`](assets/filter/Proxy-03eaa7d5c9f67508.list) | `https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Proxy.list` | `2292abb55f20caf031ffbb7011c84b85c2246f54ae050fe416323da1fd2b8ead` |
-| [`assets/filter/Spotify_rules_e2de74aedecac710-07a27827273e805f.list`](assets/filter/Spotify_rules_e2de74aedecac710-07a27827273e805f.list) | `https://magicrule.pages.dev/data/_shared/artifacts/Spotify_rules_e2de74aedecac710.list` | `e18e7610ca6634ce9ffa1e1548c567a5cd3d748bc021c5be7fe19d5c8fae2a9c` |
 | [`assets/filter/Streaming-401ff58cd3dd9bdc.list`](assets/filter/Streaming-401ff58cd3dd9bdc.list) | `https://raw.githubusercontent.com/ddgksf2013/Filter/master/Streaming.list` | `d3ba8500f7202942d4ba1f1830b8d01274ff1a4066ad300a9872f9b03431c95a` |
 | [`assets/filter/StreamingSE-b36e4153128bea44.list`](assets/filter/StreamingSE-b36e4153128bea44.list) | `https://raw.githubusercontent.com/ddgksf2013/Filter/master/StreamingSE.list` | `29fc51068ad90bdd6f2066e60e7b666f9f1eda31486cc4cc4bc8e7ca60a5e476` |
 | [`assets/filter/Unbreak-14877bc2dac1b851.list`](assets/filter/Unbreak-14877bc2dac1b851.list) | `https://raw.githubusercontent.com/ddgksf2013/Filter/master/Unbreak.list` | `200f6b9fb07f8570ac27b62f6b0cfbfc7b131785820dffd39a30076af0ebe13e` |
 | [`assets/filter/WeChat-b13e9db20545b0eb.list`](assets/filter/WeChat-b13e9db20545b0eb.list) | `https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/WeChat/WeChat.list` | `f2b1097292162858845d3b4f99058f047e0715bef4a0e6202b40a10af5c38e2c` |
-| [`assets/filter/qx-84c28310906987ec.conf`](assets/filter/qx-84c28310906987ec.conf) | `https://raw.githubusercontent.com/Cats-Team/AdRules/main/qx.conf` | `f2a01218676205442f190b7d2024610b04190f10cd23beaf4a50b84acb8dd33b` |
+| [`assets/filter/qx-84c28310906987ec.conf`](assets/filter/qx-84c28310906987ec.conf) | `https://raw.githubusercontent.com/Cats-Team/AdRules/main/qx.conf` | `8eb9341691c03cac36832e1cc6716bf82bd057e5aace80f5f51bb216d182ea8d` |
 | [`assets/rewrite/AmapAds-82184e0240b0dea4.conf`](assets/rewrite/AmapAds-82184e0240b0dea4.conf) | `https://github.com/ddgksf2013/Rewrite/raw/master/AdBlock/AmapAds.conf` | `8b72f89be64f0a8ae571ce47a9dd756cc9667d21b641da2c9e96f9c0f48708d1` |
 | [`assets/rewrite/Applet-3edda6ad809e23e4.conf`](assets/rewrite/Applet-3edda6ad809e23e4.conf) | `https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/Applet.conf` | `f4f29c9c8ecf175bdd8ed733aa49af145e3261baa2c7e3354986836fb4c8f2b2` |
 | [`assets/rewrite/BiliBiliAdsLite-fda71e86f6378aac.conf`](assets/rewrite/BiliBiliAdsLite-fda71e86f6378aac.conf) | `https://ddgksf2013.top/rewrite/BiliBiliAdsLite.conf` | `9a02f59f36b632cc3acfc40e2b4ea0d57d350ec0c1ed2c56b3e0d6048ffd089e` |
